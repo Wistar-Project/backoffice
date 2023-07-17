@@ -6,15 +6,16 @@
     <title>Listar de usuarios</title>
 </head>
 <body>
-    <form action="/editar" method="PUT">
+    <form action="/editar" method="POST">
         @csrf
         <input type="email" placeholder="Email del usuario a editar" name="email" required>
         <input type="text" placeholder="Nuevo nombre" name="nombre" required maxlength=50>
         <input type="text" placeholder="Nuevo apellido" name="apellido" required maxlength=50>
         <input type="password" placeholder="Nueva contraseña" name="contraseña" required>
+        <input type="submit" value="Enviar">
     </form>
-    @isset($usuarioEditado)
-        <p>El usuario {{ $usuarioEditado }} ha sido editado satisfactoriamente.</p>
+    @isset($mensaje)
+        <p>{{ $mensaje }}</p>
     @endisset
 </body>
 </html>

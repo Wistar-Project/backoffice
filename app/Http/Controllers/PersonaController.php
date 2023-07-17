@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use App\Models\PersonaRol;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -60,9 +61,16 @@ class PersonaController extends Controller
         $personas = $this -> obtenerPersonas();
         if(!isset($emailPersona)) 
             return view("listarUsuarios", [
-                "personas" => $personas
+                "personas" => $personas,
+                "personaNoEncontrada" => true
             ]);
-        $id = User::where("email", $emailPersona) -> get() -> first() -> id;
+        $usuario = User::where("email", $emailPersona) -> get() -> first();
+        if($usuario == null) 
+            return view("listarUsuarios", [
+                "personas" => $personas,
+                "personaNoEncontrada" => true
+            ]);
+        $id = $usuario -> id;
         $rol = PersonaRol::find($id) -> rol;
         $datosRestantes = Persona::find($id);
         return view("listarUsuarios", [
@@ -74,6 +82,41 @@ class PersonaController extends Controller
                 "nombre" => $datosRestantes["nombre"],
             ],
             "personas" => $personas
+        ]);
+    }
+
+    public function EditarPersona(Request $request){
+        $emailPersona = $request -> post("email");
+        $nombrePersona = $request -> post("nombre");
+        if(!isset($nombrePersona))
+            return view("editarUsuario", [
+                "mensaje" => "Debes ingresar un nombre."
+            ]);
+        $apellidoPersona = $request -> post("apellido");
+        if(!isset($apellidoPersona))
+            return view("editarUsuario", [
+                "mensaje" => "Debes ingresar un apellido."
+            ]);
+        $contraseñaPersona = $request -> post("contraseña");
+        if(!isset($contraseñaPersona))
+            return view("editarUsuario", [
+                "mensaje" => "Debes ingresar una contraseña."
+            ]);
+        $usuario = User::where("email", $emailPersona) -> get() -> first();
+        if($usuario == null)
+            return view("editarUsuario", [
+                "mensaje" => "La persona ingresada no existe."
+            ]);
+        $usuario -> password = Hash::make($contraseñaPersona);
+        $usuario -> save();
+        $id = $usuario -> id;
+        $persona = Persona::find($id);
+        $persona -> nombre = $nombrePersona;
+        $persona -> apellido = $apellidoPersona;
+        $persona -> save();
+        
+        return view("editarUsuario", [
+            "mensaje" => "La persona ha sido modificada satisfactoriamente.",
         ]);
     }
 }

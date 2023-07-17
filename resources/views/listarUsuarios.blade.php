@@ -40,7 +40,6 @@
                     <td>{{ $persona["email"]}}</td>
                     <td>{{ $persona["rol"]}}</td>
                 </tr>
-
             @endforeach
         </table>
         <h3>Buscar un usuario específico</h3>
@@ -66,6 +65,11 @@
                     <td>{{ $personaEncontrada["rol"] }}</td>
                 </tr>
             </table>
+        @endisset
+        @isset($personaNoEncontrada)
+            <script>
+                alert("La persona que ingresaste no existe.")
+            </script>
         @endisset
     </body>
 </html>

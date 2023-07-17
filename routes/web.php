@@ -23,4 +23,11 @@ Route::get('/listar', [PersonaController::class, "ListarPersonas"]);
 Route::post('/crear', [PersonaController::class, "CrearPersona"]);
 Route::get('/crear', function() {
     return view("crearUsuario");
+    
+});
+
+Route::post('/editar', [PersonaController::class, "EditarPersona"]);
+Route::get('/editar', function() {
+    return view("editarUsuario");
+    
 });
