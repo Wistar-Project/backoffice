@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonaController;
 /*
@@ -29,5 +30,13 @@ Route::get('/crear', function() {
 Route::post('/editar', [PersonaController::class, "EditarPersona"]);
 Route::get('/editar', function() {
     return view("editarUsuario");
-    
 });
+
+Route::get('/verLote', [LoteController::class, "VerLote"]); 
+
+Route::get('/editarLote', function() {
+        return view("editarLote");
+});
+    
+Route::post('/agregarPaqueteALote', [LoteController::class, "AgregarPaqueteALote"]);
+Route::post('/removerPaqueteALote', [LoteController::class, "RemoverPaqueteALote"]);
