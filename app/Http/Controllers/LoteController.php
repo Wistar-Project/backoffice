@@ -17,21 +17,23 @@ class LoteController extends Controller
         ]);
     }
 
+    private function obtenerPaquetes($id){
+        $idDePaquetes = LoteFormadoPor::where("id_lote", $id) -> pluck("id_paquete");
+        $paquetes = [];
+        foreach($idDePaquetes as $idPaquete){
+            $paquete = Paquete::find($idPaquete);
+            array_push($paquetes, $paquete);
+        }
+        return $paquetes;
+    }
+
+    private function obtenerDestinoDeLote($idLote){
+        $loteEncontrado = Lote::find($idLote);
+        $idDestino = $loteEncontrado["destino"];
+        return Alojamiento::find($idDestino)["direccion"];
+    }
+
     public function VerLote(Request $request){    
-        function obtenerPaquetes($id){
-            $idDePaquetes = LoteFormadoPor::where("id_lote", $id) -> pluck("id_paquete");
-            $paquetes = [];
-            foreach($idDePaquetes as $idPaquete){
-                $paquete = Paquete::find($idPaquete);
-                array_push($paquetes, $paquete);
-            }
-            return $paquetes;
-        }
-        function obtenerDestinoDeLote($idLote){
-            $loteEncontrado = Lote::find($idLote);
-            $idDestino = $loteEncontrado["destino"];
-            return Alojamiento::find($idDestino)["direccion"];
-        }
         $id = $request -> get("id");
         if(!isset($id))
             return view("verLote", [
@@ -42,8 +44,8 @@ class LoteController extends Controller
             return view("verLote", [
                 "mensaje" => "El lote ingresado no ha sido encontrado"
             ]);
-        $paquetes = obtenerPaquetes($id);
-        $destino = obtenerDestinoDeLote($id);
+        $paquetes = $this -> obtenerPaquetes($id);
+        $destino = $this -> obtenerDestinoDeLote($id);
         return view("verLote", [
             "paquetes" => $paquetes,
             "destino" => $destino
@@ -100,6 +102,7 @@ class LoteController extends Controller
             "mensajeEnRemover" => "El paquete fue removido del lote con éxito"
         ]);
     }
+
     public function BorrarLote(Request $request){
         $id=$request->post('idLote');
         if(!isset($id))
@@ -114,33 +117,6 @@ class LoteController extends Controller
         $loteEncontrado->delete();
         return view('borrarLote', [
             "mensaje"=> "El lote ha sido borrado satisfactoriamente"
-        ]);
-    }
-    public function ListarPaquetes(){
-        $paquetes=Paquete::all();
-        foreach($paquetes as $paquete){
-            $idDestino=$paquete->destino;
-            $destino=Alojamiento::find($idDestino)->direccion;
-            $paquete->destino=$destino;
-        }
-        return view('listarPaquetes',[
-            "paquetes"=>$paquetes
-        ]);
-    }
-    public function BorrarPaquete(Request $request){
-        $id=$request->post('id');
-        if(!isset($id))
-            return view ("borrarPaquete", [
-                "mensaje" => "No se ingresó un id del paquete"
-            ]);
-        $paqueteEncontrado= Paquete::find($id);
-        if(!isset($paqueteEncontrado))
-            return view ("borrarPaquete", [
-                "mensaje" => "El paquete ingresado no existe"
-            ]);
-        $paqueteEncontrado->delete();
-        return view('borrarPaquete', [
-            "mensaje"=> "El paquete ha sido borrado satisfactoriamente"
         ]);
     }
 }

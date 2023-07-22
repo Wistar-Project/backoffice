@@ -7,25 +7,10 @@ use App\Models\Sede;
 use Illuminate\Http\Request;
 use App\Models\Alojamiento;
 use App\Models\SedeHogar;
+use App\Models\AlojamientoTipo;
 class AlojamientoController extends Controller
 {
     public function CrearAlojamiento(Request $request){
-        function crearSede($id){
-            SedeHogar::create([
-                'id'=> $id
-            ]);
-            Sede::create([
-                'id'=> $id
-            ]);
-        }
-        function crearHogar($id){
-            SedeHogar::create([
-                'id'=> $id
-            ]);
-            Hogar::create([
-                'id'=> $id
-            ]);
-        }
         $direccion=$request->post('direccion');
         $tipo=$request->post('tipo');
         if(!isset($direccion) || !isset($tipo)){
@@ -33,6 +18,10 @@ class AlojamientoController extends Controller
                 "mensaje"=> "no se ingreso la dirección o el tipo"
             ]);
         }
+        if($tipo != "almacen" && $tipo != "sede" && $tipo != "hogar")
+            return view("crearAlojamiento", [
+                "mensaje" => "Ese tipo no es válido"
+            ]);
         $alojamientos=Alojamiento::all();
         foreach($alojamientos as $alojamiento){
             if($direccion != $alojamiento->direccion) continue;
@@ -51,11 +40,53 @@ class AlojamientoController extends Controller
             Almacen::create([
                 'id'=> $idAlojamiento
             ]);
+            return view('crearAlojamiento',[
+                "mensaje"=> "Alojamiento creado satisfactoriamente"
+            ]);
         }
-        if($tipo == 'sede') crearSede($idAlojamiento);
-        if($tipo == 'hogar') crearHogar($idAlojamiento);
+        SedeHogar::create([
+            'id'=> $idAlojamiento
+        ]);
+        if($tipo == 'sede') {
+            Sede::create([
+                'id'=> $idAlojamiento
+            ]);
+        }
+        if($tipo == 'hogar') {
+            Hogar::create([
+                'id'=> $idAlojamiento
+            ]);
+        }
         return view('crearAlojamiento',[
             "mensaje"=> "Alojamiento creado satisfactoriamente"
+        ]);
+    }
+
+    public function BorrarAlojamiento(Request $request){
+        $id = $request -> post("id");
+        if(!isset($id))
+            return view("borrarAlojamiento", [
+                "mensaje" => "No has ingresado un id"
+            ]);
+        $alojamiento = Alojamiento::find($id);
+        if(!isset($alojamiento))
+            return view("borrarAlojamiento", [
+                "mensaje" => "El alojamiento ingresado no existe"
+            ]);
+        $alojamiento -> delete();
+        return view("borrarAlojamiento", [
+            "mensaje" => "Alojamiento borrado satisfactoriamente"
+        ]);
+    }
+
+    public function ListarAlojamientos(){
+        $alojamientos = Alojamiento::all();
+        foreach($alojamientos as $alojamiento){
+            $tipo = AlojamientoTipo::where("id", $alojamiento -> id) -> first() -> tipo;
+            $alojamiento -> tipo = $tipo;
+        }
+        return view("listarAlojamientos", [
+            "alojamientos" => $alojamientos
         ]);
     }
 }

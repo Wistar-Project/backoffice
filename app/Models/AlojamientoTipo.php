@@ -5,12 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Paquete extends Model
+class AlojamientoTipo extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'id',
-        'peso_en_kg',
-        'destino'
-    ];
+    protected $table='alojamientos_tipos';
 }

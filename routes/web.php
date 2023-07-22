@@ -4,6 +4,7 @@ use App\Http\Controllers\AlojamientoController;
 use App\Http\Controllers\LoteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\PaqueteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,9 +48,9 @@ Route::get('/borrarLote',function(){
     return view('borrarLote');
 });
 
-Route::get('/listarPaquetes', [LoteController::class,"ListarPaquetes"]);
+Route::get('/listarPaquetes', [PaqueteController::class,"ListarPaquetes"]);
 
-Route::post('/borrarPaquete',[LoteController::class, "BorrarPaquete"]);
+Route::post('/borrarPaquete',[PaqueteController::class, "BorrarPaquete"]);
 Route::get('/borrarPaquete',function(){
     return view('borrarPaquete');
 });
@@ -57,3 +58,10 @@ Route::post('/crearAlojamiento',[AlojamientoController::class, "CrearAlojamiento
 Route::get('/crearAlojamiento',function(){
     return view('crearAlojamiento');
 });
+
+Route::post('/borrarAlojamiento',[AlojamientoController::class, "BorrarAlojamiento"]);
+Route::get('/borrarAlojamiento',function(){
+    return view('borrarAlojamiento');
+});
+
+Route::get('/listarAlojamientos',[AlojamientoController::class, "ListarAlojamientos"]);
