@@ -11,9 +11,8 @@ use App\Models\User;
 
 class PersonaController extends Controller
 {
-    public function CrearPersona(Request $request){
-        $OK_HTTP_CODE = 200;
-        $datos = [
+    private function obtenerDatosEnCrearPersona($request){
+        return [
             "nombre" => $request -> post("nombre"),
             "apellido" => $request -> post("apellido"),
             "email" => $request -> post("email"),
@@ -21,12 +20,16 @@ class PersonaController extends Controller
             "password" => $request -> post("contraseña"),
             "password_confirmation" => $request -> post("confirmarContraseña")
         ];
+    }
+
+    public function CrearPersona(Request $request){
+        $OK_HTTP_CODE = 200;
+        $datos = $this -> obtenerDatosEnCrearPersona($request);
         $response = Http::post("localhost:8000/api/v1/user", $datos);
-        if($response -> status() == $OK_HTTP_CODE){
+        if($response -> status() == $OK_HTTP_CODE)
             return view("crearUsuario", [
                 "mensaje" => "El usuario ha sido creado satisfactoriamente."
             ]);
-        }
         return view("crearUsuario", [
             "mensaje" => "Ha ocurrido un error al crear el usuario."
         ]);
@@ -50,9 +53,8 @@ class PersonaController extends Controller
     }
 
     public function ListarPersonas(Request $request){
-        $personas = $this -> obtenerPersonas();
         return view("listarUsuarios", [
-            "personas" => $personas,
+            "personas" => $this -> obtenerPersonas()
         ]);
     }
 
@@ -65,7 +67,7 @@ class PersonaController extends Controller
                 "personaNoEncontrada" => true
             ]);
         $usuario = User::where("email", $emailPersona) -> get() -> first();
-        if($usuario == null) 
+        if(!isset($usuario)) 
             return view("listarUsuarios", [
                 "personas" => $personas,
                 "personaNoEncontrada" => true
@@ -85,36 +87,54 @@ class PersonaController extends Controller
         ]);
     }
 
+    private function obtenerDatosEnEditarPersona($request){
+        $email = $request -> post("email");
+        $nombre = $request -> post("nombre");
+        $apellido = $request -> post("apellido");
+        $contrasenia = $request -> post("contraseña");
+        return [
+            $email,
+            $nombre,
+            $apellido,
+            $contrasenia
+        ];
+    }
+
+    private function editarUsuarioYPersona($usuario, $nombre, $apellido, $contrasenia){
+        $usuario -> password = Hash::make($contrasenia);
+        $usuario -> save();
+        $id = $usuario -> id;
+        $persona = Persona::find($id);
+        $persona -> nombre = $nombre;
+        $persona -> apellido = $apellido;
+        $persona -> save();
+    }
+
     public function EditarPersona(Request $request){
-        $emailPersona = $request -> post("email");
-        $nombrePersona = $request -> post("nombre");
-        if(!isset($nombrePersona))
+        [
+            $email,
+            $nombre,
+            $apellido,
+            $contrasenia
+        ] = $this -> obtenerDatosEnEditarPersona($request);
+        if(!isset($nombre))
             return view("editarUsuario", [
                 "mensaje" => "Debes ingresar un nombre."
             ]);
-        $apellidoPersona = $request -> post("apellido");
-        if(!isset($apellidoPersona))
+        if(!isset($apellido))
             return view("editarUsuario", [
                 "mensaje" => "Debes ingresar un apellido."
             ]);
-        $contraseñaPersona = $request -> post("contraseña");
-        if(!isset($contraseñaPersona))
+        if(!isset($contrasenia))
             return view("editarUsuario", [
                 "mensaje" => "Debes ingresar una contraseña."
             ]);
-        $usuario = User::where("email", $emailPersona) -> get() -> first();
+        $usuario = User::where("email", $email) -> get() -> first();
         if($usuario == null)
             return view("editarUsuario", [
                 "mensaje" => "La persona ingresada no existe."
             ]);
-        $usuario -> password = Hash::make($contraseñaPersona);
-        $usuario -> save();
-        $id = $usuario -> id;
-        $persona = Persona::find($id);
-        $persona -> nombre = $nombrePersona;
-        $persona -> apellido = $apellidoPersona;
-        $persona -> save();
-        
+        $this -> editarUsuarioYPersona($usuario, $nombre, $apellido, $contrasenia);
         return view("editarUsuario", [
             "mensaje" => "La persona ha sido modificada satisfactoriamente.",
         ]);

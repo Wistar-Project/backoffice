@@ -17,6 +17,12 @@ class LoteController extends Controller
         ]);
     }
 
+    private function obtenerDatos($request){
+        $idLote = $request -> post("idLote");
+        $idPaquete = $request -> post("idPaquete");
+        return [$idLote, $idPaquete];
+    }
+
     private function obtenerPaquetes($id){
         $idDePaquetes = LoteFormadoPor::where("id_lote", $id) -> pluck("id_paquete");
         $paquetes = [];
@@ -53,8 +59,7 @@ class LoteController extends Controller
     }
 
     public function AgregarPaqueteALote(Request $request){
-        $idLote = $request -> post("idLote");
-        $idPaquete = $request -> post("idPaquete");
+        [$idLote, $idPaquete] = $this -> obtenerDatos($request);
         if(!isset($idLote) || !isset($idPaquete))
             return view ("editarLote", [
                 "mensajeEnAgregar" => "No se ingresó un id de lote o de paquete"
@@ -79,9 +84,10 @@ class LoteController extends Controller
         ]);
     }
 
+    
+
     public function RemoverPaqueteALote(Request $request){
-        $idLote = $request -> post("idLote");
-        $idPaquete = $request -> post("idPaquete");
+        [$idLote, $idPaquete] = $this -> obtenerDatos($request);
         if(!isset($idLote) || !isset($idPaquete))
             return view ("editarLote", [
                 "mensajeEnRemover" => "No se ingresó un id de lote o de paquete"
@@ -93,30 +99,31 @@ class LoteController extends Controller
                 "mensajeEnRemover" => "El paquete o lote ingresado no existe"
             ]);
         $paqueteEnLoteEncontrado = $this -> buscarPaqueteEnLote($idPaquete, $idLote);
-        if(null == $paqueteEnLoteEncontrado -> first())
+        $paqueteEnLote = $paqueteEnLoteEncontrado -> first();
+        if(!isset($paqueteEnLote))
             return view ("editarLote", [
                 "mensajeEnRemover" => "El paquete ingresado no forma parte del lote"
             ]);
         $paqueteEnLoteEncontrado -> delete(); 
-        return view ("editarLote",[
+        return view ("editarLote", [
             "mensajeEnRemover" => "El paquete fue removido del lote con éxito"
         ]);
     }
 
     public function BorrarLote(Request $request){
-        $id=$request->post('idLote');
+        $id = $request -> post('idLote');
         if(!isset($id))
             return view ("borrarLote", [
                 "mensaje" => "No se ingresó un id de lote"
             ]);
-        $loteEncontrado= Lote::find($id);
+        $loteEncontrado = Lote::find($id);
         if(!isset($loteEncontrado))
             return view ("borrarLote", [
                 "mensaje" => "El lote ingresado no existe"
             ]);
-        $loteEncontrado->delete();
+        $loteEncontrado -> delete();
         return view('borrarLote', [
-            "mensaje"=> "El lote ha sido borrado satisfactoriamente"
+            "mensaje" => "El lote ha sido borrado satisfactoriamente"
         ]);
     }
 }

@@ -10,55 +10,70 @@ use App\Models\SedeHogar;
 use App\Models\AlojamientoTipo;
 class AlojamientoController extends Controller
 {
+    private function obtenerDatos($request){
+        $direccion = $request -> post('direccion');
+        $tipo = $request -> post('tipo');
+        return [$direccion, $tipo];
+    }
+
+    private function comprobarExistenciaDeAlojamientoConDireccion($direccion){
+        $alojamientos = Alojamiento::all();
+        foreach($alojamientos as $alojamiento){
+            if($direccion != $alojamiento -> direccion) continue;
+            return true;
+        }
+        return false;
+    }
+
+    private function crearSedeUHogar($tipo, $idAlojamiento){
+        SedeHogar::create([
+            'id' => $idAlojamiento
+        ]);
+        if($tipo == 'sede')
+            Sede::create([
+                'id' => $idAlojamiento
+            ]);
+        if($tipo == 'hogar')
+            Hogar::create([
+                'id' => $idAlojamiento
+            ]);
+    }
+
     public function CrearAlojamiento(Request $request){
-        $direccion=$request->post('direccion');
-        $tipo=$request->post('tipo');
+        [$direccion, $tipo] = $this -> obtenerDatos($request);
         if(!isset($direccion) || !isset($tipo)){
-            return view('crearAlojamiento',[
-                "mensaje"=> "no se ingreso la dirección o el tipo"
+            return view('crearAlojamiento', [
+                "mensaje" => "no se ingreso la dirección o el tipo"
             ]);
         }
-        if($tipo != "almacen" && $tipo != "sede" && $tipo != "hogar")
+        $tipos = ["almacen", "sede", "hogar"];
+        if(!in_array($tipo, $tipos))
             return view("crearAlojamiento", [
                 "mensaje" => "Ese tipo no es válido"
             ]);
-        $alojamientos=Alojamiento::all();
-        foreach($alojamientos as $alojamiento){
-            if($direccion != $alojamiento->direccion) continue;
-            return view('crearAlojamiento',[
-                "mensaje"=> "Ya existe un alojamiento con esa dirección"
+        if($this -> comprobarExistenciaDeAlojamientoConDireccion($direccion))
+            return view('crearAlojamiento', [
+                "mensaje" => "Ya existe un alojamiento con esa dirección"
             ]);
-        }
-        if($tipo == 'almacen' && count(Almacen::all())==1)
-            return view('crearAlojamiento',[
-                "mensaje"=> "No puedes crear mas de un almacén"
+        $yaHayAlmacen = count(Almacen::all()) >= 1;
+        if($tipo == 'almacen' && $yaHayAlmacen)
+            return view('crearAlojamiento', [
+                "mensaje" => "No puedes crear mas de un almacén"
             ]);
-        $idAlojamiento=Alojamiento::create([
-            'direccion'=> $direccion
-        ])->id;
+        $idAlojamiento = Alojamiento::create([
+            'direccion' => $direccion
+        ]) -> id;
         if($tipo == 'almacen'){
             Almacen::create([
-                'id'=> $idAlojamiento
+                'id' => $idAlojamiento
             ]);
             return view('crearAlojamiento',[
-                "mensaje"=> "Alojamiento creado satisfactoriamente"
+                "mensaje" => "Alojamiento creado satisfactoriamente"
             ]);
         }
-        SedeHogar::create([
-            'id'=> $idAlojamiento
-        ]);
-        if($tipo == 'sede') {
-            Sede::create([
-                'id'=> $idAlojamiento
-            ]);
-        }
-        if($tipo == 'hogar') {
-            Hogar::create([
-                'id'=> $idAlojamiento
-            ]);
-        }
+        $this -> crearSedeUHogar($tipo, $idAlojamiento);
         return view('crearAlojamiento',[
-            "mensaje"=> "Alojamiento creado satisfactoriamente"
+            "mensaje" => "Alojamiento creado satisfactoriamente"
         ]);
     }
 
@@ -79,14 +94,18 @@ class AlojamientoController extends Controller
         ]);
     }
 
-    public function ListarAlojamientos(){
+    private function obtenerAlojamientos(){
         $alojamientos = Alojamiento::all();
         foreach($alojamientos as $alojamiento){
             $tipo = AlojamientoTipo::where("id", $alojamiento -> id) -> first() -> tipo;
             $alojamiento -> tipo = $tipo;
         }
+        return $alojamientos;
+    }
+
+    public function ListarAlojamientos(){
         return view("listarAlojamientos", [
-            "alojamientos" => $alojamientos
+            "alojamientos" => $this -> obtenerAlojamientos()
         ]);
     }
 }
