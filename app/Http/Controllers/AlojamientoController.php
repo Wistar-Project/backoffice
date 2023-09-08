@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Almacen;
-use App\Models\Hogar;
 use App\Models\Sede;
 use Illuminate\Http\Request;
 use App\Models\Alojamiento;
-use App\Models\SedeHogar;
 use App\Models\AlojamientoTipo;
 use Illuminate\Support\Facades\DB;
 class AlojamientoController extends Controller
