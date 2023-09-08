@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 use App\Models\Alojamiento;
 use App\Models\Almacen;
 use App\Models\Sede;
-use App\Models\SedeHogar;
 use App\Models\Paquete;
 use App\Models\Lote;
 
@@ -31,16 +30,14 @@ class DatabaseSeeder extends Seeder
             "id" => 2,
             "direccion" => "Dirección usada"
         ]);
-        SedeHogar::create([
-            "id" => 2
-        ]);
         Sede::create([
             "id" => 2
         ]);
         Paquete::create([
             "id" => 1,
             "peso_en_kg" => 5,
-            "destino" => 2
+            "destino" => 2,
+            "email" => "abcd@gmail.com"
         ]);
 
         Lote::create([

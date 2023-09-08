@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Alojamiento;
 use App\Models\AlojamientoTipo;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+
 class AlojamientoController extends Controller
 {
     private function validarDatos($request){
@@ -23,7 +25,7 @@ class AlojamientoController extends Controller
     }
 
     private function agregarAlojamiento($tipo, $direccion){
-        DB::transaction(function use($tipo, $direccion){
+        DB::transaction(function() use($tipo, $direccion){
             $idAlojamiento = Alojamiento::create([
                 'direccion' => $direccion
             ]) -> id;
@@ -34,11 +36,11 @@ class AlojamientoController extends Controller
             Sede::create([
                 'id' => $idAlojamiento
             ]);
-        })
+        });
     }
 
     public function CrearAlojamiento(Request $request){
-        $validacion = $this -> validarDatos();
+        $validacion = $this -> validarDatos($request);
         if($validacion -> fails())
             return view('crearAlojamiento', [
                 "mensaje" => "Ha ocurrido un error. Por favor, revise los campos."
