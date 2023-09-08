@@ -5,34 +5,74 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use App\Models\PersonaRol;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use App\Models\Persona;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use App\Models\Administrador;
+use App\Models\Conductor;
+use App\Models\Funcionario;
 
 class PersonaController extends Controller
 {
-    private function obtenerDatosEnCrearPersona($request){
-        return [
-            "nombre" => $request -> post("nombre"),
-            "apellido" => $request -> post("apellido"),
-            "email" => $request -> post("email"),
-            "rol" => $request -> post("rol"),
-            "password" => $request -> post("contraseña"),
-            "password_confirmation" => $request -> post("confirmarContraseña")
-        ];
+    private function validarDatos($request){
+        return Validator::make($request->all(),[
+            'email' => 'required|email|unique:users',
+            'rol'=> 'required|in:administrador,funcionario,conductor',
+            'nombre'=>'required|max:50',
+            'apellido'=>'required|max:50',
+            'password' => 'required|confirmed'
+        ]);
     }
 
     public function CrearPersona(Request $request){
-        $OK_HTTP_CODE = 200;
-        $datos = $this -> obtenerDatosEnCrearPersona($request);
-        $response = Http::post("localhost:8000/api/v1/user", $datos);
-        if($response -> status() == $OK_HTTP_CODE)
+        $validacion = $this -> validarDatos($request);
+        if($validacion -> errors())
             return view("crearUsuario", [
-                "mensaje" => "El usuario ha sido creado satisfactoriamente."
+                "mensaje" => "Uno de los campos es inválido. Por favor, revise los campos."
             ]);
+        DB::transaction(function() use($request){
+            $usuario = $this -> registrarUsuario($request);
+            $this -> registrarPersona($request, $usuario -> id);
+            $this -> agregarRolAPersona($usuario -> id, $request -> post('rol'));
+        });
         return view("crearUsuario", [
-            "mensaje" => "Ha ocurrido un error al crear el usuario."
+            "mensaje" => "El usuario ha sido creado satisfactoriamente."
         ]);
+    }
+
+    private function registrarPersona($request, $id){
+        $persona = new Persona();
+        $persona -> nombre = $request -> post('nombre');
+        $persona -> apellido = $request -> post('apellido');
+        $persona -> id = $id;
+        $persona -> save();
+        return $persona;
+    }
+
+    private function createConductor($id){
+        $conductor = new Conductor();
+        $conductor -> id = $id;
+        $conductor -> save();
+    }
+
+    private function createAdministrador($id){
+        $administrador = new Administrador();
+        $administrador -> id = $id;
+        $administrador -> save();
+    }
+
+    private function createFuncionario($id){
+        $funcionario = new Funcionario();
+        $funcionario -> id = $id;
+        $funcionario -> save();
+    }
+    private function agregarRolAPersona($id, $rol){
+        if($rol == 'administrador')
+            return $this -> createAdministrador($id);
+        if($rol == 'conductor')
+            return $this -> createConductor($id);
+        return $this -> createFuncionario($id);
     }
 
     private function obtenerPersonas(){
