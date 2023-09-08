@@ -16,8 +16,8 @@
             <option value="conductor">Conductor</option>
             <option value="funcionario">Funcionario</option>
         </select> 
-        <input type="password" placeholder="Contraseña" name="contraseña" required>
-        <input type="password" placeholder="Confirmar Contraseña" name="confirmarContraseña" required>
+        <input type="password" placeholder="Contraseña" name="password" required>
+        <input type="password" placeholder="Confirmar Contraseña" name="password_confirmation" required>
         <input type="submit" value="Registrar">
     </form>
     @isset($mensaje)

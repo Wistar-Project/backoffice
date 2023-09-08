@@ -27,7 +27,7 @@ class PersonaController extends Controller
 
     public function CrearPersona(Request $request){
         $validacion = $this -> validarDatos($request);
-        if($validacion -> errors())
+        if($validacion -> fails())
             return view("crearUsuario", [
                 "mensaje" => "Uno de los campos es inválido. Por favor, revise los campos."
             ]);
@@ -39,6 +39,14 @@ class PersonaController extends Controller
         return view("crearUsuario", [
             "mensaje" => "El usuario ha sido creado satisfactoriamente."
         ]);
+    }
+
+    private function registrarUsuario($request){
+        $user = new User();
+        $user -> email = $request -> post("email");
+        $user -> password = Hash::make($request -> post("password"));   
+        $user -> save();
+        return $user;
     }
 
     private function registrarPersona($request, $id){
