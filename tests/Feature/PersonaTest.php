@@ -52,8 +52,8 @@ class PersonaTest extends TestCase
             "id" => 1,
             "email" => "usuario@usuario",
             "rol" => "administrador",
-            "nombre" => "pepe",
-            "apellido" => "hola"
+            "nombre" => "Rodrigo",
+            "apellido" => "Dominguez"
         ]);
     }
 
@@ -119,7 +119,7 @@ class PersonaTest extends TestCase
             "rol" => "conductor"
         ]);
         $response -> assertStatus(200);
-        $response -> assertViewHas("mensaje", "Ha ocurrido un error al crear el usuario.");
+        $response -> assertViewHas("mensaje", "Uno de los campos es inválido. Por favor, revise los campos.");
     }
 
     public function test_EditarUsuario()

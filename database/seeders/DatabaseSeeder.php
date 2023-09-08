@@ -2,12 +2,16 @@
 
 namespace Database\Seeders;
 
+use App\Models\Administrador;
 use Illuminate\Database\Seeder;
 use App\Models\Alojamiento;
 use App\Models\Almacen;
 use App\Models\Sede;
 use App\Models\Paquete;
 use App\Models\Lote;
+use App\Models\User;
+use App\Models\Persona;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +22,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $idUsuario = User::create([
+            "email" => "usuario@usuario",
+            "password" => Hash::make("1234")
+        ]) -> id;
+        Persona::create([
+            "id" => $idUsuario,
+            "nombre" => "Rodrigo",
+            "apellido" => "Dominguez"
+        ]);
+        Administrador::create([
+            "id" => $idUsuario
+        ]);
         Alojamiento::create([
             "id" => 1,
             "direccion" => "Dirección del almacén"
