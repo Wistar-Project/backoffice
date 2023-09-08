@@ -11,7 +11,6 @@
         <input type="text" name="direccion" placeholder="Ingrese la direccion" required>
         <select name="tipo" >
             <option value="sede">sede</option>
-            <option value="hogar">hogar</option>
             <option value="almacen">almacén</option>
         </select>
         <input type="submit" value="Crear">
