@@ -65,3 +65,7 @@ Route::get('/borrarAlojamiento',function(){
 });
 
 Route::get('/listarAlojamientos',[AlojamientoController::class, "ListarAlojamientos"]);
+
+Route::get('/asignarConductor', function(){
+    return view("asignarConductor");
+});
