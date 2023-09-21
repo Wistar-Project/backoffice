@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlojamientoController;
+use App\Http\Controllers\ConductorController;
 use App\Http\Controllers\LoteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonaController;
@@ -69,3 +70,4 @@ Route::get('/listarAlojamientos',[AlojamientoController::class, "ListarAlojamien
 Route::get('/asignarConductor', function(){
     return view("asignarConductor");
 });
+Route::post('/asignarConductor', [ ConductorController::class, "AsignarVehiculo" ]);
