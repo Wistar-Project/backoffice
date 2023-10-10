@@ -2,76 +2,56 @@
 
 namespace App\Http\Controllers;
 use App\Models\Almacen;
-use App\Models\Hogar;
 use App\Models\Sede;
 use Illuminate\Http\Request;
 use App\Models\Alojamiento;
-use App\Models\SedeHogar;
 use App\Models\AlojamientoTipo;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+
 class AlojamientoController extends Controller
 {
+    private function validarDatos($request){
+        return Validator::make($request -> all(), [
+            'direccion' => 'required|unique:alojamientos',
+            'tipo'=> 'required|in:sede,almacen'
+        ]);
+    }
+
     private function obtenerDatos($request){
         $direccion = $request -> post('direccion');
         $tipo = $request -> post('tipo');
         return [$direccion, $tipo];
     }
 
-    private function comprobarExistenciaDeAlojamientoConDireccion($direccion){
-        $alojamientos = Alojamiento::all();
-        foreach($alojamientos as $alojamiento){
-            if($direccion != $alojamiento -> direccion) continue;
-            return true;
-        }
-        return false;
-    }
-
-    private function crearSedeUHogar($tipo, $idAlojamiento){
-        SedeHogar::create([
-            'id' => $idAlojamiento
-        ]);
-        if($tipo == 'sede')
+    private function agregarAlojamiento($tipo, $direccion){
+        DB::transaction(function() use($tipo, $direccion){
+            $idAlojamiento = Alojamiento::create([
+                'direccion' => $direccion
+            ]) -> id;
+            if($tipo == 'almacen')
+                return Almacen::create([
+                    'id' => $idAlojamiento
+                ]);
             Sede::create([
                 'id' => $idAlojamiento
             ]);
-        if($tipo == 'hogar')
-            Hogar::create([
-                'id' => $idAlojamiento
-            ]);
+        });
     }
 
     public function CrearAlojamiento(Request $request){
-        [$direccion, $tipo] = $this -> obtenerDatos($request);
-        if(!isset($direccion) || !isset($tipo)){
+        $validacion = $this -> validarDatos($request);
+        if($validacion -> fails())
             return view('crearAlojamiento', [
-                "mensaje" => "no se ingreso la dirección o el tipo"
+                "mensaje" => "Ha ocurrido un error. Por favor, revise los campos."
             ]);
-        }
-        $tipos = ["almacen", "sede", "hogar"];
-        if(!in_array($tipo, $tipos))
-            return view("crearAlojamiento", [
-                "mensaje" => "Ese tipo no es válido"
-            ]);
-        if($this -> comprobarExistenciaDeAlojamientoConDireccion($direccion))
-            return view('crearAlojamiento', [
-                "mensaje" => "Ya existe un alojamiento con esa dirección"
-            ]);
+        [ $direccion, $tipo ] = $this -> obtenerDatos($request);
         $yaHayAlmacen = count(Almacen::all()) >= 1;
         if($tipo == 'almacen' && $yaHayAlmacen)
             return view('crearAlojamiento', [
                 "mensaje" => "No puedes crear mas de un almacén"
             ]);
-        $idAlojamiento = Alojamiento::create([
-            'direccion' => $direccion
-        ]) -> id;
-        if($tipo == 'almacen'){
-            Almacen::create([
-                'id' => $idAlojamiento
-            ]);
-            return view('crearAlojamiento',[
-                "mensaje" => "Alojamiento creado satisfactoriamente"
-            ]);
-        }
-        $this -> crearSedeUHogar($tipo, $idAlojamiento);
+        $this -> agregarAlojamiento($tipo, $direccion);
         return view('crearAlojamiento',[
             "mensaje" => "Alojamiento creado satisfactoriamente"
         ]);

@@ -30,19 +30,6 @@ class AlojamientoTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_crearHogar()
-    {
-        $response = $this->post('/crearAlojamiento', [
-            "tipo" => "hogar",
-            "direccion" => "Avenida Italia 1259"
-        ]);
-        $this -> assertDatabaseHas("alojamientos", [
-            "direccion" => "Avenida Italia 1259"
-        ]);
-        $response -> assertViewHas("mensaje", "Alojamiento creado satisfactoriamente");
-        $response->assertStatus(200);
-    }
-
     public function test_crearAlmacenCuandoYaHayUno()
     {
         $response = $this->post('/crearAlojamiento', [
@@ -56,13 +43,13 @@ class AlojamientoTest extends TestCase
     public function test_crearAlojamientoConDireccionYaUsada()
     {
         $response = $this->post('/crearAlojamiento', [
-            "tipo" => "hogar",
+            "tipo" => "sede",
             "direccion" => "Dirección usada"
         ]);
         $this -> assertDatabaseHas("alojamientos", [
             "direccion" => "Dirección usada"
         ]);
-        $response -> assertViewHas("mensaje", "Ya existe un alojamiento con esa dirección");
+        $response -> assertViewHas("mensaje", "Ha ocurrido un error. Por favor, revise los campos.");
         $response->assertStatus(200);
     }
 
@@ -72,7 +59,7 @@ class AlojamientoTest extends TestCase
             "tipo" => "ihueihnqueh",
             "direccion" => "Una dirección"
         ]);
-        $response -> assertViewHas("mensaje", "Ese tipo no es válido");
+        $response -> assertViewHas("mensaje", "Ha ocurrido un error. Por favor, revise los campos.");
         $response->assertStatus(200);
     }
 

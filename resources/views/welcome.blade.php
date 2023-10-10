@@ -21,5 +21,7 @@
     <p>Haz click en <a href="/listarAlojamientos">listar alojamientos</a> para listar todos los alojamientos.</p>
     <p>Haz click en <a href="/crearAlojamiento">crear alojamiento</a> para crear un alojamiento.</p>
     <p>Haz click en <a href="/borrarAlojamiento">borrar alojamientos</a> para remover un alojamiento.</p>
+    <h3>Conductores</h3>
+    <p>Haz click en <a href="/asignarConductor">asignar conductor</a> para asignar un conductor a un vehículo.</p>
 </body>
 </html>
