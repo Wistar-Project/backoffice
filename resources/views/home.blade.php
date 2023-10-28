@@ -32,7 +32,7 @@
         </div>  
         <div id="opciones-usuario">
             <div id="boton-cerrar-sesion">
-                <img src="cerrar-sesion.png" alt="Salir">
+                <img src="img/cerrar-sesion.png" alt="Salir">
                 <p data-text-id="100">Cerrar sesión</p>
             </div>
         </div>  
@@ -42,24 +42,24 @@
         <a class="container" id="usuarios-container" href="">
             <h3 data-text-id="401">Usuarios</h3>
             <img src="img/usuarios.png" alt="Hubo un error al cargar la imagen.">
-            <p class="texto-app" data-text-id="402">Ve el estado de una entrega buscándola por su id.</p>
+            <p class="texto-app" data-text-id="402">Registra nuevos usuarios en el sistema, listalos y elimina o edita otros.</p>
         </a>
         <a class="container" id="transporte-container">
             <h3 data-text-id="403">Transporte</h3>
             <img src="img/camion 2.png" alt="Hubo un error al cargar la imagen.">
-            <p class="texto-app" data-text-id="404">Visualiza las entregas pendientes y el trayecto hacia la sede más cercana.</p>
+            <p class="texto-app" data-text-id="404">Define los vehículos que posees y asigna choferes a cargo de ellos.</p>
         </a>
         <a href="">
             <div class="container" id="paqueteria-container">
                 <h3 data-text-id="405">Paquetería</h3>
                 <img src="img/caja-del-paquete.png" alt="Hubo un error al cargar la imagen.">
-                <p class="texto-app" data-text-id="406">Gestiona lotes con sus paquetes y asígnalos a un camión para ser entregados.</p>
+                <p class="texto-app" data-text-id="406">Lista paquetes o lotes, edita los que necesites o elimina los que desees.</p>
             </div>
         </a>
         <div class="container" id="sedes-container">
             <h3 data-text-id="407">Sedes</h3>
             <img src="img/administración_blanco 1.png" alt="Hubo un error al cargar la imagen.">
-            <p class="texto-app" data-text-id="408">Adéntrese en el mundo corporativo y gestione su equipo de trabajo.</p>
+            <p class="texto-app" data-text-id="408">Define todas las sedes de la empresa para poder asignar camiones hacia esa dirección..</p>
         </div>
     </main>
     <footer>
@@ -71,5 +71,7 @@
                 <img src="/img/logo.png" alt="logo" class="logo-app" id="logo-footer">
             </div>
         </div>
+    </footer>
+        <script src="main.js"></script>
 </body>
 </html>

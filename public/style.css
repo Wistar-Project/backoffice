@@ -214,7 +214,9 @@ main{
 }
 
 #sedes-container img{
-    left: calc(50% - 85px);
+    left: calc(50% - 110px);
+    width: 225px;
+    height: 225px;
 }
 
 .container .texto-app{
@@ -292,6 +294,9 @@ footer #logo-nombre{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+   }
+   #aplicaciones-titulo{
+    font-size: 40px;
    }
 }
 @media (max-width:350px){
