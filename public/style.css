@@ -199,18 +199,21 @@ main{
     left: calc(50% - 111px);
     top: 120px;
 }
-
-#camion-container img{
+#usuarios-container img{
+    width: 200px;
+    height: 200px;
+}
+#transporte-container img{
     width: 250px;
     height: 250px;
 }
 
-#almacen-container img{
+#paqueteria-container img{
     width: 225px;
     height: 225px;
 }
 
-#administracion-container img{
+#sedes-container img{
     left: calc(50% - 85px);
 }
 
@@ -222,14 +225,14 @@ main{
     text-align: center;
 }
 
-#seguimiento-container{
-    background-image: url("img/segumiento\ fondo.png");
+#usuarios-container{
+    background-image: url("img/fondo\ usuarios.png");
     background-size: cover;
     background-position: center;
 }
 
 
-#camion-container{
+#transporte-container{
     background-image: url("img/camion\ fondo.png");
     background-size: cover;
     background-position: center;
@@ -241,8 +244,8 @@ main{
     background-position: center;
 }
 
-#almacen-container{
-    background-image: url("img/almacen\ fondo.png");
+#paqueteria-container{
+    background-image: url("img/fondo\ paquetes.png");
     background-size: cover;
     background-position: center;
 }

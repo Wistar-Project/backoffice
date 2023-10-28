@@ -37,21 +37,21 @@
             </div>
         </div>  
     </header>
-    <h3 id="aplicaciones-titulo" data-text-id="400">Aplicaciones</h3>
+    <h3 id="aplicaciones-titulo" data-text-id="400">Administración</h3>
     <main>
-        <a class="container" id="seguimiento-container" href="seguimiento/index.html">
-            <h3 data-text-id="401">Seguimiento</h3>
-            <img src="img/maps 1.png" alt="Hubo un error al cargar la imagen.">
+        <a class="container" id="usuarios-container" href="">
+            <h3 data-text-id="401">Usuarios</h3>
+            <img src="img/usuarios.png" alt="Hubo un error al cargar la imagen.">
             <p class="texto-app" data-text-id="402">Ve el estado de una entrega buscándola por su id.</p>
         </a>
-        <div class="container" id="camion-container">
-            <h3 data-text-id="403">Choferes</h3>
-            <img src="img/camion.png" alt="Hubo un error al cargar la imagen.">
+        <a class="container" id="transporte-container">
+            <h3 data-text-id="403">Transporte</h3>
+            <img src="img/camion 2.png" alt="Hubo un error al cargar la imagen.">
             <p class="texto-app" data-text-id="404">Visualiza las entregas pendientes y el trayecto hacia la sede más cercana.</p>
-        </div>
-        <a href="/almacen">
-            <div class="container" id="almacen-container">
-                <h3 data-text-id="405">Almacén</h3>
+        </a>
+        <a href="">
+            <div class="container" id="paqueteria-container">
+                <h3 data-text-id="405">Paquetería</h3>
                 <img src="img/caja-del-paquete.png" alt="Hubo un error al cargar la imagen.">
                 <p class="texto-app" data-text-id="406">Gestiona lotes con sus paquetes y asígnalos a un camión para ser entregados.</p>
             </div>
