@@ -18,7 +18,7 @@ use App\Http\Controllers\PaqueteController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::post('/listar', [PersonaController::class, "ListarPersona"]);
