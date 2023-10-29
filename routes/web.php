@@ -19,7 +19,7 @@ use App\Http\Controllers\PaqueteController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+}) -> middleware('auth');
 
 Route::post('/listar', [PersonaController::class, "ListarPersona"]);
 Route::get('/listar', [PersonaController::class, "ListarPersonas"]);
@@ -29,7 +29,6 @@ Route::get('/crear', function() {
     return view("crearUsuario");
     
 });
-
 Route::post('/editar', [PersonaController::class, "EditarPersona"]);
 Route::get('/editar', function() {
     return view("editarUsuario");
@@ -71,3 +70,5 @@ Route::get('/asignarConductor', function(){
     return view("asignarConductor");
 });
 Route::post('/asignarConductor', [ ConductorController::class, "AsignarVehiculo" ]);
+
+Route::get('/logout', [ PersonaController::class, "CerrarSesion" ]);

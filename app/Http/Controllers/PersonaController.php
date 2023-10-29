@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Administrador;
 use App\Models\Conductor;
 use App\Models\Funcionario;
+use Auth;
 
 class PersonaController extends Controller
 {
@@ -186,5 +187,10 @@ class PersonaController extends Controller
         return view("editarUsuario", [
             "mensaje" => "La persona ha sido modificada satisfactoriamente.",
         ]);
+    }
+
+    public function CerrarSesion(){
+        Auth::logout();
+        return redirect("http://localhost:5500");
     }
 }
