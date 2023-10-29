@@ -21,54 +21,54 @@ Route::get('/', function () {
     return view('home');
 }) -> middleware('auth');
 
-Route::post('/listar', [PersonaController::class, "ListarPersona"]);
-Route::get('/listar', [PersonaController::class, "ListarPersonas"]);
+Route::post('/listar', [PersonaController::class, "ListarPersona"])-> middleware('auth');
+Route::get('/listar', [PersonaController::class, "ListarPersonas"])-> middleware('auth');
 
-Route::post('/crear', [PersonaController::class, "CrearPersona"]);
+Route::post('/crear', [PersonaController::class, "CrearPersona"])-> middleware('auth');
 Route::get('/crear', function() {
     return view("crearUsuario");
     
-});
-Route::post('/editar', [PersonaController::class, "EditarPersona"]);
+})-> middleware('auth');
+Route::post('/editar', [PersonaController::class, "EditarPersona"])-> middleware('auth');
 Route::get('/editar', function() {
     return view("editarUsuario");
-});
+})-> middleware('auth');
 
-Route::get('/verLote', [LoteController::class, "VerLote"]); 
+Route::get('/verLote', [LoteController::class, "VerLote"])-> middleware('auth'); 
 
 Route::get('/editarLote', function() {
         return view("editarLote");
-});
+})-> middleware('auth');
     
-Route::post('/agregarPaqueteALote', [LoteController::class, "AgregarPaqueteALote"]);
-Route::post('/removerPaqueteALote', [LoteController::class, "RemoverPaqueteALote"]);
+Route::post('/agregarPaqueteALote', [LoteController::class, "AgregarPaqueteALote"])-> middleware('auth');
+Route::post('/removerPaqueteALote', [LoteController::class, "RemoverPaqueteALote"])-> middleware('auth');
 
-Route::post('/borrarLote',[LoteController::class, "BorrarLote"]);
+Route::post('/borrarLote',[LoteController::class, "BorrarLote"])-> middleware('auth');
 Route::get('/borrarLote',function(){
     return view('borrarLote');
-});
+})-> middleware('auth');
 
-Route::get('/listarPaquetes', [PaqueteController::class,"ListarPaquetes"]);
+Route::get('/listarPaquetes', [PaqueteController::class,"ListarPaquetes"])-> middleware('auth');
 
-Route::post('/borrarPaquete',[PaqueteController::class, "BorrarPaquete"]);
+Route::post('/borrarPaquete',[PaqueteController::class, "BorrarPaquete"])-> middleware('auth');
 Route::get('/borrarPaquete',function(){
     return view('borrarPaquete');
-});
-Route::post('/crearAlojamiento',[AlojamientoController::class, "CrearAlojamiento"]);
+})-> middleware('auth');
+Route::post('/crearAlojamiento',[AlojamientoController::class, "CrearAlojamiento"])-> middleware('auth');
 Route::get('/crearAlojamiento',function(){
     return view('crearAlojamiento');
-});
+})-> middleware('auth');
 
-Route::post('/borrarAlojamiento',[AlojamientoController::class, "BorrarAlojamiento"]);
+Route::post('/borrarAlojamiento',[AlojamientoController::class, "BorrarAlojamiento"])-> middleware('auth');
 Route::get('/borrarAlojamiento',function(){
     return view('borrarAlojamiento');
-});
+})-> middleware('auth');
 
-Route::get('/listarAlojamientos',[AlojamientoController::class, "ListarAlojamientos"]);
+Route::get('/listarAlojamientos',[AlojamientoController::class, "ListarAlojamientos"])-> middleware('auth');
 
 Route::get('/asignarConductor', function(){
     return view("asignarConductor");
-});
-Route::post('/asignarConductor', [ ConductorController::class, "AsignarVehiculo" ]);
+})-> middleware('auth');
+Route::post('/asignarConductor', [ ConductorController::class, "AsignarVehiculo" ])-> middleware('auth');
 
-Route::get('/logout', [ PersonaController::class, "CerrarSesion" ]);
+Route::get('/logout', [ PersonaController::class, "CerrarSesion" ])-> middleware('auth');
