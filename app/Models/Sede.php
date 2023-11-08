@@ -11,4 +11,8 @@ class Sede extends Model
     protected $fillable = [
         'id'
     ];
+
+    public function alojamiento(){
+        return $this -> hasOne(Alojamiento::class, "id", "id");
+    }
 }
