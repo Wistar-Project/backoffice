@@ -59,17 +59,6 @@ Route::post('/borrarPaquete', [PaqueteController::class, "BorrarPaquete"])->midd
 Route::get('/borrarPaquete', function () {
     return view('borrarPaquete');
 })->middleware('auth');
-Route::post('/crearAlojamiento', [AlojamientoController::class, "CrearAlojamiento"])->middleware('auth');
-Route::get('/crearAlojamiento', function () {
-    return view('crearAlojamiento');
-})->middleware('auth');
-
-Route::post('/borrarAlojamiento', [AlojamientoController::class, "BorrarAlojamiento"])->middleware('auth');
-Route::get('/borrarAlojamiento', function () {
-    return view('borrarAlojamiento');
-})->middleware('auth');
-
-Route::get('/listarAlojamientos', [AlojamientoController::class, "ListarSedes"])->middleware('auth');
 
 Route::get('/asignarConductor', function () {
     return view("asignarConductor");
