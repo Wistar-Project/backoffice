@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/estructura.css">
     <link rel="shortcut icon" href="/img/logo.png" type="image/png">
+    <script src="/js/header.js" defer></script>
 </head>
 <body>
 <header>
