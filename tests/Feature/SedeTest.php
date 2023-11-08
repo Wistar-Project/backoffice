@@ -54,7 +54,10 @@ class AlojamientoTest extends TestCase
     public function test_borrar()
     {
         $response = $this->delete('/sedes/1');
-        $response -> assertViewHas("mensaje", "Sede eliminada satisfactoriamente.");
+        $response -> assertViewHas("mensaje", [
+            "color" => "green",
+            "texto" => "Sede eliminada satisfactoriamente."
+        ]);
         $response->assertStatus(200);
     }
 
@@ -70,6 +73,26 @@ class AlojamientoTest extends TestCase
     public function test_borrarInexistente()
     {
         $response = $this->post('/sedes/99');
+        $response -> assertViewHas("mensaje", [
+            "color" => "rgba(85, 38, 38, 0.959)",
+            "texto" => "Esa sede ya no existe. La lista ha sido recargada."
+        ]);
+        $response->assertStatus(200);
+    }
+
+    public function test_listarSinAutenticarse()
+    {
+        $response = $this->post('/sedes');
+        $response -> assertViewHas("mensaje", [
+            "color" => "rgba(85, 38, 38, 0.959)",
+            "texto" => "Esa sede ya no existe. La lista ha sido recargada."
+        ]);
+        $response->assertStatus(200);
+    }
+
+    public function test_listarSinSerAdministrador()
+    {
+        $response = $this->post('/sedes');
         $response -> assertViewHas("mensaje", [
             "color" => "rgba(85, 38, 38, 0.959)",
             "texto" => "Esa sede ya no existe. La lista ha sido recargada."
