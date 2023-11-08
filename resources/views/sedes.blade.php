@@ -7,7 +7,7 @@
     <fieldset>
         <legend>Sedes</legend>
         @foreach($sedes as $sede)
-            <form class="sede-container" method="GET" action="/sedes/{{ $sede -> id }}">
+            <form class="sede-container" method="POST" action="/sedes/{{ $sede -> id }}">
                 @csrf
                 @method('DELETE')
                 <button></button>

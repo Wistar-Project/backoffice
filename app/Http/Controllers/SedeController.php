@@ -57,21 +57,10 @@ class SedeController extends Controller
         ]);
     }
 
-    public function BorrarAlojamiento(Request $request){
-        $id = $request -> post("id");
-        if(!isset($id))
-            return view("borrarAlojamiento", [
-                "mensaje" => "No has ingresado un id"
-            ]);
-        $alojamiento = Alojamiento::find($id);
-        if(!isset($alojamiento))
-            return view("borrarAlojamiento", [
-                "mensaje" => "El alojamiento ingresado no existe"
-            ]);
-        $alojamiento -> delete();
-        return view("borrarAlojamiento", [
-            "mensaje" => "Alojamiento borrado satisfactoriamente"
-        ]);
+    public function Borrar(Request $request, $idSede){
+        Sede::findOrFail($idSede) -> delete();
+        Alojamiento::findOrFail($idSede) -> delete();
+        $this -> Listar();
     }
 
     public function Listar(){
