@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             "email" => "usuario@usuario",
             "password" => Hash::make("1234")
         ]) -> id;
-        Persona::create([
+        /*Persona::create([
             "id" => $idUsuario,
             "nombre" => "Rodrigo",
             "apellido" => "Dominguez"
@@ -87,6 +87,6 @@ class DatabaseSeeder extends Seeder
         ]);
         Camion::create([
             "id_vehiculo" => 3
-        ]);
+        ]);*/
     }
 }
