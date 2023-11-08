@@ -74,7 +74,7 @@ class SedeController extends Controller
         ]);
     }
 
-    public function ListarSedes(){
+    public function Listar(){
         return view("sedes", [
             "sedes" => Sede::all()
         ]);
