@@ -67,10 +67,7 @@ class SedeController extends Controller
             });
             return $this -> Listar();
         }catch(Exception $e){
-            return view("sedes", [
-                "sedes" => Sede::all(),
-                "errorOcurrido" => "Hay paquetes/lotes con destino a esa sede. Entregue estos primero."
-            ]);
+            return $this -> listarConError("Hay paquetes/lotes con destino a esa sede. Entregue estos primero.");
         }
     
     }
@@ -78,6 +75,13 @@ class SedeController extends Controller
     public function Listar(){
         return view("sedes", [
             "sedes" => Sede::all()
+        ]);
+    }
+
+    private function listarConError($errorOcurrido){
+        return view("sedes", [
+            "sedes" => Sede::all(),
+            "errorOcurrido" => $errorOcurrido
         ]);
     }
 }
