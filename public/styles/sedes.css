@@ -66,7 +66,7 @@ fieldset{
 
 }
 
-.sede-container button{
+.sede-container input[type="submit"]{
     width: 60px;
     height: 60px;
     border-radius: 15px;
@@ -77,6 +77,7 @@ fieldset{
     border: 1px solid #000;
     aspect-ratio: 1/1;
     transition: all 0.2s;
+    cursor: pointer;
 }
 
 .sede-container button:hover{
@@ -94,3 +95,4 @@ fieldset{
     display: flex;
     align-items: center;
 }
+
