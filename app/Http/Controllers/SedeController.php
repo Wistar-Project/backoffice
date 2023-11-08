@@ -58,8 +58,10 @@ class SedeController extends Controller
     }
 
     public function Borrar(Request $request, $idSede){
-        Sede::findOrFail($idSede) -> delete();
-        Alojamiento::findOrFail($idSede) -> delete();
+        DB::transaction(function() use($idSede){
+            Sede::findOrFail($idSede) -> delete();
+            Alojamiento::findOrFail($idSede) -> delete();
+        });
         return redirect('/sedes');
     }
 
