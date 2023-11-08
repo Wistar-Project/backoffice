@@ -21,9 +21,7 @@ Route::get('/', function () {
     return view('home');
 }) -> middleware('auth');
 
-Route::get('/sedes', function () {
-    return view('sedes');
-}) -> middleware('auth');
+Route::get('/sedes', [AlojamientoController::class, "ListarAlojamientos"]);
 
 Route::post('/listar', [PersonaController::class, "ListarPersona"])-> middleware('auth');
 Route::get('/listar', [PersonaController::class, "ListarPersonas"])-> middleware('auth');
