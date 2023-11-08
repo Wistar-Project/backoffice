@@ -3,8 +3,8 @@
 <script src="/js/sedes.js" defer></script>
 
 <h2 class="titulo">Sedes</h2>
-@isset($errorOcurrido)
-    <x-alerta>{{ $errorOcurrido }}</x-alerta>
+@isset($mensaje)
+    <x-alerta :color="$mensaje['color']">{{ $mensaje['texto'] }}</x-alerta>
 @endisset
 <main>
     <x-boton-volver/>

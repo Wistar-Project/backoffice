@@ -35,7 +35,7 @@ class SedeController extends Controller
         if($validacion -> fails())
             return $this -> listarConError("Ya hay una sede con esa dirección.");
         $this -> agregarSede($request -> input('direccion'));
-        return $this -> Listar();
+        return $this -> listarConMensaje("Sede creada satisfactoriamente.");
     }
 
     public function Borrar(Request $request, $idSede){
@@ -48,7 +48,7 @@ class SedeController extends Controller
                 Sede::findOrFail($idSede) -> delete();
                 Alojamiento::findOrFail($idSede) -> delete();
             });
-            return $this -> Listar();
+            return $this -> listarConMensaje("Sede eliminada satisfactoriamente.");
         }catch(Exception $e){
             return $this -> listarConError("Esa sede ya no existe. La lista ha sido recargada.");
         }
@@ -63,7 +63,20 @@ class SedeController extends Controller
     private function listarConError($errorOcurrido){
         return view("sedes", [
             "sedes" => Sede::all(),
-            "errorOcurrido" => $errorOcurrido
+            "mensaje" => [
+                "color" => "rgba(85, 38, 38, 0.959)",
+                "texto" => $errorOcurrido
+            ]
+        ]);
+    }
+
+    private function listarConMensaje($mensaje){
+        return view("sedes", [
+            "sedes" => Sede::all(),
+            "mensaje" => [
+                "color" => "green",
+                "texto" => $mensaje
+            ]
         ]);
     }
 }
