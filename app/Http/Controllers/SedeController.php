@@ -74,14 +74,9 @@ class SedeController extends Controller
         ]);
     }
 
-    private function obtenerSedes(){
-        $alojamientos = Sede::all();
-        return $alojamientos;
-    }
-
     public function ListarSedes(){
         return view("sedes", [
-            "sedes" => $this -> obtenerSedes()
+            "sedes" => Sede::all()
         ]);
     }
 }
