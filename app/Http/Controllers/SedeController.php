@@ -84,7 +84,7 @@ class AlojamientoController extends Controller
     }
 
     public function ListarAlojamientos(){
-        return view("listarAlojamientos", [
+        return view("sedes", [
             "alojamientos" => $this -> obtenerAlojamientos()
         ]);
     }
