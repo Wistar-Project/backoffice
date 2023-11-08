@@ -9,7 +9,7 @@ use App\Models\AlojamientoTipo;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class AlojamientoController extends Controller
+class SedeController extends Controller
 {
     private function validarDatos($request){
         return Validator::make($request -> all(), [
@@ -74,18 +74,14 @@ class AlojamientoController extends Controller
         ]);
     }
 
-    private function obtenerAlojamientos(){
-        $alojamientos = Alojamiento::all();
-        foreach($alojamientos as $alojamiento){
-            $tipo = AlojamientoTipo::where("id", $alojamiento -> id) -> first() -> tipo;
-            $alojamiento -> tipo = $tipo;
-        }
+    private function obtenerSedes(){
+        $alojamientos = Sede::all();
         return $alojamientos;
     }
 
-    public function ListarAlojamientos(){
+    public function ListarSedes(){
         return view("sedes", [
-            "alojamientos" => $this -> obtenerAlojamientos()
+            "sedes" => $this -> obtenerSedes()
         ]);
     }
 }
