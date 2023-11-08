@@ -22,7 +22,8 @@ Route::get('/', function () {
     return view('home');
 })->middleware('auth');
 
-Route::get('/sedes', [SedeController::class, "ListarSedes"])->middleware('auth');
+Route::get('/sedes', [SedeController::class, "Listar"])->middleware('auth');
+Route::delete('/sedes', [SedeController::class, "Borrar"])->middleware('auth');
 /* viejas rutas
 Route::post('/listar', [PersonaController::class, "ListarPersona"])->middleware('auth');
 Route::get('/listar', [PersonaController::class, "ListarPersonas"])->middleware('auth');
