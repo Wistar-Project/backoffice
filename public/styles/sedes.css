@@ -29,7 +29,7 @@ fieldset{
 }
 
 
-#boton-buscar{
+#boton-crear{
     width: 110px;
     height: 30px;
     background-color: var(--boton-principal);
@@ -48,7 +48,7 @@ fieldset{
     box-shadow: 0 0 3px black;
     cursor: pointer;
 }
-#boton-buscar:hover{
+#boton-crear:hover{
     transition: .3s;
     transform: scale(1.03);
     background-color: #446451;
@@ -96,3 +96,68 @@ fieldset{
     align-items: center;
 }
 
+main{
+    position: relative;
+}
+
+#creacion-popup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: #2b5257;
+    border: 1px solid #000;
+    border-radius: 20px;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-direction: column;
+    padding: 15px;
+    filter: grayscale(0);
+    z-index: 1000;
+}
+
+#creacion-popup p{
+    font-size: 30px;
+}
+
+#creacion-popup .inputs{
+    display: flex;
+    gap: 10px;
+}
+
+#creacion-popup input[type="text"]{
+    width: 100%;
+    border: 1px solid #fff;
+    background-color: #377c76;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+#creacion-popup input[type="submit"]{
+    background-color: #375643;
+    border: 1px solid #000;
+    border-radius: 100px;
+    padding: 5px;
+    font-size: 25px;
+    width: 150px;
+    align-self: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#creacion-popup input[type="submit"]:hover{
+    background-color: #5b8d6e;
+}
+
+#creacion-popup .titulo-crear{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#creacion-popup img{
+    cursor: pointer;
+}
