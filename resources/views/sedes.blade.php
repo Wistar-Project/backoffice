@@ -1,8 +1,11 @@
-@include('components/header')
-<link rel="stylesheet" href="styles/sedes.css">
+<x-header/>
+<link rel="stylesheet" href="/styles/sedes.css">
 <h2 class="titulo">Sedes</h2>
+@isset($errorOcurrido)
+    <x-alerta>{{ $errorOcurrido }}</x-alerta>
+@endisset
 <main>
-    @include('components/boton-volver')
+    <x-boton-volver/>
     <button type="button" id="boton-buscar">Crear</button>
     <fieldset>
         <legend>Sedes</legend>
@@ -10,10 +13,10 @@
             <form class="sede-container" method="POST" action="/sedes/{{ $sede -> id }}">
                 @csrf
                 @method('DELETE')
-                <button></button>
+                <input type="submit" value="">
                 <p>{{ $sede -> alojamiento -> direccion }}</p>
             </form>
         @endforeach
     </fieldset>
 </main>
-@include('components/footer')
+<x-footer/>
