@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Almacen;
+use App\Models\Lote;
+use App\Models\Paquete;
 use App\Models\Sede;
 use Exception;
 use Illuminate\Http\Request;
@@ -59,17 +61,19 @@ class SedeController extends Controller
     }
 
     public function Borrar(Request $request, $idSede){
+        $lotesConMismoDestino = Lote::where('destino', $idSede)->get();
+        $paquetesConMismoDestino = Paquete::where('destino', $idSede)->get();
+        if($lotesConMismoDestino->count() != 0 || $paquetesConMismoDestino->count() != 0)
+            return $this -> listarConError("Hay paquetes/lotes con destino a esa sede. Entreguelos primero.");
         try{
             DB::transaction(function() use($idSede){
                 Sede::findOrFail($idSede) -> delete();
-                Sede::findOrFail(259);
                 Alojamiento::findOrFail($idSede) -> delete();
             });
             return $this -> Listar();
         }catch(Exception $e){
-            return $this -> listarConError("Hay paquetes/lotes con destino a esa sede. Entregue estos primero.");
+            return $this -> listarConError("Esa sede ya no existe. La lista ha sido recargada.");
         }
-    
     }
 
     public function Listar(){
