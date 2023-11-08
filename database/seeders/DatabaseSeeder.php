@@ -26,39 +26,32 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $idUsuario = User::create([
-            "email" => "usuario@usuario",
+            "email" => "admin@gotruck.com",
             "password" => Hash::make("1234")
         ]) -> id;
-        /*Persona::create([
+        Persona::create([
             "id" => $idUsuario,
             "nombre" => "Rodrigo",
             "apellido" => "Dominguez"
         ]);
-        Administrador::create([
-            "id" => $idUsuario
-        ]);
+        Administrador::create(["id" => $idUsuario]);
         Alojamiento::create([
             "id" => 1,
-            "direccion" => "Dirección del almacén"
+            "direccion" => "Arazatí 1065"
         ]);
-        Almacen::create([
-            "id" => 1
-        ]);
-
+        Sede::create(["id" => 1]);
         Alojamiento::create([
             "id" => 2,
             "direccion" => "Dirección usada"
         ]);
-        Sede::create([
-            "id" => 2
-        ]);
+        Sede::create(["id" => 2]);
         Paquete::create([
             "id" => 1,
             "peso_en_kg" => 5,
             "destino" => 2,
             "email" => "abcd@gmail.com"
         ]);
-
+        /*
         Lote::create([
             "id" => 2,
             "destino" => 2,
