@@ -7,7 +7,7 @@ use App\Models\AlojamientoTipo;
 use App\Models\Sede;
 use Tests\TestCase;
 
-class AlojamientoTest extends TestCase
+class SedeTest extends TestCase
 {
     /**
      * A basic feature test example.
