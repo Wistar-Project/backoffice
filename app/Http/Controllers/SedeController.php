@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Almacen;
 use App\Models\Sede;
+use Exception;
 use Illuminate\Http\Request;
 use App\Models\Alojamiento;
 use App\Models\AlojamientoTipo;
@@ -58,11 +59,20 @@ class SedeController extends Controller
     }
 
     public function Borrar(Request $request, $idSede){
-        DB::transaction(function() use($idSede){
-            Sede::findOrFail($idSede) -> delete();
-            Alojamiento::findOrFail($idSede) -> delete();
-        });
-        return redirect('/sedes');
+        try{
+            DB::transaction(function() use($idSede){
+                Sede::findOrFail($idSede) -> delete();
+                Sede::findOrFail(259);
+                Alojamiento::findOrFail($idSede) -> delete();
+            });
+            return $this -> Listar();
+        }catch(Exception $e){
+            return view("sedes", [
+                "sedes" => Sede::all(),
+                "errorOcurrido" => "Hay paquetes/lotes con destino a esa sede. Entregue estos primero."
+            ]);
+        }
+    
     }
 
     public function Listar(){
