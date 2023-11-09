@@ -21,7 +21,7 @@
     <a class="container" id="sedes-container" href="/sedes">
         <h3 data-text-id="407">Sedes</h3>
         <img src="img/administración_blanco 1.png" alt="Hubo un error al cargar la imagen.">
-        <p class="texto-app" data-text-id="408">Define todas las sedes de la empresa para poder asignar camiones hacia esa dirección..</p>
+        <p class="texto-app" data-text-id="408">Define todas las sedes de la empresa para poder asignar camiones hacia esa dirección.</p>
     </a>
 </main>
 @include('components/footer')
