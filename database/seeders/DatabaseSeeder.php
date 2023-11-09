@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $idUsuario = User::create([
+            "id" => 1,
             "email" => "admin@gotruck.com",
             "password" => Hash::make("1234")
         ]) -> id;
@@ -35,6 +36,17 @@ class DatabaseSeeder extends Seeder
             "apellido" => "Dominguez"
         ]);
         Administrador::create(["id" => $idUsuario]);
+        $idChofer = User::create([
+            "id" => 2,
+            "email" => "chofer@gotruck.com",
+            "password" => Hash::make("1234")
+        ]) -> id;
+        Persona::create([
+            "id" => $idChofer,
+            "nombre" => "Martin",
+            "apellido" => "Perez"
+        ]);
+        Conductor::create(["id" => $idChofer]);
         Alojamiento::create([
             "id" => 1,
             "direccion" => "Arazatí 1065"

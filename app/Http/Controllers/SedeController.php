@@ -15,12 +15,6 @@ use Illuminate\Support\Facades\Validator;
 class SedeController extends Controller
 {
 
-    private function obtenerDatos($request){
-        $direccion = $request -> post('direccion');
-        $tipo = $request -> post('tipo');
-        return [$direccion, $tipo];
-    }
-
     private function agregarSede($direccion){
         DB::transaction(function() use($direccion){
             $idAlojamiento = Alojamiento::create(['direccion' => $direccion])->id;
