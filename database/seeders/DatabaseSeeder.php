@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $idUsuario = User::create([
-            "email" => "usuario@usuario",
+            "id" => 1,
+            "email" => "admin@gotruck.com",
             "password" => Hash::make("1234")
         ]) -> id;
         Persona::create([
@@ -34,31 +35,35 @@ class DatabaseSeeder extends Seeder
             "nombre" => "Rodrigo",
             "apellido" => "Dominguez"
         ]);
-        Administrador::create([
-            "id" => $idUsuario
+        Administrador::create(["id" => $idUsuario]);
+        $idChofer = User::create([
+            "id" => 2,
+            "email" => "chofer@gotruck.com",
+            "password" => Hash::make("1234")
+        ]) -> id;
+        Persona::create([
+            "id" => $idChofer,
+            "nombre" => "Martin",
+            "apellido" => "Perez"
         ]);
+        Conductor::create(["id" => $idChofer]);
         Alojamiento::create([
             "id" => 1,
-            "direccion" => "Dirección del almacén"
+            "direccion" => "Arazatí 1065"
         ]);
-        Almacen::create([
-            "id" => 1
-        ]);
-
+        Sede::create(["id" => 1]);
         Alojamiento::create([
             "id" => 2,
             "direccion" => "Dirección usada"
         ]);
-        Sede::create([
-            "id" => 2
-        ]);
+        Sede::create(["id" => 2]);
         Paquete::create([
             "id" => 1,
             "peso_en_kg" => 5,
             "destino" => 2,
             "email" => "abcd@gmail.com"
         ]);
-
+        /*
         Lote::create([
             "id" => 2,
             "destino" => 2,
@@ -87,6 +92,6 @@ class DatabaseSeeder extends Seeder
         ]);
         Camion::create([
             "id_vehiculo" => 3
-        ]);
+        ]);*/
     }
 }

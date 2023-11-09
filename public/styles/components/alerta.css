@@ -1,0 +1,28 @@
+.alerta{
+    width: 100%;
+    height: 45px;
+    position: fixed;
+    z-index: 999;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 30px;
+    font-family: var(--font-texto);
+    align-items: center;
+    text-align: center;
+    color: white;
+    background-color: rgba(85, 38, 38, 0.959);
+    font-weight: bold;
+    box-shadow: 0 0 5px black;
+    animation: alerta forwards 3.5s;
+}
+@keyframes alerta{
+    0%{
+        width: 0;
+    }
+    8%{
+        width: 100%;  
+    }
+    100%{
+        display: none;
+    }
+}

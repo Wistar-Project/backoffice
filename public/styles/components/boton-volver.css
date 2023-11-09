@@ -1,0 +1,22 @@
+.volver{
+    width: 100px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--boton-principal);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 0 3px black;
+    font-size: 20px;
+    color: white;
+    position: fixed;
+    left: 20px;
+    font-family: var(--font-texto);
+    top: 85px;
+    user-select: none;
+}
+.volver:hover{
+    transition: all .3s;
+    transform: scale(1.03);
+}
