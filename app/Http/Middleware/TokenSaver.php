@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\PersonaRol;
 use Auth;
 use Closure;
 use Illuminate\Http\Request;
@@ -24,6 +25,9 @@ class TokenSaver
         $user = Auth::guard('api') -> user();
         if (!$user)
             return redirect('http://localhost:5500');
+        $rol = PersonaRol::findOrFail($user->id)->rol;
+        if($rol != "administrador" && $rol != "gerente")
+            return redirect("http://localhost:5500");
         Auth::login($user);
         return $next($request);
     }
