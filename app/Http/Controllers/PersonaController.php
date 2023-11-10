@@ -102,7 +102,7 @@ class PersonaController extends Controller
     }
 
     public function ListarPersonas(Request $request){
-        return view("listarUsuarios", [
+        return view("usuarios", [
             "personas" => $this -> obtenerPersonas()
         ]);
     }

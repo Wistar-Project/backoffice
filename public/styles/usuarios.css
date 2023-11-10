@@ -1,0 +1,66 @@
+:root{
+    --font-titulo: 'Roboto Condensed', sans-serif;
+    --font-texto: 'Raleway', sans-serif;
+    --texto: #fff;
+    --fondo: #2b333b;
+    --boton-principal: #375643;
+    --boton-secundario: #253e41;
+    --acento: #172620
+}
+.titulo{
+    text-align: center;
+    font-size: 35px;
+    margin: 30px;
+    font-family: var(--font-titulo);
+}
+main{
+    display: flex;
+}
+fieldset{
+    font-family: var(--font-texto);
+    font-size: 25px;
+    box-shadow: 0 1px 3px black;
+    display: flex;
+    background-color: var(--boton-principal);
+    border: none;
+    border-radius: 10px;
+}
+#container-usuarios{
+    width: 50%;
+    height: 500px;
+}
+#container-inspector{
+    width: 45%;
+    height: 500px;
+}
+#boton-crear{
+    width: 100px;
+    height: 30px;
+    background-color: var(--boton-principal);
+    font-family: var(--font-texto);
+    font-size: 25px;
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 3px black;
+    border-radius: 15px;
+    position: fixed;
+    border: none;
+    top: 80px;
+    right: 30px;
+}
+#boton-crear:hover{
+    transition: all .3s;
+    background-color: #52725e;
+    transform: scale(1.03);
+}
+.personas{
+    width: 50%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap
+}

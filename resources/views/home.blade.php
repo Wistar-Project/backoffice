@@ -1,7 +1,7 @@
 @include('components/header')
 <h3 id="aplicaciones-titulo" data-text-id="400">Administración</h3>
 <main>
-    <a class="container" id="usuarios-container" href="">
+    <a class="container" id="usuarios-container" href="/usuarios">
         <h3 data-text-id="401">Usuarios</h3>
         <img src="img/usuarios.png" alt="Hubo un error al cargar la imagen.">
         <p class="texto-app" data-text-id="402">Registra nuevos usuarios en el sistema, listalos y elimina o edita otros.</p>
