@@ -58,6 +58,30 @@ class PersonaController extends Controller
         $persona -> id = $id;
         return $persona;
     }
+    private function createConductor($id){
+        $conductor = new Conductor();
+        $conductor -> id = $id;
+        $conductor -> save();
+    }
+
+    private function createAdministrador($id){
+        $administrador = new Administrador();
+        $administrador -> id = $id;
+        $administrador -> save();
+    }
+
+    private function createFuncionario($id){
+        $funcionario = new Funcionario();
+        $funcionario -> id = $id;
+        $funcionario -> save();
+    }
+    private function agregarRolAPersona($id, $rol){
+        if($rol == 'administrador')
+            return $this -> createAdministrador($id);
+        if($rol == 'conductor')
+            return $this -> createConductor($id);
+        return $this -> createFuncionario($id);
+    }
 
     private function obtenerPersonas(){
         $personas = Persona::all();
