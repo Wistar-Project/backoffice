@@ -26,7 +26,7 @@ Route::get('/sedes', [SedeController::class, "Listar"])->middleware('auth');
 Route::delete('/sedes/{d}', [SedeController::class, "Borrar"])->middleware('auth');
 Route::post('/sedes', [SedeController::class, "Crear"])->middleware('auth');
 Route::get('/usuarios', [PersonaController::class,"ListarPersonas"])->middleware('auth');
-
+Route::post('/usuarios',[PersonaController::class,"CrearPersona"])->middleware('auth');
 
 /* viejas rutas
 Route::post('/listar', [PersonaController::class, "ListarPersona"])->middleware('auth');

@@ -37,7 +37,7 @@ class PersonaController extends Controller
             $this -> registrarPersona($request, $usuario -> id);
             $this -> agregarRolAPersona($usuario -> id, $request -> post('rol'));
         });
-        return view("crearUsuario", [
+        return view("usuarios", [
             "mensaje" => "El usuario ha sido creado satisfactoriamente."
         ]);
     }
