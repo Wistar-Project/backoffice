@@ -57,8 +57,9 @@ fieldset{
 }
 .personas{
     background-color: var(--boton-principal);
-    width: 35%;
+    width: 30%;
     max-height: 55px;
+    font-size: 25px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -67,6 +68,8 @@ fieldset{
     border-radius: 50px;
     margin: 20px;
     box-shadow: 0 0 3px black;
+    cursor: pointer;
+    border: none;
 }
 #container-crear{
     width: 470px;
@@ -133,4 +136,12 @@ fieldset{
     transition: all .3s;
     background-color: #52725e;
     transform: scale(1.03);
+}
+#informacion{
+    width: 40%;
+    height: 70%;
+    border: 1px solid black;
+    box-shadow: none;
+    margin: 35px;
+
 }

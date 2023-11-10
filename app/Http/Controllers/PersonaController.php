@@ -27,7 +27,22 @@ class PersonaController extends Controller
     }
 
     public function CrearPersona(Request $request){
-      
+      $validar = $this-> validarDatos($request);
+      if($validar -> fails())
+            return view("usuarios",[
+                    "mensaje" => "faltan campos para poder crear el usuario",
+                    "personas" => $this-> obtenerPersonas()
+            ]);
+
+            DB::transaction(function() use($request){
+                $usuario = $this -> registrarUsuario($request);
+                $this -> registrarPersona($request, $usuario -> id);
+                $this -> agregarRolAPersona($usuario -> id, $this-> obtenerDatos($request)["rol"]);
+            });
+            return view ("usuarios",[
+                "mensaje" => "usuario creado correctamente",
+                "personas" => $this-> obtenerPersonas()
+            ]);
     }
 
     private function obtenerDatos(Request $request){
@@ -46,16 +61,17 @@ class PersonaController extends Controller
     }
     private function registrarUsuario(Request $request){
         $user = new User();
-        $user -> email = obtenerDatos($request)->email;
-        $user -> password = obtenerDatos($request)->password;
+        $user -> email = $this-> obtenerDatos($request)["email"];
+        $user -> password = $this-> obtenerDatos($request)["password"];
         $user -> save();
         return $user;
     }
-    private function registrarPersona($request){
+    private function registrarPersona(Request $request,$id){
         $persona = new Persona();
-        $persona -> nombre = obtenerDatos($request)->nombre;
-        $persona -> apellido = obtenerDatos($request)-> apellido;
+        $persona -> nombre = $this-> obtenerDatos($request)["nombre"];
+        $persona -> apellido = $this-> obtenerDatos($request)["apellido"];
         $persona -> id = $id;
+        $persona -> save();
         return $persona;
     }
     private function createConductor($id){
@@ -100,7 +116,7 @@ class PersonaController extends Controller
         return $personasCompleto;
     }
 
-    public function ListarPersonas(Request $request){
+    public function ListarPersonas(){
         return view("usuarios", [
             "personas" => $this -> obtenerPersonas()
         ]);
