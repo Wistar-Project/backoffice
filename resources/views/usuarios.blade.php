@@ -21,8 +21,9 @@
   <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
 </svg>
 
-    <form action="/crear">
+    <form action="/usuarios">
         <label for="">Nombre:</label><input type="text" name="nombre" placeholder="Nombre" required>
+        <label for="">Apellido</label><input type="text"name="apellido"placeholder="Apellido"required>
         <label for="">Email:</label><input type="email" placeholder="email@email" name="email" required>
         <label for="">Rol:</label>
         <select name="rol">

@@ -82,7 +82,7 @@ fieldset{
     display: grid;
     width: 75%;
     grid-template-columns: 30% 65%;
-    grid-template-rows: 50px 50px 50px 50px 50px;
+    grid-template-rows: 50px 50px 50px 50px 50px 50px;
     padding: 5px;
     align-items: center;
 }

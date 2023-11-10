@@ -18,70 +18,34 @@ class PersonaController extends Controller
 {
     private function validarDatos($request){
         return Validator::make($request->all(),[
-            'email' => 'required|email|unique:users',
-            'rol'=> 'required|in:administrador,funcionario,conductor',
             'nombre'=>'required|max:50',
             'apellido'=>'required|max:50',
+            'email' => 'required|email|unique:users',
+            'rol'=> 'required|in:administrador,funcionario,conductor',
             'password' => 'required|confirmed'
         ]);
     }
 
     public function CrearPersona(Request $request){
-        $validacion = $this -> validarDatos($request);
-        if($validacion -> fails())
-            return view("crearUsuario", [
-                "mensaje" => "Uno de los campos es inválido. Por favor, revise los campos."
-            ]);
-        DB::transaction(function() use($request){
-            $usuario = $this -> registrarUsuario($request);
-            $this -> registrarPersona($request, $usuario -> id);
-            $this -> agregarRolAPersona($usuario -> id, $request -> post('rol'));
-        });
-        return view("usuarios", [
-            "mensaje" => "El usuario ha sido creado satisfactoriamente."
-        ]);
+      
     }
 
-    private function registrarUsuario($request){
-        $user = new User();
-        $user -> email = $request -> post("email");
-        $user -> password = Hash::make($request -> post("password"));   
-        $user -> save();
-        return $user;
+    private function obtenerDatos(Request $request){
+        $nombre = $request -> post('nombre');
+        $apellido = $request -> post('apellido');
+        $email = $request -> post('email');
+        $rol = $request -> post('rol');
+        $password = Hash::make( $request -> post('password') );
+        return [
+            "nombre" => $nombre,
+            "apellido" => $apellido,
+            "email" => $email,
+            "rol" => $rol,
+            "password" => $password
+        ];
     }
-
-    private function registrarPersona($request, $id){
-        $persona = new Persona();
-        $persona -> nombre = $request -> post('nombre');
-        $persona -> apellido = $request -> post('apellido');
-        $persona -> id = $id;
-        $persona -> save();
-        return $persona;
-    }
-
-    private function createConductor($id){
-        $conductor = new Conductor();
-        $conductor -> id = $id;
-        $conductor -> save();
-    }
-
-    private function createAdministrador($id){
-        $administrador = new Administrador();
-        $administrador -> id = $id;
-        $administrador -> save();
-    }
-
-    private function createFuncionario($id){
-        $funcionario = new Funcionario();
-        $funcionario -> id = $id;
-        $funcionario -> save();
-    }
-    private function agregarRolAPersona($id, $rol){
-        if($rol == 'administrador')
-            return $this -> createAdministrador($id);
-        if($rol == 'conductor')
-            return $this -> createConductor($id);
-        return $this -> createFuncionario($id);
+    private function registrarUsuario(Request $request){
+        
     }
 
     private function obtenerPersonas(){
