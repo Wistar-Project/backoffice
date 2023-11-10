@@ -21,7 +21,7 @@ fieldset{
     font-size: 25px;
     box-shadow: 0 1px 3px black;
     display: flex;
-    background-color: var(--boton-principal);
+    background-color: var(--boton-secundario);
     border: none;
     border-radius: 10px;
 }
@@ -56,11 +56,15 @@ fieldset{
     transform: scale(1.03);
 }
 .personas{
-    width: 50%;
-    height: 40px;
+    background-color: var(--boton-principal);
+    width: 35%;
+    max-height: 55px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex-direction: row;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    border-radius: 50px;
+    margin: 20px;
+    box-shadow: 0 0 3px black;
 }
