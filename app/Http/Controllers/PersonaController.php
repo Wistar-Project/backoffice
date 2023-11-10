@@ -45,7 +45,18 @@ class PersonaController extends Controller
         ];
     }
     private function registrarUsuario(Request $request){
-        
+        $user = new User();
+        $user -> email = obtenerDatos($request)->email;
+        $user -> password = obtenerDatos($request)->password;
+        $user -> save();
+        return $user;
+    }
+    private function registrarPersona($request){
+        $persona = new Persona();
+        $persona -> nombre = obtenerDatos($request)->nombre;
+        $persona -> apellido = obtenerDatos($request)-> apellido;
+        $persona -> id = $id;
+        return $persona;
     }
 
     private function obtenerPersonas(){
