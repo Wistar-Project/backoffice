@@ -121,34 +121,17 @@ class PersonaController extends Controller
             "personas" => $this -> obtenerPersonas()
         ]);
     }
-
-    public function ListarPersona(Request $request){
-        $emailPersona = $request -> post("email");
-        $personas = $this -> obtenerPersonas();
-        if(!isset($emailPersona)) 
-            return view("listarUsuarios", [
-                "personas" => $personas,
-                "personaNoEncontrada" => true
-            ]);
-        $usuario = User::where("email", $emailPersona) -> get() -> first();
-        if(!isset($usuario)) 
-            return view("listarUsuarios", [
-                "personas" => $personas,
-                "personaNoEncontrada" => true
-            ]);
-        $id = $usuario -> id;
+    public function VerInformacionDePersona($id)
+    {
+        $user = User::findOrFail($id);
+        $persona = Persona::findOrFail($id);
         $rol = PersonaRol::find($id) -> rol;
-        $datosRestantes = Persona::find($id);
-        return view("listarUsuarios", [
-            "personaEncontrada" => [
-                "id" => $id,
-                "email" => $emailPersona,
-                "rol" => $rol,
-                "apellido" => $datosRestantes["apellido"],
-                "nombre" => $datosRestantes["nombre"],
-            ],
-            "personas" => $personas
-        ]);
+        return [
+            "nombre" => $persona -> nombre,
+            "apellido" => $persona -> apellido,
+            "email" => $user -> email,
+            "rol" => $rol 
+        ];
     }
 
     private function obtenerDatosEnEditarPersona($request){

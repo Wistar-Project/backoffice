@@ -143,5 +143,5 @@ fieldset{
     border: 1px solid black;
     box-shadow: none;
     margin: 35px;
-
+    flex-direction: column;
 }
