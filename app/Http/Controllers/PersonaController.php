@@ -16,6 +16,24 @@ use Auth;
 
 class PersonaController extends Controller
 {
+    private function listarConError($error){
+        return view("usuarios",[
+            "personas"=> $this-> obtenerPersonas(),
+            "mensaje"=>[
+                "color" => "rgba(85, 38, 38, 0.959)",
+                "texto"=> $error
+            ]
+        ]);
+    }
+    private function ListarConmensaje($mensaje){
+        return view("usuarios",[
+            "personas"=> $this-> obtenerPersonas(),
+            "mensaje"=> [
+                "color"=> "green",
+                "texto"=>$mensaje
+            ]
+        ]);
+    }
     private function validarDatos($request){
         return Validator::make($request->all(),[
             'nombre'=>'required|max:50',
@@ -29,20 +47,13 @@ class PersonaController extends Controller
     public function CrearPersona(Request $request){
       $validar = $this-> validarDatos($request);
       if($validar -> fails())
-            return view("usuarios",[
-                    "mensaje" => "faltan campos para poder crear el usuario",
-                    "personas" => $this-> obtenerPersonas()
-            ]);
-
+            return $this-> listarConError("Faltan datos para ingresar");
             DB::transaction(function() use($request){
                 $usuario = $this -> registrarUsuario($request);
                 $this -> registrarPersona($request, $usuario -> id);
                 $this -> agregarRolAPersona($usuario -> id, $this-> obtenerDatos($request)["rol"]);
             });
-            return view ("usuarios",[
-                "mensaje" => "usuario creado correctamente",
-                "personas" => $this-> obtenerPersonas()
-            ]);
+            return $this-> ListarConmensaje("Usuario creado satisfactoriamente");
     }
 
     private function obtenerDatos(Request $request){
@@ -141,14 +152,15 @@ class PersonaController extends Controller
             Funcionario::findOrFail($id)->delete();
         if($rol == 'conductor')
             Conductor::findOrFail($id)->delete();
+        if($rol == 'gerente')
+            return $this-> listarConError("No puedes eliminar un usuario Gerente");
+    
     }
     public function BorrarUsuario($id){
         $this->borrarRol($id);
         Persona::findOrFail($id)->delete();
         User::findOrFail($id)->delete();
-        return view ("usuarios",[
-            "personas" => $this-> obtenerPersonas()
-        ]);
+        return $this-> ListarConmensaje("El usuario ha sido eliminado");
     }
     private function obtenerDatosEnEditarPersona($request){
         $email = $request -> post("email");

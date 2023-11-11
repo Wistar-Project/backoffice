@@ -3,6 +3,9 @@
 <link rel="stylesheet" href="/styles/usuarios.css">
 <h2 class="titulo">Usuarios</h2>
 <main>
+    @isset($mensaje)
+        <x-alerta :color="$mensaje['color']">{{$mensaje['texto']}} </x-alerta>
+    @endisset
     <x-boton-volver/>
     <button type="button" id="boton-crear">Crear</button>
 <fieldset id="container-usuarios">
