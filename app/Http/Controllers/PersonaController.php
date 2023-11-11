@@ -133,8 +133,20 @@ class PersonaController extends Controller
             "rol" => $rol 
         ];
     }
-    public function BorrarUsuario(){
-
+    private function borrarRol($id){
+        $rol = PersonaRol::findOrFail($id)->rol;
+        if($rol == 'administrador')
+             Administrador::delete($id);
+        if($rol == 'fucnionario')
+             Funcionario::delete($id);
+ 
+        Conductor::delete($id);
+    }
+    public function BorrarUsuario($id){
+        $this->borrarRol($id);
+        Persona::findOrFail($id)->delete($id);
+        User::findOrFail($id)->delete($id);
+        return view ("usuarios");
     }
     private function obtenerDatosEnEditarPersona($request){
         $email = $request -> post("email");
