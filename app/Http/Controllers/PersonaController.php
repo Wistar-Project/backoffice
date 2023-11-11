@@ -175,44 +175,11 @@ class PersonaController extends Controller
         ];
     }
 
-    private function editarUsuarioYPersona($usuario, $nombre, $apellido, $contrasenia){
-        $usuario -> password = Hash::make($contrasenia);
-        $usuario -> save();
-        $id = $usuario -> id;
-        $persona = Persona::find($id);
-        $persona -> nombre = $nombre;
-        $persona -> apellido = $apellido;
-        $persona -> save();
-    }
-
-    public function EditarPersona(Request $request){
-        [
-            $email,
-            $nombre,
-            $apellido,
-            $contrasenia
-        ] = $this -> obtenerDatosEnEditarPersona($request);
-        if(!isset($nombre))
-            return view("editarUsuario", [
-                "mensaje" => "Debes ingresar un nombre."
-            ]);
-        if(!isset($apellido))
-            return view("editarUsuario", [
-                "mensaje" => "Debes ingresar un apellido."
-            ]);
-        if(!isset($contrasenia))
-            return view("editarUsuario", [
-                "mensaje" => "Debes ingresar una contraseña."
-            ]);
-        $usuario = User::where("email", $email) -> get() -> first();
-        if($usuario == null)
-            return view("editarUsuario", [
-                "mensaje" => "La persona ingresada no existe."
-            ]);
-        $this -> editarUsuarioYPersona($usuario, $nombre, $apellido, $contrasenia);
-        return view("editarUsuario", [
-            "mensaje" => "La persona ha sido modificada satisfactoriamente.",
-        ]);
+    private function editarUsuario($request,$id){
+        $usuario = User::find($id);
+        $datos = $this-> obtenerDatosEnEditarPersona();
+        $usuario -> password = Hash::make($datos -> contrasenia);
+        $usuario -> save(); 
     }
 
     public function CerrarSesion(){
