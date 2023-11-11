@@ -28,6 +28,8 @@ fieldset{
 #container-usuarios{
     width: 50%;
     height: 500px;
+    flex-wrap: wrap;
+   
 }
 #container-inspector{
     width: 45%;
@@ -57,7 +59,7 @@ fieldset{
 }
 .personas{
     background-color: var(--boton-principal);
-    width: 30%;
+    width: 40%;
     max-height: 55px;
     font-size: 25px;
     display: flex;
@@ -138,10 +140,28 @@ fieldset{
     transform: scale(1.03);
 }
 #informacion{
-    width: 40%;
+    width: 50%;
     height: 70%;
     border: 1px solid black;
-    box-shadow: none;
+    border-radius: 5px;
     margin: 35px;
     flex-direction: column;
+    background-color: #3f5547;
+    font-weight: bold;
+}
+#informacion > p{
+    margin: 20px;
+    animation: info forwards 1s;
+}
+@keyframes info{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.selected{
+    transition: all .2s;
+    background-color: #52725e;
 }

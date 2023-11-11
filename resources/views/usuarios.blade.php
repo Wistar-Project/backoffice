@@ -5,14 +5,16 @@
     <x-boton-volver/>
     <button type="button" id="boton-crear">Crear</button>
 <fieldset id="container-usuarios">
+    <legend>Usuarios</legend>
     @foreach ($personas as $persona)
     <button type="button" class="personas" data-id="{{ $persona['id'] }}">
-        <p> {{ $persona['nombre'] }} </p>
-        <p> {{ $persona['apellido'] }} </p>
+         {{ $persona['nombre'] }} 
+         {{ $persona['apellido'] }} 
     </button> 
     @endforeach
 </fieldset>
 <fieldset id="container-inspector">
+    <legend>Informacion del usuario</legend>
     <fieldset id="informacion">
         <legend>Datos modificables</legend>
     </fieldset>
