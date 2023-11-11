@@ -16,6 +16,24 @@ use Auth;
 
 class PersonaController extends Controller
 {
+    private function listarConError($error){
+        return view("usuarios",[
+            "personas"=> $this-> obtenerPersonas(),
+            "mensaje"=>[
+                "color" => "rgba(85, 38, 38, 0.959)",
+                "texto"=> $error
+            ]
+        ]);
+    }
+    private function ListarConmensaje($mensaje){
+        return view("usuarios",[
+            "personas"=> $this-> obtenerPersonas(),
+            "mensaje"=> [
+                "color"=> "green",
+                "texto"=>$mensaje
+            ]
+        ]);
+    }
     private function validarDatos($request){
         return Validator::make($request->all(),[
             'nombre'=>'required|max:50',
@@ -141,6 +159,7 @@ class PersonaController extends Controller
             Funcionario::findOrFail($id)->delete();
         if($rol == 'conductor')
             Conductor::findOrFail($id)->delete();
+    
     }
     public function BorrarUsuario($id){
         $this->borrarRol($id);

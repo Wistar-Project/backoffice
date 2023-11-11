@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="/styles/usuarios.css">
 <h2 class="titulo">Usuarios</h2>
 <main>
+    <x-alerta/>
     <x-boton-volver/>
     <button type="button" id="boton-crear">Crear</button>
 <fieldset id="container-usuarios">
