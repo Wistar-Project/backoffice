@@ -136,17 +136,19 @@ class PersonaController extends Controller
     private function borrarRol($id){
         $rol = PersonaRol::findOrFail($id)->rol;
         if($rol == 'administrador')
-             Administrador::delete($id);
-        if($rol == 'fucnionario')
-             Funcionario::delete($id);
- 
-        Conductor::delete($id);
+            Administrador::findOrFail($id)->delete();
+        if($rol == 'funcionario')
+            Funcionario::findOrFail($id)->delete();
+        if($rol == 'conductor')
+            Conductor::findOrFail($id)->delete();
     }
     public function BorrarUsuario($id){
         $this->borrarRol($id);
-        Persona::findOrFail($id)->delete($id);
-        User::findOrFail($id)->delete($id);
-        return view ("usuarios");
+        Persona::findOrFail($id)->delete();
+        User::findOrFail($id)->delete();
+        return view ("usuarios",[
+            "personas" => $this-> obtenerPersonas()
+        ]);
     }
     private function obtenerDatosEnEditarPersona($request){
         $email = $request -> post("email");

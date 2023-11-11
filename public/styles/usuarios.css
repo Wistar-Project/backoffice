@@ -169,13 +169,15 @@ fieldset{
     transition: all .2s;
     background-color: #52725e;
 }
+#container-inspector > form{ 
+    grid-row: 2;
+    margin-top: 70px;
+    grid-column: 2;
+}
 #boton-eliminar{
     width: 100%;
     height: 50px;
-    grid-column: 2;
     font-size: 26px;
-    grid-row: 2;
-    margin-top: 70px;
     border-radius: 20px;
     background-color: green;
     color: white;
@@ -183,7 +185,7 @@ fieldset{
     cursor: pointer;
     border: none;
     font-weight: bold;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
 }

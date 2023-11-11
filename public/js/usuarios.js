@@ -10,13 +10,12 @@ close.addEventListener('click', function(){
 
 document.querySelectorAll('.personas').forEach(function(button) {
     button.addEventListener('click', function() {
-       const eliminar = document.getElementById('boton-eliminar')
-       eliminar.style.display = 'flex'
+       var userId = this.getAttribute('data-id');
          document.querySelectorAll('.personas.selected').forEach(function(button) {
             button.classList.remove('selected');
         });
         this.classList.add('selected');
-        var userId = this.getAttribute('data-id');
+        
         fetch('/usuarios/' + userId)
             .then(function(response) { return response.json(); })
             .then(function(data) {
