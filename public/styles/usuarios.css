@@ -29,7 +29,8 @@ fieldset{
     width: 50%;
     height: 500px;
     flex-wrap: wrap;
-   
+   overflow: hidden;
+   overflow-y: scroll;
 }
 #container-inspector{
     width: 45%;
@@ -59,8 +60,8 @@ fieldset{
 }
 .personas{
     background-color: var(--boton-principal);
-    width: 40%;
-    max-height: 55px;
+    width: 250px;
+    height: 55px;
     font-size: 25px;
     display: flex;
     align-items: center;
