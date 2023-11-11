@@ -10,6 +10,8 @@ close.addEventListener('click', function(){
 
 document.querySelectorAll('.personas').forEach(function(button) {
     button.addEventListener('click', function() {
+       const eliminar = document.getElementById('boton-eliminar')
+       eliminar.style.display = 'flex'
          document.querySelectorAll('.personas.selected').forEach(function(button) {
             button.classList.remove('selected');
         });

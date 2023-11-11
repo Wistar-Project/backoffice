@@ -133,7 +133,9 @@ class PersonaController extends Controller
             "rol" => $rol 
         ];
     }
+    public function BorrarUsuario(){
 
+    }
     private function obtenerDatosEnEditarPersona($request){
         $email = $request -> post("email");
         $nombre = $request -> post("nombre");

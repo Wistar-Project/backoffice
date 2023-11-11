@@ -35,6 +35,9 @@ fieldset{
 #container-inspector{
     width: 45%;
     height: 500px;
+    display: grid;
+    grid-template-columns: 50% 40%;
+    grid-template-rows: 70% 35%;
 }
 #boton-crear{
     width: 100px;
@@ -141,8 +144,8 @@ fieldset{
     transform: scale(1.03);
 }
 #informacion{
-    width: 50%;
-    height: 70%;
+    width: 95%;
+    height: 100%;
     border: 1px solid black;
     border-radius: 5px;
     margin: 35px;
@@ -165,4 +168,30 @@ fieldset{
 .selected{
     transition: all .2s;
     background-color: #52725e;
+}
+#boton-eliminar{
+    width: 100%;
+    height: 50px;
+    grid-column: 2;
+    font-size: 26px;
+    grid-row: 2;
+    margin-top: 70px;
+    border-radius: 20px;
+    background-color: green;
+    color: white;
+    font-family: var(--font-texto);
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+#boton-eliminar:hover{
+    transition: all .3s;
+    transform: scale(1.05);
+}
+#boton-eliminar svg{
+    width: 30px;
+    height: 30px;
 }
