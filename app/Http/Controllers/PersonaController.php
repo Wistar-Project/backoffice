@@ -127,7 +127,36 @@ class PersonaController extends Controller
         return $personasCompleto;
     }
 
-    public function ListarPersonas(){
+    public function ListarPersonas(Request $request){
+        $nombre = $request->get('nombre');
+        $email = $request->get('email');
+      
+        $query = User::query();
+        $queryPersona = Persona::query();
+      
+        if ($nombre || $email) {
+            if ($nombre) {
+                $queryPersona->where('nombre', 'like', "%{$nombre}%");
+                $usuarios = $queryPersona -> get();
+            }
+            $rol = PersonaRol::find($queryPersona -> id);
+            if ($email) {
+                $query->where('email', 'like', "%{$email}%");
+                $usuarios = [
+                    "id"=> $query->get()-> id,
+                    "nombre"=> $queryPersona->get()->nombre,
+                    "apellido"=> $queryPersona -> get() -> apellido,
+                    "email"=>$query -> get()-> email,
+                    "rol" => $rol
+                ];
+            }
+            return view("usuarios",[
+                "personas"=> $usuarios
+            ]);
+        }
+      
+       
+      
         return view("usuarios", [
             "personas" => $this -> obtenerPersonas()
         ]);
@@ -176,7 +205,7 @@ class PersonaController extends Controller
         $usuario -> save();
         return $this-> ListarConmensaje("Usuario editado correctamente"); 
     }
-    public function CerrarSesion(){
+     public function CerrarSesion(){
         Auth::logout();
         return redirect("http://localhost:5500");
     }
