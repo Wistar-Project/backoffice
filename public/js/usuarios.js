@@ -11,6 +11,10 @@ close.addEventListener('click', function(){
 document.querySelectorAll('.personas').forEach(function(button) {
     button.addEventListener('click', function() {
        var userId = this.getAttribute('data-id');
+       const editar = document.getElementById('editar-boton')
+       const  cerrar = document.getElementById('cerrar-ventana')
+       const ventana = document.getElementById('container-editar')
+       const eliminar = document.getElementById('form-eliminar')
          document.querySelectorAll('.personas.selected').forEach(function(button) {
             button.classList.remove('selected');
         });
@@ -20,12 +24,20 @@ document.querySelectorAll('.personas').forEach(function(button) {
             .then(function(response) { return response.json(); })
             .then(function(data) {
                 const info = document.getElementById('informacion')
-                info.innerHTML = `
+               info.innerHTML = `
                 <legend>Datos modificables </legend>
                 <p> Nombre completo: ${data.nombre} ${data.apellido} </p>
                 <p> Email : ${data.email} </p>
                 <p> Rol : ${data.rol}</P>
                 ` 
             });
+            eliminar.style.display = 'flex'
+            editar.style.display = 'flex'
+            editar.addEventListener('click',function(){
+                ventana.classList.toggle('ver')
+            })
+            cerrar.addEventListener('click',function(){
+                    ventana.classList.toggle('ver')
+            })
     });
 });

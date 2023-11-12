@@ -175,46 +175,16 @@ class PersonaController extends Controller
         ];
     }
 
-    private function editarUsuarioYPersona($usuario, $nombre, $apellido, $contrasenia){
-        $usuario -> password = Hash::make($contrasenia);
-        $usuario -> save();
-        $id = $usuario -> id;
+    public function editar(Request $request,$id){
         $persona = Persona::find($id);
-        $persona -> nombre = $nombre;
-        $persona -> apellido = $apellido;
+        $usuario = User::find($id);
+        $persona -> nombre = $this->obtenerDatosEnEditarPersona($request)->nombre;
+        $persona -> apellido = $this-> obtenerDatosEnEditarPersona($request)->apellido;
         $persona -> save();
+        $usuario ->email = $this->obtenerDatosEnEditarPersona($request)->email;
+        $usuario -> save();
+        return $this-> ListarConmensaje("Usuario editado correctamente"); 
     }
-
-    public function EditarPersona(Request $request){
-        [
-            $email,
-            $nombre,
-            $apellido,
-            $contrasenia
-        ] = $this -> obtenerDatosEnEditarPersona($request);
-        if(!isset($nombre))
-            return view("editarUsuario", [
-                "mensaje" => "Debes ingresar un nombre."
-            ]);
-        if(!isset($apellido))
-            return view("editarUsuario", [
-                "mensaje" => "Debes ingresar un apellido."
-            ]);
-        if(!isset($contrasenia))
-            return view("editarUsuario", [
-                "mensaje" => "Debes ingresar una contraseña."
-            ]);
-        $usuario = User::where("email", $email) -> get() -> first();
-        if($usuario == null)
-            return view("editarUsuario", [
-                "mensaje" => "La persona ingresada no existe."
-            ]);
-        $this -> editarUsuarioYPersona($usuario, $nombre, $apellido, $contrasenia);
-        return view("editarUsuario", [
-            "mensaje" => "La persona ha sido modificada satisfactoriamente.",
-        ]);
-    }
-
     public function CerrarSesion(){
         Auth::logout();
         return redirect("http://localhost:5500");
