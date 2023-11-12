@@ -175,13 +175,16 @@ class PersonaController extends Controller
         ];
     }
 
-    private function editarUsuario($request,$id){
+    public function editar(Request $request,$id){
+        $persona = Persona::find($id);
         $usuario = User::find($id);
-        $datos = $this-> obtenerDatosEnEditarPersona();
-        $usuario -> password = Hash::make($datos -> contrasenia);
-        $usuario -> save(); 
+        $persona -> nombre = $this->obtenerDatosEnEditarPersona($request)->nombre;
+        $persona -> apellido = $this-> obtenerDatosEnEditarPersona($request)->apellido;
+        $persona -> save();
+        $usuario ->email = $this->obtenerDatosEnEditarPersona($request)->email;
+        $usuario -> save();
+        return $this-> ListarConmensaje("Usuario editado correctamente"); 
     }
-
     public function CerrarSesion(){
         Auth::logout();
         return redirect("http://localhost:5500");

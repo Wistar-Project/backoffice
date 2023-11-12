@@ -29,6 +29,7 @@ Route::get('/usuarios', [PersonaController::class,"ListarPersonas"])->middleware
 Route::post('/usuarios',[PersonaController::class,"CrearPersona"])->middleware('auth');
 Route::get('/usuarios/{id}',[PersonaController::class,"VerInformacionDePersona"])->middleware('auth');
 Route::delete('/usuarios/{id}',[PersonaController::class,"BorrarUsuario"])->middleware('auth');
+Route::put('/usuarios/{id}',[PersonaController::class,"editar"])->middleware('auth');
 /* viejas rutas
 Route::post('/listar', [PersonaController::class, "ListarPersona"])->middleware('auth');
 Route::get('/listar', [PersonaController::class, "ListarPersonas"])->middleware('auth');
