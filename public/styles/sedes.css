@@ -188,3 +188,9 @@ main{
         margin-top: 40px;
     }
 }
+
+@media (max-width:350px){
+    p{
+        font-size: 25px;
+    }
+}
