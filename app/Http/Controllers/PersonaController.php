@@ -162,26 +162,17 @@ class PersonaController extends Controller
         User::findOrFail($id)->delete();
         return $this-> ListarConmensaje("El usuario ha sido eliminado");
     }
-    private function obtenerDatosEnEditarPersona($request){
-        $email = $request -> post("email");
-        $nombre = $request -> post("nombre");
-        $apellido = $request -> post("apellido");
-        $contrasenia = $request -> post("contraseña");
-        return [
-            $email,
-            $nombre,
-            $apellido,
-            $contrasenia
-        ];
-    }
 
     public function editar(Request $request,$id){
         $persona = Persona::find($id);
         $usuario = User::find($id);
-        $persona -> nombre = $this->obtenerDatosEnEditarPersona($request)->nombre;
-        $persona -> apellido = $this-> obtenerDatosEnEditarPersona($request)->apellido;
+        $persona -> nombre = $request ->post('nombre');
+        $persona -> apellido = $request -> post('apellido');
         $persona -> save();
-        $usuario ->email = $this->obtenerDatosEnEditarPersona($request)->email;
+        $usuario ->email = $request -> post('email');
+        $contrasenia = $request -> post('contraseña');
+        if(isset($contrasenia))
+             $usuario -> password = Hash::make($contrasenia);
         $usuario -> save();
         return $this-> ListarConmensaje("Usuario editado correctamente"); 
     }

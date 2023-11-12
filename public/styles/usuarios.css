@@ -14,7 +14,9 @@
     font-family: var(--font-titulo);
 }
 main{
-    display: flex;
+    display: grid;
+    grid-template-columns: 50% 45%;
+    width: 100%;
 }
 fieldset{
     font-family: var(--font-texto);
@@ -26,18 +28,22 @@ fieldset{
     border-radius: 10px;
 }
 #container-usuarios{
-    width: 50%;
+    width: 100%;
     height: 500px;
     flex-wrap: wrap;
    overflow: hidden;
    overflow-y: scroll;
+   grid-column: 1;
+   margin-top: 50px;
 }
 #container-inspector{
-    width: 45%;
+    width: 100%;
     height: 500px;
     display: grid;
+    margin-top: 50px;
     grid-template-columns: 50% 40%;
     grid-template-rows: 70% 35%;
+    grid-column: 2;
 }
 #boton-crear{
     width: 100px;
@@ -281,4 +287,90 @@ fieldset{
 #guardar:hover{
     transition: all .3s;
     transform: scale(1.03);
+}
+
+#container-buscar{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform:translate(-50%,-50%);
+    width: 380px;
+    height: 190px;
+    padding: 10px;
+    background-color: var(--boton-secundario);
+    box-shadow: 0 1px 3px black;
+    display: none;
+}
+#container-buscar > svg{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+#container-buscar form{
+    width: 95%;
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: 35% 50%;
+}
+#container-buscar form input{
+    width: 100%;
+    height: 35px;
+    background-color: var(--boton-principal);
+    border-radius: 10px;
+    border: 1px solid black;
+}
+#container-buscar.ver-buscar{
+    display: flex;
+    animation:  forwards buscar .5s;
+}
+@keyframes buscar {
+    0%{
+        scale: 0;
+    }
+    100%{
+        scale: 1;
+    }
+}
+#buscar{
+    grid-column: 2;
+    width: 85%;
+    font-size: 25px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 1px 3px black;
+    background-color: var(--boton-principal);
+}
+#buscar:hover{
+    transition: .3s;
+    transform: scale(1.03);
+}
+#buscar svg{
+    width: 30px;
+    height: 30px;
+}
+
+#buscar-boton{
+    position: absolute;
+    top: 130px;
+    left: calc(50% - 100px);
+    grid-column: 1;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px black;
+    cursor: pointer;
+    width: 110px;
+    height: 40px;
+    background-color: var(--boton-principal);
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
 }

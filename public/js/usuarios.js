@@ -1,6 +1,9 @@
 const botonCrear= document.getElementById('boton-crear')
 const close = document.getElementById('close-window')
 const form= document.getElementById('container-crear')
+const buscarBoton = document.getElementById('buscar-boton')
+const cerrarBuscar = document.getElementById('cerrar-buscar')
+const formBuscar = document.getElementById('container-buscar')
 botonCrear.addEventListener('click', function(){
     form.classList.toggle('mostrar')
 })
@@ -37,7 +40,14 @@ document.querySelectorAll('.personas').forEach(function(button) {
                 ventana.classList.toggle('ver')
             })
             cerrar.addEventListener('click',function(){
-                    ventana.classList.toggle('ver')
+                ventana.classList.toggle('ver')
             })
     });
 });
+
+buscarBoton.addEventListener('click',function(){
+formBuscar.classList.toggle('ver-buscar')
+})
+cerrarBuscar.addEventListener('click',function(){
+    formBuscar.classList.toggle('ver-buscar')
+})
