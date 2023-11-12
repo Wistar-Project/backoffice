@@ -187,6 +187,9 @@ main{
     #volver{
         margin-top: 40px;
     }
+    #creacion-popup.mostrar{
+        width: 100%;
+    }
 }
 
 @media (max-width:350px){
