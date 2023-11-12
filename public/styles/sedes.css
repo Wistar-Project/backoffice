@@ -110,13 +110,11 @@ main{
     border: 1px solid #000;
     border-radius: 20px;
     font-size: 25px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-direction: column;
+    display: none;
     padding: 15px;
     filter: grayscale(0);
     z-index: 1000;
+    box-shadow: 0 1px 3px black;
 }
 
 #creacion-popup p{
@@ -160,4 +158,33 @@ main{
 
 #creacion-popup img{
     cursor: pointer;
+}
+#creacion-popup.mostrar{
+    display: flex;
+    animation: ver forwards .5s;
+    justify-content: center;
+    gap: 10px;
+    flex-direction: column;
+}
+@keyframes ver{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 1;
+    }
+}
+
+/* RESPONSIVE */
+
+@media (max-width:580px){
+    fieldset{
+            width: 100%;
+    }
+    #boton-crear{
+        margin-top: 45px;
+    }
+    #volver{
+        margin-top: 40px;
+    }
 }
