@@ -1,11 +1,13 @@
 document.getElementById('boton-crear').addEventListener('click', () => {  
     activarEscalaDeGrises()
-    document.getElementById('creacion-popup').style.display = "flex"
+    const form= document.getElementById('creacion-popup')
+    form.classList.toggle('mostrar')
 })
 
 document.getElementById('cerrar-creacion').addEventListener('click', () => {
     desactivarEscalaDeGrises()
-    document.getElementById('creacion-popup').style.display = "none"
+    const form= document.getElementById('creacion-popup')
+    form.classList.toggle('mostrar')
 })
 
 function activarEscalaDeGrises(){
@@ -15,6 +17,8 @@ function activarEscalaDeGrises(){
     document.querySelector('fieldset').style.filter = "grayscale(1)"
     document.querySelector('header').style.filter = "grayscale(1)"
     document.querySelector('footer').style.filter = "grayscale(1)"
+    document.getElementById('boton-crear').style.pointerEvents ="none"
+    document.getElementById('volver').style.pointerEvents = "none"
 }
 
 function desactivarEscalaDeGrises(){
@@ -24,4 +28,6 @@ function desactivarEscalaDeGrises(){
     document.querySelector('fieldset').style.filter = "grayscale(0)"
     document.querySelector('header').style.filter = "grayscale(0)"
     document.querySelector('footer').style.filter = "grayscale(0)"
+    document.getElementById('boton-crear').style.pointerEvents ="all"
+    document.getElementById('volver').style.pointerEvents = "all"
 }

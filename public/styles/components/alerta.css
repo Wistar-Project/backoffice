@@ -9,6 +9,7 @@
     font-family: var(--font-texto);
     align-items: center;
     text-align: center;
+    top: 0;
     color: white;
     background-color: rgba(85, 38, 38, 0.959);
     font-weight: bold;
@@ -26,3 +27,4 @@
         display: none;
     }
 }
+

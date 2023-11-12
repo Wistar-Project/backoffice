@@ -9,7 +9,7 @@
 <main>
     <x-boton-volver/>
     <button type="button" id="boton-crear">Crear</button>
-    <form id="creacion-popup" method="POST" action="/sedes" style="display:none">
+    <form id="creacion-popup" method="POST" action="/sedes">
         @csrf
         <div class="titulo-crear">
             <p>Crear sede</p>
