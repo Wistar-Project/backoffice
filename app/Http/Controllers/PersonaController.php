@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Facades\Hash;
 use App\Models\PersonaRol;
 use Illuminate\Http\Request;
@@ -127,9 +128,33 @@ class PersonaController extends Controller
         return $personasCompleto;
     }
 
-    public function ListarPersonas(){
+    private function convertirPersonas($personas){
+        $personasConvertido = [];
+        foreach($personas as $persona){
+            $email = User::find($persona -> id) -> email;
+            $rol = PersonaRol::find($persona -> id) -> rol;
+            array_push($personasConvertido, [
+                "id" => $persona -> id,
+                "nombre" => $persona -> nombre,
+                "apellido" => $persona -> apellido,
+                "email" => $email,
+                "rol" => $rol
+            ]);
+        }
+        return $personasConvertido;
+    }
+
+    public function ListarPersonas(Request $request){
+        $nombre = $request->get('nombre');
+        $email = $request->get('email');
+        
+        $personas = DB::table("users") -> join("personas", function(JoinClause $join) use($nombre, $email){
+            $join -> on("users.id", "=", "personas.id")
+                  -> where("personas.nombre", "like", "%{$nombre}%")
+                  -> where("users.email", "like", "%{$email}%");
+        }) -> get();
         return view("usuarios", [
-            "personas" => $this -> obtenerPersonas()
+            "personas" => $this -> convertirPersonas($personas)
         ]);
     }
     public function VerInformacionDePersona($id)
@@ -162,30 +187,21 @@ class PersonaController extends Controller
         User::findOrFail($id)->delete();
         return $this-> ListarConmensaje("El usuario ha sido eliminado");
     }
-    private function obtenerDatosEnEditarPersona($request){
-        $email = $request -> post("email");
-        $nombre = $request -> post("nombre");
-        $apellido = $request -> post("apellido");
-        $contrasenia = $request -> post("contraseña");
-        return [
-            $email,
-            $nombre,
-            $apellido,
-            $contrasenia
-        ];
-    }
 
     public function editar(Request $request,$id){
         $persona = Persona::find($id);
         $usuario = User::find($id);
-        $persona -> nombre = $this->obtenerDatosEnEditarPersona($request)->nombre;
-        $persona -> apellido = $this-> obtenerDatosEnEditarPersona($request)->apellido;
+        $persona -> nombre = $request ->post('nombre');
+        $persona -> apellido = $request -> post('apellido');
         $persona -> save();
-        $usuario ->email = $this->obtenerDatosEnEditarPersona($request)->email;
+        $usuario ->email = $request -> post('email');
+        $contrasenia = $request -> post('contraseña');
+        if(isset($contrasenia))
+             $usuario -> password = Hash::make($contrasenia);
         $usuario -> save();
         return $this-> ListarConmensaje("Usuario editado correctamente"); 
     }
-    public function CerrarSesion(){
+     public function CerrarSesion(){
         Auth::logout();
         return redirect("http://localhost:5500");
     }
