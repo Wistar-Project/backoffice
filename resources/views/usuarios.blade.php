@@ -4,6 +4,10 @@
 <h2 class="titulo">Usuarios</h2>
 <main>
 <button type="button" id="buscar-boton">Buscar por</button>
+<form action="/usuarios" method="GET" id="form">
+    <input type="hidden" value="todos" name="todos">
+    <button type="submit" id="mostrar-todos-activos">Mostar todos</button>
+</form>
     @isset($mensaje)
         <x-alerta :color="$mensaje['color']">{{$mensaje['texto']}} </x-alerta>
     @endisset

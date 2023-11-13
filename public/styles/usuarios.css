@@ -87,7 +87,9 @@ fieldset{
     width: 470px;
     min-height: 300px;
     position: absolute;
-    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
     border-radius: none;
     border: 1px solid black;
     font-size: 20px;
@@ -238,7 +240,9 @@ fieldset{
     min-height: 300px;
     background-color: var(--boton-secundario);
     position: absolute;
-    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
     border: 1px solid black;
     display: none;
 }
@@ -378,4 +382,30 @@ fieldset{
 #buscar-boton:hover{
     transition: .3s;
     transform: scale(1.03);
+}
+#mostrar-todos-activos{
+    min-width: 100px;
+    height: 40px;
+    padding: 10px;
+    background-color: var(--boton-principal);
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 0 3px black;
+    font-size: 25px;
+    font-family: var(--font-texto);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#mostrar-todos-activos:hover{
+    transition: .3s;
+    transform: scale(1.03);
+
+}
+main > form{
+    grid-column: 1;
+    position: absolute;
+    top: 135px;
+    left: 20px;
 }
