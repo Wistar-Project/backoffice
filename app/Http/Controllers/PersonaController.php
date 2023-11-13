@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Facades\Hash;
 use App\Models\PersonaRol;
 use Illuminate\Http\Request;
@@ -127,38 +128,33 @@ class PersonaController extends Controller
         return $personasCompleto;
     }
 
+    private function convertirPersonas($personas){
+        $personasConvertido = [];
+        foreach($personas as $persona){
+            $email = User::find($persona -> id) -> email;
+            $rol = PersonaRol::find($persona -> id) -> rol;
+            array_push($personasConvertido, [
+                "id" => $persona -> id,
+                "nombre" => $persona -> nombre,
+                "apellido" => $persona -> apellido,
+                "email" => $email,
+                "rol" => $rol
+            ]);
+        }
+        return $personasConvertido;
+    }
+
     public function ListarPersonas(Request $request){
         $nombre = $request->get('nombre');
         $email = $request->get('email');
-      
-        $query = User::query();
-        $queryPersona = Persona::query();
-      
-        if ($nombre || $email) {
-            if ($nombre) {
-                $queryPersona->where('nombre', 'like', "%{$nombre}%");
-                $usuarios = $queryPersona -> get();
-            }
-            $rol = PersonaRol::find($queryPersona -> id);
-            if ($email) {
-                $query->where('email', 'like', "%{$email}%");
-                $usuarios = [
-                    "id"=> $query->get()-> id,
-                    "nombre"=> $queryPersona->get()->nombre,
-                    "apellido"=> $queryPersona -> get() -> apellido,
-                    "email"=>$query -> get()-> email,
-                    "rol" => $rol
-                ];
-            }
-            return view("usuarios",[
-                "personas"=> $usuarios
-            ]);
-        }
-      
-       
-      
+        
+        $personas = DB::table("users") -> join("personas", function(JoinClause $join) use($nombre, $email){
+            $join -> on("users.id", "=", "personas.id")
+                  -> where("personas.nombre", "like", "%{$nombre}%")
+                  -> where("users.email", "like", "%{$email}%");
+        }) -> get();
         return view("usuarios", [
-            "personas" => $this -> obtenerPersonas()
+            "personas" => $this -> convertirPersonas($personas)
         ]);
     }
     public function VerInformacionDePersona($id)
