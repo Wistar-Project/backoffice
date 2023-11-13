@@ -365,7 +365,8 @@ fieldset{
     border-radius: 20px;
     box-shadow: 0 1px 3px black;
     cursor: pointer;
-    width: 110px;
+    min-width: 100px;
+    padding: 5px;
     height: 40px;
     background-color: var(--boton-principal);
     font-size: 25px;
@@ -373,4 +374,8 @@ fieldset{
     justify-content: center;
     align-items: center;
     border: none;
+}
+#buscar-boton:hover{
+    transition: .3s;
+    transform: scale(1.03);
 }

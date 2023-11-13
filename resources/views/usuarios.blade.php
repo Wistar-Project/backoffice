@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/styles/usuarios.css">
 <h2 class="titulo">Usuarios</h2>
 <main>
-<button type="button" id="buscar-boton">Buscar</button>
+<button type="button" id="buscar-boton">Buscar por</button>
     @isset($mensaje)
         <x-alerta :color="$mensaje['color']">{{$mensaje['texto']}} </x-alerta>
     @endisset
