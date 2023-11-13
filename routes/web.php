@@ -33,9 +33,7 @@ Route::put('/usuarios/{id}',[PersonaController::class,"editar"])->middleware('au
 Route::get('/paqueteria',function(){
     return view("paqueteria");
 })->middleware('auth');
-Route::get('/paqueteria/lotes',function(){
-    return view("lotes");
-})->middleware('auth');
+Route::get('/paqueteria/lotes',[LoteController::class,"ListarLotes"])->middleware('auth');
 
 /* viejas rutas
 Route::post('/listar', [PersonaController::class, "ListarPersona"])->middleware('auth');

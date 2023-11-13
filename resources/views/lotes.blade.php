@@ -7,6 +7,9 @@
     @endisset
 <fieldset id="container-lotes">
 <legend>Lotes</legend>
+@foreach($lotes as $lote)
+    <button type="button" class="boton-lotes" data-id="{{ $lote['id'] }}">{{ $lote['id'] }}</button>
+@endforeach
 </fieldset>
 <fieldset id="informacion">
 
