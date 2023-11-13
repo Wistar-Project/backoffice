@@ -1,0 +1,30 @@
+:root{
+    --font-titulo: 'Roboto Condensed', sans-serif;
+    --font-texto: 'Raleway', sans-serif;
+    --texto: #fff;
+    --fondo: #2b333b;
+    --boton-principal: #375643;
+    --boton-secundario: #253e41;
+    --acento: #172620
+}
+
+fieldset{
+    display: flex;
+    box-shadow: 0 3px 3px black;
+    border: none;
+    background-color: var(--boton-secundario);
+    border-radius: 10px;
+}
+#container-lotes{
+    width: 45%;
+    height: 500px;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding: 10px;
+    margin-top: 100px;
+}
+#informacion{
+    width: 50%;
+    height: 500px;
+    margin-top: 100px;
+}
