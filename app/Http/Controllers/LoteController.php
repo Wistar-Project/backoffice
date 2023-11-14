@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alojamiento;
 use App\Models\LoteFormadoPor;
 use App\Models\Lote;
+use App\Models\Camion;
 use App\Models\LoteAsignadoACamion;
 use App\Models\Paquete;
 use Illuminate\Http\Request;
@@ -34,7 +35,8 @@ class LoteController extends Controller
     }
     public function ListarLotes(){
         return view("lotes",[
-            "lotes"=> $this-> obtenerLotes()
+            "lotes"=> $this-> obtenerLotes(),
+            "camiones" => Camion::all()
         ]);
     }
     public function VerInformacionDeLote($id){
