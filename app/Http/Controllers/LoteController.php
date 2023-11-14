@@ -46,10 +46,15 @@ class LoteController extends Controller
         }
         return [
             "peso" => $pesoLote,
-            "destino" => Alojamiento::find($lote -> destino) -> direccion,
+            "destino" => Alojamiento::find($lote -> destino,) -> direccion, 
             "fechaDeModificacion" => $lote -> updated_at,
             "paquetes" => $paquetes
         ];
+    }
+    public function EliminarLotes($id){
+            $lote = Lote::find($id);
+            $lote -> delete();
+            return $this-> ListarConmensaje("El lote ha sido borrado existosamente");
     }
     
 

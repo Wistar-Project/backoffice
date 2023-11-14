@@ -35,6 +35,7 @@ Route::get('/paqueteria',function(){
 })->middleware('auth');
 Route::get('/paqueteria/lotes',[LoteController::class,"ListarLotes"])->middleware('auth');
 Route::get('/paqueteria/lotes/{id}',[LoteController::class,"VerInformacionDeLote"])->middleware('auth');
+Route::delete('/paqueteria/lotes/{id}',[LoteController::class,"EliminarLotes"])->middleware('auth');
 
 /* viejas rutas
 Route::post('/listar', [PersonaController::class, "ListarPersona"])->middleware('auth');

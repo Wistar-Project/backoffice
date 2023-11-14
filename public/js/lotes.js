@@ -9,6 +9,7 @@ document.querySelectorAll('.boton-lotes').forEach(function(button) {
                 const info = document.getElementById('texto')
                 const paquetesContainer = document.getElementById('paquetes')
                 const fecha= formatearFecha(data.fechaDeModificacion)
+                const btnEliminar = document.getElementById('eliminar-boton')
                info.innerHTML = `
                 <ul>
                 <li>Peso(kg): ${data.peso} </li>
@@ -26,6 +27,21 @@ document.querySelectorAll('.boton-lotes').forEach(function(button) {
                     `
                     div.innerText = paquete
                     paquetesContainer.appendChild(div)
+                })
+                var myHeaders = new Headers();
+                myHeaders.append("X-CSRF-TOKEN", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+
+                btnEliminar.style.display = 'flex'
+                btnEliminar.addEventListener('click',function(){
+                    fetch('/paqueteria/lotes/' + userId,{
+                        method:'DELETE',
+                        headers:myHeaders,
+                    })
+                    .then(function(response){
+                        if(response.ok){
+                            window.location.reload(true)
+                        }
+                    })
                 })
                 
             }); 
