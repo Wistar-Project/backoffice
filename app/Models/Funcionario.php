@@ -11,4 +11,5 @@ class Funcionario extends Model
     use HasFactory;
     use Softdeletes;
     protected $table = 'funcionarios';
+    protected $fillable = ["id"];
 }

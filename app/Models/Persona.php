@@ -10,4 +10,5 @@ class Persona extends Model
     use HasFactory;
     use SoftDeletes;
     protected $table = "personas";
+    protected $fillable = [ "id", "nombre", "apellido" ];
 }
