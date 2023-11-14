@@ -36,6 +36,21 @@ class LoteController extends Controller
             "lotes"=> $this-> obtenerLotes()
         ]);
     }
+    public function VerInformacionDeLote($id){
+        $lote = Lote::find($id);
+        $paquetes = LoteFormadoPor::where("id_lote",$id )->get()->pluck("id_paquete");
+        $pesoLote = 0;
+        foreach( $paquetes as $paquete){
+            $peso = Paquete::find($paquete) -> peso_en_kg;
+            $pesoLote += $peso;
+        }
+        return [
+            "peso" => $pesoLote,
+            "destino" => Alojamiento::find($lote -> destino) -> direccion,
+            "fechaDeModificacion" => $lote -> updated_at,
+            "paquetes" => $paquetes
+        ];
+    }
     
 
 }

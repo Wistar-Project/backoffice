@@ -12,9 +12,17 @@
 @endforeach
 </fieldset>
 <fieldset id="informacion">
-
+<legend>Informacion del lote</legend>
+<div id="texto">
+    <p>Peso(kg):</p>
+    <p>Destino :</p>
+    <p>Fecha de modificacion</p>
+</div>
+<fieldset id="paquetes">
+    <legend>Paquetes asignados</legend>
+</fieldset>
 </fieldset>
 
 </main>
-
+<script src="/js/lotes.js"></script>
 @include('components/footer')
