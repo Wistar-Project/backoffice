@@ -14,6 +14,7 @@ use App\Models\Lote;
 use App\Models\User;
 use App\Models\Persona;
 use App\Models\Vehiculo;
+use App\Models\Gerente;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -25,73 +26,5 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $idUsuario = User::create([
-            "id" => 1,
-            "email" => "admin@gotruck.com",
-            "password" => Hash::make("1234")
-        ]) -> id;
-        Persona::create([
-            "id" => $idUsuario,
-            "nombre" => "Rodrigo",
-            "apellido" => "Dominguez"
-        ]);
-        Administrador::create(["id" => $idUsuario]);
-        $idChofer = User::create([
-            "id" => 2,
-            "email" => "chofer@gotruck.com",
-            "password" => Hash::make("1234")
-        ]) -> id;
-        Persona::create([
-            "id" => $idChofer,
-            "nombre" => "Martin",
-            "apellido" => "Perez"
-        ]);
-        Conductor::create(["id" => $idChofer]);
-        Alojamiento::create([
-            "id" => 1,
-            "direccion" => "Arazatí 1065"
-        ]);
-        Sede::create(["id" => 1]);
-        Alojamiento::create([
-            "id" => 2,
-            "direccion" => "Dirección usada"
-        ]);
-        Sede::create(["id" => 2]);
-        Paquete::create([
-            "id" => 1,
-            "peso_en_kg" => 5,
-            "destino" => 2,
-            "email" => "abcd@gmail.com"
-        ]);
-        /*
-        Lote::create([
-            "id" => 2,
-            "destino" => 2,
-        ]);
-        Lote::create([
-            "id" => 1,
-            "destino" => 2,
-        ]);
-
-        User::create([
-            "id" => 5,
-            "email" => "conductor@usuario",
-            "password" => Hash::make("1234")
-        ]) -> id;
-        Persona::create([
-            "id" => 5,
-            "nombre" => "Una",
-            "apellido" => "Persona"
-        ]);
-        Conductor::create([
-            "id" => 5
-        ]);
-        Vehiculo::create([
-            "id" => 3,
-            "capacidad_en_toneladas" => 5
-        ]);
-        Camion::create([
-            "id_vehiculo" => 3
-        ]);*/
     }
 }
