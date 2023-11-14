@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alojamiento;
 use App\Models\LoteFormadoPor;
 use App\Models\Lote;
+use App\Models\LoteAsignadoACamion;
 use App\Models\Paquete;
 use Illuminate\Http\Request;
 
@@ -57,6 +58,13 @@ class LoteController extends Controller
             return $this-> ListarConmensaje("El lote ha sido borrado existosamente");
     }
     
+    public function Asignar($idLote,$idCamion){
+            $asignado = LoteAsignadoACamion();
+            $asignado -> id_lote = $idLote;
+            $asignado -> id_camion = $idCamion;
+            $asignado -> save();
+            return $this-> ListarConmensaje("Lote asignado correctamente");
+    }
 
 }
 

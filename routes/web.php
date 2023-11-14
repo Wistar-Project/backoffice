@@ -36,45 +36,6 @@ Route::get('/paqueteria',function(){
 Route::get('/paqueteria/lotes',[LoteController::class,"ListarLotes"])->middleware('auth');
 Route::get('/paqueteria/lotes/{id}',[LoteController::class,"VerInformacionDeLote"])->middleware('auth');
 Route::delete('/paqueteria/lotes/{id}',[LoteController::class,"EliminarLotes"])->middleware('auth');
+Route::get('/paqueteria/lotes/{idLote}/asignar/{idCamion}',[LoteController::class,"Asignar"])->middleware('auth');
 
-/* viejas rutas
-Route::post('/listar', [PersonaController::class, "ListarPersona"])->middleware('auth');
-Route::get('/listar', [PersonaController::class, "ListarPersonas"])->middleware('auth');
-
-Route::post('/crear', [PersonaController::class, "CrearPersona"])->middleware('auth');
-Route::get('/crear', function () {
-    return view("crearUsuario");
-
-})->middleware('auth');
-Route::post('/editar', [PersonaController::class, "EditarPersona"])->middleware('auth');
-Route::get('/editar', function () {
-    return view("editarUsuario");
-})->middleware('auth');
-
-Route::get('/verLote', [LoteController::class, "VerLote"])->middleware('auth');
-
-Route::get('/editarLote', function () {
-    return view("editarLote");
-})->middleware('auth');
-
-Route::post('/agregarPaqueteALote', [LoteController::class, "AgregarPaqueteALote"])->middleware('auth');
-Route::post('/removerPaqueteALote', [LoteController::class, "RemoverPaqueteALote"])->middleware('auth');
-
-Route::post('/borrarLote', [LoteController::class, "BorrarLote"])->middleware('auth');
-Route::get('/borrarLote', function () {
-    return view('borrarLote');
-})->middleware('auth');
-
-Route::get('/listarPaquetes', [PaqueteController::class, "ListarPaquetes"])->middleware('auth');
-
-Route::post('/borrarPaquete', [PaqueteController::class, "BorrarPaquete"])->middleware('auth');
-Route::get('/borrarPaquete', function () {
-    return view('borrarPaquete');
-})->middleware('auth');
-
-Route::get('/asignarConductor', function () {
-    return view("asignarConductor");
-})->middleware('auth');
-Route::post('/asignarConductor', [ConductorController::class, "AsignarVehiculo"])->middleware('auth');
-*/
 Route::get('/logout', [PersonaController::class, "CerrarSesion"])->middleware('auth');
