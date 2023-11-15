@@ -122,4 +122,16 @@ class TransporteController extends Controller
             return Camion::create([ "id_vehiculo" => $idVehiculo ]);
         return Pickup::create([ "id_vehiculo" => $idVehiculo ]);
     }
+
+    public function ListarCamiones(){
+        return view('transporte/listar-camiones', [
+            "camiones" => Camion::all()->pluck('id_vehiculo'),
+        ]);
+    }
+
+    public function ListarPickups(){
+        return view('transporte/listar-pickups', [
+            "pickups" => Pickup::all()->pluck('id_vehiculo'),
+        ]);
+    }
 }
