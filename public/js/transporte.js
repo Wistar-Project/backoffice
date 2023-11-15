@@ -28,6 +28,8 @@ function activarEscalaDeGrises(){
     document.querySelector('fieldset').style.filter = "grayscale(1)"
     document.querySelector('header').style.filter = "grayscale(1)"
     document.querySelector('footer').style.filter = "grayscale(1)"
+    document.getElementById('info-fieldset').style.filter = "grayscale(1)"
+    document.getElementById('mostrar-solo-boton').style.filter = "grayscale(1)"
     document.getElementById('boton-crear').style.pointerEvents ="none"
     document.getElementById('volver').style.pointerEvents = "none"
 }
@@ -41,4 +43,6 @@ function desactivarEscalaDeGrises(){
     document.querySelector('footer').style.filter = "grayscale(0)"
     document.getElementById('boton-crear').style.pointerEvents ="all"
     document.getElementById('volver').style.pointerEvents = "all"
+    document.getElementById('info-fieldset').style.filter = "grayscale(0)"
+    document.getElementById('mostrar-solo-boton').style.filter = "grayscale(0)"
 }
