@@ -7,7 +7,7 @@
     <x-alerta :color="$mensaje['color']">{{ $mensaje['texto'] }}</x-alerta>
 @endisset
 <main>
-    <x-boton-volver/>
+    <x-boton-volver link="/"/>
     <button type="button" id="boton-crear">Crear</button>
     <form id="creacion-popup" method="POST" action="/sedes">
         @csrf
@@ -44,13 +44,17 @@
             <p class="texto-vehiculos">Camiones</p>
             <div class="vehiculos-container">
                 @foreach($camiones as $camion)
-                    <p>{{ $camion }}</p>
+                    <form action="/transporte/{{$camion}}">
+                        <input type="submit" value="{{ $camion }}">
+                    </form>
                 @endforeach
             </div>
             <p class="texto-vehiculos">Pickups</p>
             <div class="vehiculos-container">  
                 @foreach($pickups as $pickup)
-                <p>{{ $pickup }}</p>
+                    <form action="/transporte/{{$pickup}}">
+                        <input type="submit" value="{{ $pickup }}">
+                    </form>
             @endforeach
             </div>
         </fieldset>
@@ -68,7 +72,7 @@
         <div id="paquetes-o-lotes-container">
 
         </div>
-        <button>
+        <button style="background-color: #313131">
             <img src="/img/eliminar.png" alt="">
             <p>Eliminar vehículo</p>
         </button>

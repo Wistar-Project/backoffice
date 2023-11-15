@@ -14,4 +14,11 @@ class TransporteController extends Controller
             "pickups" => Pickup::all()->pluck('id_vehiculo')
         ]);
     }
+
+    public function VerUno(Request $request, $id){
+        return view('transporte', [
+            "camiones" => Camion::all()->pluck('id_vehiculo'),
+            "pickups" => Pickup::all()->pluck('id_vehiculo')
+        ]);
+    }
 }

@@ -356,7 +356,7 @@ main div{
     text-align: center;
 }
 
-.vehiculos-container p{
+.vehiculos-container form input{
     background-color: #2e5257;
     width: 60px;
     height: 60px;
@@ -369,9 +369,10 @@ main div{
     font-weight: bolder;
     cursor: pointer;
     transition: all 0.2s;
+    font-weight: normal;
 }
 
-.vehiculos-container p:hover{
+.vehiculos-container form input:hover{
     background-color: #478088;
 }
 
