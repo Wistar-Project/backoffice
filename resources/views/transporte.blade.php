@@ -43,58 +43,16 @@
             <legend>Vehículos</legend>
             <p class="texto-vehiculos">Camiones</p>
             <div class="vehiculos-container">
-                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>
+                @foreach($camiones as $camion)
+                    <p>{{ $camion }}</p>
+                @endforeach
             </div>
             <p class="texto-vehiculos">Pickups</p>
-            <div class="vehiculos-container">                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p><p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p><p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p></div>
+            <div class="vehiculos-container">  
+                @foreach($pickups as $pickup)
+                <p>{{ $pickup }}</p>
+            @endforeach
+            </div>
         </fieldset>
     </div>
     <fieldset id="info-fieldset">
@@ -108,62 +66,7 @@
         </ul>
         <p class="bolder">Lotes/Paquetes asignados</p>
         <div id="paquetes-o-lotes-container">
-            <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p><p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p><p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p><p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p><p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p><p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p><p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>                <p>1</p>
-                <p>2</p>
-                <p>3</p>
+
         </div>
         <button>
             <img src="/img/eliminar.png" alt="">
