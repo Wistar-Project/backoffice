@@ -57,7 +57,7 @@ class TransporteController extends Controller
         });
         if(isset($excepcion))
             return $this -> listarConError("Ocurrió un error al intentar eliminar el vehículo");
-        return $this -> listarConmensaje("Vehículo eliminado satisfactoriamente");
+        return $this -> listarConMensaje("Vehículo eliminado satisfactoriamente");
     }
 
     private function eliminarTipoVehiculo($id){
@@ -77,7 +77,7 @@ class TransporteController extends Controller
             ]
         ]);
     }
-    private function listarConmensaje($mensaje){
+    private function listarConMensaje($mensaje){
         return view("transporte/listar",[
             "camiones" => Camion::all()->pluck('id_vehiculo'),
             "pickups" => Pickup::all()->pluck('id_vehiculo'),
