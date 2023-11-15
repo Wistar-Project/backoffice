@@ -408,6 +408,7 @@ main div{
     gap: 10px;
     box-sizing: border-box;
     padding: 30px;
+    align-items: start;
 }
 
 #paquetes-o-lotes-container p{
