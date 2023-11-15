@@ -45,6 +45,7 @@
             <div class="vehiculos-container">
                 @foreach($camiones as $camion)
                     <form action="/transporte/{{$camion}}">
+                        @csrf
                         <input type="submit" value="{{ $camion }}">
                     </form>
                 @endforeach
