@@ -15,10 +15,7 @@ fieldset{
     box-shadow: 1px 1px 10px #000;
     background-color: #273e41;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
     margin-top: 130px;
-    flex-direction: row;
     flex-wrap: wrap;
     background-color: var(--boton-secundario);
 }
@@ -29,8 +26,26 @@ main{
 #container-paquetes{
     width: 50%;
     height: 520px;
+    align-content: flex-start;
+    gap:  20px;
+
 }
 #informacion{
     width: 40%;
-    height: 345px;
+    min-height: 345px;
+    flex-direction: column;
+}
+#informacion p{
+    margin: 20px;
+}
+#boton-paquete{
+    width: 60px;
+    height: 60px;
+    background-color: var(--boton-principal);
+    box-shadow: 7px 7px 4px black;
+    cursor: pointer;
+    margin: 15px;
+    border: 1px solid white;
+    border-radius: 15px;
+    font-size: 30px;
 }

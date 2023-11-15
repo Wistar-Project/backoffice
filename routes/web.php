@@ -37,7 +37,5 @@ Route::get('/paqueteria/lotes',[LoteController::class,"ListarLotes"])->middlewar
 Route::get('/paqueteria/lotes/{id}',[LoteController::class,"VerInformacionDeLote"])->middleware('auth');
 Route::delete('/paqueteria/lotes/{id}',[LoteController::class,"EliminarLotes"])->middleware('auth');
 Route::get('/paqueteria/lotes/{idLote}/asignar/{idCamion}',[LoteController::class,"Asignar"])->middleware('auth');
-Route::get('/paqueteria/paquetes',function () {
-    return view("paquetes");
-})-> middleware('auth');
+Route::get('/paqueteria/paquetes',[PaqueteController::class,"ListarPaquetes"])-> middleware('auth');
 Route::get('/logout', [PersonaController::class, "CerrarSesion"])->middleware('auth');
