@@ -33,13 +33,18 @@
     <fieldset id="info-fieldset">
         <legend>Información del vehículo</legend>
         <ul>
-            <li>Tipo:</li>
+            <div>
+                <li>Tipo:</li>
+                <li>Capacidad (t):</li>
+            </div>
             <li>Conductor asignado:</li>
-            <li>Capacidad (t):</li>
         </ul>
-        <p>Lotes/Paquetes asignados</p>
-        <div></div>
-        <button>Eliminar vehículo</button>
+        <p class="bolder">Lotes/Paquetes asignados</p>
+        <div id="paquetes-o-lotes-container"></div>
+        <button>
+            <img src="/img/eliminar.png" alt="">
+            <p>Eliminar vehículo</p>
+        </button>
     </fieldset>
 </main>
 <x-footer/>
