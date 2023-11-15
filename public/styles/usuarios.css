@@ -40,11 +40,10 @@ fieldset{
 #container-inspector{
     width: 100%;
     height: 500px;
-    display: grid;
     margin-top: 50px;
-    grid-template-columns: 50% 40%;
-    grid-template-rows: 70% 35%;
-    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #boton-crear{
     width: 100px;
@@ -155,7 +154,7 @@ fieldset{
 #informacion{
     width: 100%;
     grid-column: span 2;
-    height: 100%;
+    min-height: 300px;
     border: 1px solid black;
     border-radius: 5px;
     margin: 35px;
@@ -203,11 +202,11 @@ fieldset{
 }
 
 #boton-eliminar{
-    width: 100%;
+    min-width: 270px;
     height: 50px;
     font-size: 26px;
     border-radius: 20px;
-    background-color: red;
+    background-color: #c2131d;
     color: white;
     font-family: var(--font-texto);
     cursor: pointer;
@@ -216,10 +215,14 @@ fieldset{
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
+    border: 1px solid #000;
+    transition: all .3s;
+    min-width: 240px;
 }
 #boton-eliminar:hover{
-    transition: all .3s;
     transform: scale(1.05);
+    background-color: red;
 }
 #boton-eliminar svg{
     width: 30px;
@@ -228,28 +231,30 @@ fieldset{
 #editar-boton{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 10px;
     background-color: #5f9484;
     font-size: 23px;
     font-family: var(--font-texto);
     border-radius: 20px;
     border: none;
     cursor: pointer;
-    display: none;
     width: 70%;
-    margin-top: 65px;
     height: 50px;
     grid-column: 1;
     grid-row: 2;
     border: 1px solid #000;
+    transition: all .3s;
+    width: 240px;
+
 }
 #editar-boton svg{
     width: 30px;
     height: 30px;
 }
 #editar-boton:hover{
-    transition: all .3s;
     transform: scale(1.03);
+    background-color: #7bc7b0;
 }
 #container-editar{
     width: 490px;
@@ -377,15 +382,18 @@ fieldset{
     height: 30px;
 }
 
+#botones-buscar-wrapper{
+    position: relative;
+}
+
 #buscar-boton{
     position: absolute;
-    top: 130px;
-    left: calc(50% - 100px);
+    right: 0;
     grid-column: 1;
     border-radius: 20px;
     box-shadow: 0 1px 3px black;
     cursor: pointer;
-    min-width: 100px;
+    min-width: 150px;
     padding: 5px;
     height: 40px;
     background-color: var(--boton-principal);
@@ -394,13 +402,16 @@ fieldset{
     justify-content: center;
     align-items: center;
     border: none;
+    font-weight: lighter;
 }
 #buscar-boton:hover{
     transition: .3s;
     transform: scale(1.03);
 }
 #mostrar-todos-activos{
-    min-width: 100px;
+    position: absolute;
+    left: -350px;
+    min-width: 150px;
     height: 40px;
     padding: 10px;
     background-color: var(--boton-principal);
@@ -413,6 +424,7 @@ fieldset{
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: bolder;
 }
 #mostrar-todos-activos:hover{
     transition: .3s;
@@ -424,4 +436,40 @@ main > form{
     position: absolute;
     top: 135px;
     left: 20px;
+}
+
+#datos-info-contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+}
+
+#botones-contenedor{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#botonsitos{
+    position: absolute;
+    right: 0;
+}
+
+#form{
+    position: absolute;
+    right: 150px;
+    min-width: 200px;
+    font-size: 25px;
+}
+
+#form-eliminar{
+    width: fit-content;
+}
+
+.escala-de-gris{
+    filter: grayscale(1);
+    pointer-events: none;
 }

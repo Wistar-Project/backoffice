@@ -13,6 +13,11 @@ close.addEventListener('click', function(){
 
 document.querySelectorAll('.personas').forEach(function(button) {
     button.addEventListener('click', function() {
+        document.getElementById('boton-eliminar').classList.remove('escala-de-gris')
+        document.getElementById('boton-eliminar').style.pointerEvents = "all"
+        document.getElementById('editar-boton').classList.remove('escala-de-gris')
+        document.getElementById('editar-boton').style.pointerEvents = "all"
+
        var userId = this.getAttribute('data-id');
        const editar = document.getElementById('editar-boton')
        const  cerrar = document.getElementById('cerrar-ventana')
@@ -54,3 +59,18 @@ formBuscar.classList.toggle('ver-buscar')
 cerrarBuscar.addEventListener('click',function(){
     formBuscar.classList.toggle('ver-buscar')
 })
+
+const urlParams = new URLSearchParams(window.location.search)
+botonMostrarActivosOTodos()
+function botonMostrarActivosOTodos(){
+    if(urlParams.get('todos')){
+        document.getElementById('mostrar-todos-activos').innerHTML = "Mostrar activos"
+        document.getElementById('mostrar-todos-activos').addEventListener('click', () => {
+            window.location.href = "/usuarios"
+        })
+        return
+    }
+    document.getElementById('mostrar-todos-activos').addEventListener('click', () => {
+        window.location.href = "/usuarios?todos=todos"
+    })
+}
