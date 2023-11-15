@@ -409,6 +409,8 @@ fieldset{
     transform: scale(1.03);
 }
 #mostrar-todos-activos{
+    position: absolute;
+    left: -350px;
     min-width: 150px;
     height: 40px;
     padding: 10px;
@@ -458,7 +460,7 @@ main > form{
 
 #form{
     position: absolute;
-    right: 140px;
+    right: 150px;
     min-width: 200px;
     font-size: 25px;
 }

@@ -59,3 +59,18 @@ formBuscar.classList.toggle('ver-buscar')
 cerrarBuscar.addEventListener('click',function(){
     formBuscar.classList.toggle('ver-buscar')
 })
+
+const urlParams = new URLSearchParams(window.location.search)
+botonMostrarActivosOTodos()
+function botonMostrarActivosOTodos(){
+    if(urlParams.get('todos')){
+        document.getElementById('mostrar-todos-activos').innerHTML = "Mostrar activos"
+        document.getElementById('mostrar-todos-activos').addEventListener('click', () => {
+            window.location.href = "/usuarios"
+        })
+        return
+    }
+    document.getElementById('mostrar-todos-activos').addEventListener('click', () => {
+        window.location.href = "/usuarios?todos=todos"
+    })
+}

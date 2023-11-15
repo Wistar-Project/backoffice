@@ -11,10 +11,7 @@
 <div id="botones-buscar-wrapper">
     <div id="botonsitos">
         <button type="button" id="buscar-boton" data-text-id="496">Buscar por</button>
-        <form action="/usuarios" method="GET" id="form">
-            <input type="hidden" value="todos" name="todos">
-            <button type="submit" id="mostrar-todos-activos" data-text-id="436">Mostrar todos</button>
-        </form>
+        <button type="button" id="mostrar-todos-activos" data-text-id="436">Mostrar todos</button>
     </div>
     <fieldset id="container-usuarios">
         <legend data-text-id="463">Usuarios</legend>

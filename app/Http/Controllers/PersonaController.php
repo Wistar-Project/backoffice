@@ -131,7 +131,7 @@ class PersonaController extends Controller
     private function convertirPersonas($personas){
         $personasConvertido = [];
         foreach($personas as $persona){
-            $email = User::find($persona -> id) -> email;
+            $email = User::withTrashed()->find($persona -> id) -> email;
             $rol = PersonaRol::find($persona -> id) -> rol;
             array_push($personasConvertido, [
                 "id" => $persona -> id,
@@ -144,24 +144,33 @@ class PersonaController extends Controller
         return $personasConvertido;
     }
 
-    public function ListarPersonas(Request $request){
+    private function obtenerLasPersonas(Request $request){
         $nombre = $request->get('nombre');
         $email = $request->get('email');
-        
-        $personas = DB::table("users") -> join("personas", function(JoinClause $join) use($nombre, $email){
+        if($request -> get("todos"))
+            return DB::table("users") -> join("personas", function(JoinClause $join) use($nombre, $email){
+                $join -> on("users.id", "=", "personas.id")
+                        -> where("personas.nombre", "like", "%{$nombre}%")
+                        -> where("users.email", "like", "%{$email}%");
+            }) -> get();
+        return DB::table("users") -> join("personas", function(JoinClause $join) use($nombre, $email){
             $join -> on("users.id", "=", "personas.id")
-                  -> where("personas.nombre", "like", "%{$nombre}%")
-                  -> where("users.email", "like", "%{$email}%")
-                  -> where("users.deleted_at", null);
+                    -> where("personas.nombre", "like", "%{$nombre}%")
+                    -> where("users.email", "like", "%{$email}%")
+                    -> where("users.deleted_at", null);
         }) -> get();
+    }
+
+    public function ListarPersonas(Request $request){
+        $personas = $this -> obtenerLasPersonas($request);
         return view("usuarios", [
             "personas" => $this -> convertirPersonas($personas)
         ]);
     }
     public function VerInformacionDePersona($id)
     {
-        $user = User::findOrFail($id);
-        $persona = Persona::findOrFail($id);
+        $user = User::withTrashed()->findOrFail($id);
+        $persona = Persona::withTrashed()->findOrFail($id);
         $rol = PersonaRol::find($id) -> rol;
         return [
             "nombre" => $persona -> nombre,
