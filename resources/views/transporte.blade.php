@@ -1,6 +1,7 @@
 <x-header/>
 <link rel="stylesheet" href="/styles/transporte.css">
 <script src="/js/sedes.js" defer></script>
+<script src="/js/transporte.js" defer></script>
 
 <h2 class="titulo">Vehículos</h2>
 @isset($mensaje)
@@ -22,10 +23,12 @@
         <input type="submit" value="Crear">
     </form>
     <div>
-        <button id="mostrar-solo-boton">
-            <p>Mostrar solo...</p>
-            <img src="/img/caret-abajo.png" alt="">
-        </button>
+        <div id="mostrar-solo-boton">
+            <div>
+                <p>Mostrar solo...</p>
+                <img src="/img/caret-abajo.png" alt="">
+            </div>
+        </div>
         <fieldset>
             <legend>Vehículos</legend>
         </fieldset>

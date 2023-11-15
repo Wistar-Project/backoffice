@@ -209,6 +209,7 @@ main div{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative;
 }
 
 #mostrar-solo-boton{
@@ -223,6 +224,8 @@ main div{
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    position: absolute;
+    top: -50px;
 }
 
 #mostrar-solo-boton img{
@@ -231,7 +234,6 @@ main div{
 }
 
 #info-fieldset{
-    margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -283,4 +285,17 @@ main div{
 #info-fieldset button img{
     width: 40px;
     height: 40px;
+}
+
+#mostrar-solo-boton.abrir-menu-mostrar-solo{
+    height: 200px;
+    border-radius: 20px;
+    display: relative;
+}
+
+#mostrar-solo-boton div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
