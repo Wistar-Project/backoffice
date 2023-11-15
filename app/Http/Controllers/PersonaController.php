@@ -151,7 +151,8 @@ class PersonaController extends Controller
         $personas = DB::table("users") -> join("personas", function(JoinClause $join) use($nombre, $email){
             $join -> on("users.id", "=", "personas.id")
                   -> where("personas.nombre", "like", "%{$nombre}%")
-                  -> where("users.email", "like", "%{$email}%");
+                  -> where("users.email", "like", "%{$email}%")
+                  -> where("users.deleted_at", null);
         }) -> get();
         return view("usuarios", [
             "personas" => $this -> convertirPersonas($personas)

@@ -35,6 +35,7 @@ document.querySelectorAll('.personas').forEach(function(button) {
                 ` 
             });
             eliminar.style.display = 'flex'
+            document.getElementById('form-eliminar').action = `/usuarios/${userId}`
             editar.style.display = 'flex'
             editar.addEventListener('click',function(){
                 ventana.classList.toggle('ver')
