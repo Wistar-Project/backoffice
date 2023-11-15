@@ -16,7 +16,7 @@
         <p>Peso(kg):</p>
         <p>Destino:</p>
         <p>Email:</p>
-        <p>Fecha de creacion:</p>
+        <p>Fecha de creación:</p>
         <p>Vehiculo asignado:</p>
         <p>Lote asignado:</p>
         </div>
