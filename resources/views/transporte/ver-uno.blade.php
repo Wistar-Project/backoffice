@@ -44,17 +44,33 @@
             <p class="texto-vehiculos">Camiones</p>
             <div class="vehiculos-container">
                 @foreach($camiones as $camion)
-                    <form action="/transporte/{{$camion}}">
-                        <input type="submit" value="{{ $camion }}">
-                    </form>
+                    @if($camion == $id)
+                        <form action="/transporte/{{$camion}} style='background-color:#000'">
+                            @csrf
+                            <input type="submit" style="background-color:#478088" value="{{ $camion }}">
+                        </form>
+                    @else
+                        <form action="/transporte/{{$camion}}">
+                            @csrf
+                            <input type="submit" value="{{ $camion }}">
+                        </form>
+                    @endif
                 @endforeach
             </div>
             <p class="texto-vehiculos">Pickups</p>
             <div class="vehiculos-container">  
                 @foreach($pickups as $pickup)
-                    <form action="/transporte/{{$pickup}}">
-                        <input type="submit" value="{{ $pickup }}">
-                    </form>
+                    @if($pickup == $id)
+                        <form action="/transporte/{{$pickup}}">
+                            @csrf
+                            <input type="submit" style="background-color:#478088" value="{{ $pickup }}">
+                        </form>
+                    @else
+                        <form action="/transporte/{{$pickup}}">
+                            @csrf
+                            <input type="submit" value="{{ $pickup }}">
+                        </form>
+                    @endif
             @endforeach
             </div>
         </fieldset>
