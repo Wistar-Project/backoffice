@@ -83,10 +83,10 @@
         <legend data-text-id="484">Información del vehículo</legend>
         <ul>
             <div>
-                <li><p data-text-id="485">Tipo:</p> {{ $tipo }}</li>
-                <li><p data-text-id="487">Capacidad (t):</p>  {{ $capacidad }}</li>
+                <li><span data-text-id="485">Tipo</span>: {{ $tipo }}</li>
+                <li><span data-text-id="487">Capacidad (t)</span>:  {{ $capacidad }}</li>
             </div>
-            <li><p data-text-id="486">Conductor asignado:</p> {{ $conductor }}</li>
+            <li><span data-text-id="486">Conductor asignado</span>: {{ $conductor }}</li>
         </ul>
         <p class="bolder" data-text-id="488">Lotes/Paquetes asignados</p>
         <div id="paquetes-o-lotes-container">
