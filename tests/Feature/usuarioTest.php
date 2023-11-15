@@ -6,6 +6,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Persona;
+use App\Models\User;
+use App\Models\Administrador;
+use App\Models\PersonaRol;
 
 class usuarioTest extends TestCase
 {
@@ -15,46 +18,50 @@ class usuarioTest extends TestCase
         Administrador::create([ "id" => $user -> id ]);
         return $user;
     }
-    public function test_mostrarUsuarios()
+
+    public function test_mostrarUsuariosSinAutenticarse()
     {
-        $response = $this->get('/usuarios');
-        $response->assertStatus(200);
-        $response -> assertViewHas("personas",$this -> obtenerLasPersonas(Persona::all()));
-    }
-    public function test_crearPersona(){
-        $response -> actingAs($this-> crearAdministrador()) -> $this->post('/usuarios');
-    }
-    private function convertirPersonas($personas){
-        $personasConvertido = [];
-        foreach($personas as $persona){
-            $email = User::withTrashed()->find($persona -> id) -> email;
-            $rol = PersonaRol::find($persona -> id) -> rol;
-            array_push($personasConvertido, [
-                "id" => $persona -> id,
-                "nombre" => $persona -> nombre,
-                "apellido" => $persona -> apellido,
-                "email" => $email,
-                "rol" => $rol
-            ]);
-        }
-        return $personasConvertido;
+        $response = $this -> get('/usuarios', [
+            "Accept" => "application/json"
+        ]);
+        $response -> assertStatus(302);
     }
 
-    private function obtenerLasPersonas(Request $request){
-        $nombre = $request->get('nombre');
-        $email = $request->get('email');
-        if($request -> get("todos"))
-            return DB::table("users") -> join("personas", function(JoinClause $join) use($nombre, $email){
-                $join -> on("users.id", "=", "personas.id")
-                        -> where("personas.nombre", "like", "%{$nombre}%")
-                        -> where("users.email", "like", "%{$email}%");
-            }) -> get();
-        return DB::table("users") -> join("personas", function(JoinClause $join) use($nombre, $email){
-            $join -> on("users.id", "=", "personas.id")
-                    -> where("personas.nombre", "like", "%{$nombre}%")
-                    -> where("users.email", "like", "%{$email}%")
-                    -> where("users.deleted_at", null);
-        }) -> get();
+    public function test_ver_informacion_de_persona(){
+        User::create([ "id" => 10, "email" => "hola@gmail.com" ]);
+        Persona::create([ "id" => 10, "nombre" => "Fabri", "apellido" => "Cobucci" ]);
+        Administrador::create([ "id" => 10 ]);
+        $response = $this -> actingAs($this -> crearAdministrador()) -> get('/usuarios/10');
+        $response -> assertStatus(200);
+        $response -> assertExactJson([
+            "nombre" => "Fabri",
+            "apellido" => "Cobucci",
+            "email" => "hola@gmail.com",
+            "rol" => "administrador"
+        ]);
     }
 
+    public function test_ver_informacion_de_persona_sin_autenticarse(){
+        $response = $this -> get('/usuarios/10');
+        $response -> assertStatus(302);
+    }
+
+    public function test_borrar_usuario_sin_autenticarse(){
+        $response = $this -> delete('/usuarios/10');
+        $response -> assertStatus(302);
+    }
+
+    public function test_borrar_usuario(){
+        $response = $this -> actingAs($this -> crearAdministrador()) -> delete('/usuarios/10');
+        $response -> assertStatus(200);
+        $this -> assertDatabaseMissing("personas", [
+            "id" => 10
+        ]);
+        $this -> assertDatabaseMissing("users", [
+            "id" => 10
+        ]);
+        $this -> assertDatabaseMissing("administradores", [
+            "id" => 10
+        ]);
+    }
 }
