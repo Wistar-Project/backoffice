@@ -36,6 +36,7 @@ Route::get('/paqueteria',function(){
 })->middleware('auth');
 Route::get('/transporte', [ TransporteController::class, "Listar" ]) -> middleware('auth');
 Route::get('/transporte/{d}', [ TransporteController::class, "VerUno" ]) -> middleware('auth');
+Route::delete('/transporte/{d}', [ TransporteController::class, "Eliminar" ]) -> middleware('auth');
 /* viejas rutas
 Route::post('/listar', [PersonaController::class, "ListarPersona"])->middleware('auth');
 Route::get('/listar', [PersonaController::class, "ListarPersonas"])->middleware('auth');
