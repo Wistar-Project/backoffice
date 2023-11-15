@@ -28,7 +28,7 @@ class usuarioTest extends TestCase
     }
 
     public function test_ver_informacion_de_persona(){
-        User::create([ "id" => 10, "email" => "hola@gmail.com" ]);
+        User::create([ "id" => 10, "email" => "hola@gmail.com", "password" => "1234" ]);
         Persona::create([ "id" => 10, "nombre" => "Fabri", "apellido" => "Cobucci" ]);
         Administrador::create([ "id" => 10 ]);
         $response = $this -> actingAs($this -> crearAdministrador()) -> get('/usuarios/10');
