@@ -38,7 +38,7 @@ main{
 #informacion p{
     margin: 20px;
 }
-#boton-paquete{
+.boton-paquete{
     width: 60px;
     height: 60px;
     background-color: var(--boton-principal);

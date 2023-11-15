@@ -5,7 +5,7 @@
     <fieldset id="container-paquetes">
         <legend>Paquetes</legend>
         @foreach($paquetes as $paquete)
-            <button type="button" data_id="{{ $paquete['id'] }}" id="boton-paquete">{{ $paquete['id'] }}</button>
+            <button type="button" data-id="{{ $paquete['id'] }}" class="boton-paquete">{{ $paquete['id'] }}</button>
         @endforeach 
     </fieldset>
     <fieldset id="informacion">
@@ -17,5 +17,5 @@
         <p>Lote asignado:</p>
     </fieldset>
 </main>
-
+<script src="/js/paquetes.js"></script>
 <x-footer/>
