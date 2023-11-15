@@ -62,7 +62,6 @@ function mostrarMasOpciones(id) {
             <p class="bolder">Opciones</p>
             <img src="/img/cruz.png" alt="" id="cerrar-opciones-form"/>
         </div>
-        <a href="/lotes/${id}">Ver más información</a>
         <input type="submit" value="Desasignar del vehículo">
     `
     document.getElementById('mas-opciones-form').style.display = "flex"
