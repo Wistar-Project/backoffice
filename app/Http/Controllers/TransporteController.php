@@ -11,6 +11,7 @@ use App\Models\Pickup;
 use App\Models\Vehiculo;
 use App\Models\VehiculoTipo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TransporteController extends Controller
 {
@@ -47,5 +48,43 @@ class TransporteController extends Controller
             return $persona -> nombre . " " . $persona -> apellido;
         }
         return "No asignado";
+    }
+
+    public function Eliminar($id){
+        $excepcion = DB::transaction(function() use($id){
+            Vehiculo::findOrFail($id) -> delete();
+            $this -> eliminarTipoVehiculo($id);
+        });
+        if(isset($excepcion))
+            return $this -> listarConError("Ocurrió un error al intentar eliminar el vehículo");
+        return $this -> ListarConmensaje("Vehículo eliminado satisfactoriamente");
+    }
+
+    private function eliminarTipoVehiculo($id){
+        $tipo = VehiculoTipo::findOrFail($id) -> tipo;
+        if($tipo == "camión")
+            return Camion::findOrFail($id) -> delete();
+        Pickup::findOrFail($id) -> delete();
+    }
+
+    private function listarConError($error){
+        return view("transporte/listar",[
+            "camiones" => Camion::all()->pluck('id_vehiculo'),
+            "pickups" => Pickup::all()->pluck('id_vehiculo'),
+            "mensaje"=>[
+                "color" => "rgba(85, 38, 38, 0.959)",
+                "texto"=> $error
+            ]
+        ]);
+    }
+    private function ListarConmensaje($mensaje){
+        return view("transporte/listar",[
+            "camiones" => Camion::all()->pluck('id_vehiculo'),
+            "pickups" => Pickup::all()->pluck('id_vehiculo'),
+            "mensaje"=> [
+                "color"=> "green",
+                "texto"=>$mensaje
+            ]
+        ]);
     }
 }
