@@ -63,14 +63,16 @@
         <legend>Información del vehículo</legend>
         <ul>
             <div>
-                <li>Tipo:</li>
-                <li>Capacidad (t):</li>
+                <li>Tipo:  {{ $tipo }}</li>
+                <li>Capacidad (t):  {{ $capacidad }}</li>
             </div>
-            <li>Conductor asignado:</li>
+            <li>Conductor asignado: {{ $conductor }}</li>
         </ul>
         <p class="bolder">Lotes/Paquetes asignados</p>
         <div id="paquetes-o-lotes-container">
-
+            @foreach($paquetesOLotesAsignados as $item)
+                <p>{{ $item }}</p>
+            @endforeach
         </div>
         <button>
             <img src="/img/eliminar.png" alt="">

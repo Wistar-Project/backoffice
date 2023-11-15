@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Camion;
+use App\Models\ConductorManeja;
+use App\Models\LoteAsignadoACamion;
+use App\Models\PaqueteAsignadoAPickup;
+use App\Models\Persona;
 use App\Models\Pickup;
+use App\Models\Vehiculo;
+use App\Models\VehiculoTipo;
 use Illuminate\Http\Request;
 
 class TransporteController extends Controller
@@ -18,7 +24,28 @@ class TransporteController extends Controller
     public function VerUno(Request $request, $id){
         return view('transporte/ver-uno', [
             "camiones" => Camion::all()->pluck('id_vehiculo'),
-            "pickups" => Pickup::all()->pluck('id_vehiculo')
+            "pickups" => Pickup::all()->pluck('id_vehiculo'),
+            "tipo" => VehiculoTipo::findOrFail($id) -> tipo,
+            "capacidad" => Vehiculo::findOrFail($id) -> capacidad_en_toneladas,
+            "conductor" => $this -> conductorAsignado($id),
+            "paquetesOLotesAsignados" => $this -> paquetesOLotesAsignados($id)
         ]);
+    }
+
+    private function paquetesOLotesAsignados($id){
+        $tipo = VehiculoTipo::findOrFail($id) -> tipo;
+        if($tipo == "camión")
+            return LoteAsignadoACamion::where('id_camion', $id) -> get() -> pluck('id_lote');
+        return PaqueteAsignadoAPickup::where('id_pickup', $id) -> get() -> pluck('id_paquete');
+    }
+
+    private function conductorAsignado($id){
+        $conductor = ConductorManeja::where('id_vehiculo', $id) -> first();
+        if($conductor){
+
+            $persona = Persona::withTrashed()->findOrFail($conductor -> pluck('id_conductor'))->first();
+            return $persona -> nombre . " " . $persona -> apellido;
+        }
+        return "No asignado";
     }
 }
