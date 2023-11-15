@@ -466,3 +466,8 @@ main > form{
 #form-eliminar{
     width: fit-content;
 }
+
+.escala-de-gris{
+    filter: grayscale(1);
+    pointer-events: none;
+}
