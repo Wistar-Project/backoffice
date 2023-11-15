@@ -61,7 +61,7 @@ class LoteController extends Controller
     }
     
     public function Asignar($idLote,$idCamion){
-            $asignado = LoteAsignadoACamion();
+            $asignado = new LoteAsignadoACamion();
             $asignado -> id_lote = $idLote;
             $asignado -> id_camion = $idCamion;
             $asignado -> save();
