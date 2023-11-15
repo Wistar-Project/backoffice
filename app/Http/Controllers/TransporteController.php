@@ -53,6 +53,8 @@ class TransporteController extends Controller
     }
 
     public function Eliminar($id){
+        if($this -> tieneLotesOPaquetesAsignados($id))
+            return $this -> listarConError("El vehículo tiene lotes/paquetes asignados. Desasigne estos primero");
         $excepcion = DB::transaction(function() use($id){
             Vehiculo::findOrFail($id) -> delete();
             $this -> eliminarTipoVehiculo($id);
@@ -60,6 +62,13 @@ class TransporteController extends Controller
         if(isset($excepcion))
             return $this -> listarConError("Ocurrió un error al intentar eliminar el vehículo");
         return $this -> listarConMensaje("Vehículo eliminado satisfactoriamente");
+    }
+
+    private function tieneLotesOPaquetesAsignados($id){
+        $tipo = VehiculoTipo::findOrFail($id) -> tipo;
+        if($tipo == "camión")
+            return count(LoteAsignadoACamion::where("id_camion", $id) -> get()) > 0;
+        return count(PaqueteAsignadoAPickup::where("id_pickup", $id) -> get()) > 0;
     }
 
     private function eliminarTipoVehiculo($id){
