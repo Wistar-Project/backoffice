@@ -103,5 +103,6 @@
             </button>
         </form>
     </fieldset>
+    <form action="" id="mas-opciones-form" style="display:none"></form>
 </main>
 <x-footer/>

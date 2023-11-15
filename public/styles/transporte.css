@@ -430,3 +430,50 @@ main div{
 #paquetes-o-lotes-container p:hover{
     background-color: #478088;
 }
+
+#mas-opciones-form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2e5257;
+    width: 300px;
+    height: 200px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 30px;
+    gap: 10px;
+}
+
+#mas-opciones-form a, #mas-opciones-form input{
+    background-color: #385743;
+    border: 1px solid #000;
+    padding: 10px;
+    border-radius: 100px;
+    font-size: 20px;
+    font-weight: normal;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#mas-opciones-form a:hover, #mas-opciones-form input:hover{
+    background-color: #408157;
+}
+#mas-opciones-form div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-direction: row;
+    width: 80%;
+}
+
+#mas-opciones-form div img{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
