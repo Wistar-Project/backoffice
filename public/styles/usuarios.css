@@ -206,7 +206,7 @@ fieldset{
     height: 50px;
     font-size: 26px;
     border-radius: 20px;
-    background-color: red;
+    background-color: #c2131d;
     color: white;
     font-family: var(--font-texto);
     cursor: pointer;
@@ -218,10 +218,11 @@ fieldset{
     gap: 10px;
     width: 200px;
     border: 1px solid #000;
+    transition: all .3s;
 }
 #boton-eliminar:hover{
-    transition: all .3s;
     transform: scale(1.05);
+    background-color: red;
 }
 #boton-eliminar svg{
     width: 30px;
@@ -245,14 +246,15 @@ fieldset{
     grid-row: 2;
     border: 1px solid #000;
     width: 200px;
+    transition: all .3s;
 }
 #editar-boton svg{
     width: 30px;
     height: 30px;
 }
 #editar-boton:hover{
-    transition: all .3s;
     transform: scale(1.03);
+    background-color: #7bc7b0;
 }
 #container-editar{
     width: 490px;
