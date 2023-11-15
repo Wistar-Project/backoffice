@@ -88,4 +88,8 @@ class TransporteController extends Controller
             ]
         ]);
     }
+
+    public function Crear(Request $request){
+
+    }
 }
