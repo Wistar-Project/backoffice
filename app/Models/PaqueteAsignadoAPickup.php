@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LoteAsignadoACamion extends Model
+class PaqueteAsignadoAPickup extends Model
 {
     use HasFactory;
-    protected $table = 'lote_asignado_a_camion';
-    protected $fillable = ['id_lote', 'id_camion'];
+    protected $table = "paquete_asignado_a_pickup";
 }

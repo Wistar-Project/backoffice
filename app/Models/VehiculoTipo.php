@@ -4,13 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Camion extends Model
+class VehiculoTipo extends Model
 {
     use HasFactory;
-    protected $table = "camiones";
-    public $timestamps = false;
-    protected $fillable = [ "id_vehiculo" ];
+    protected $table = "vehiculos_tipos";
     protected $primaryKey = "id_vehiculo";
 }

@@ -16,4 +16,5 @@ class Paquete extends Model
         'destino',
         "email"
     ];
+    
 }
