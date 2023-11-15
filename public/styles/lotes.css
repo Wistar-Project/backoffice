@@ -164,7 +164,48 @@ fieldset{
     height: 35px;
 }
 
-
+.alerta{
+    width: 100%;
+    height: 50px;
+    font-size: 25px;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
+    animation: entrada forwards 1s;
+}
+@keyframes entrada {
+    0%{
+      width: 0;
+    }
+    100%{
+        width: 1;
+    }
+}
+.alerta-error{
+    width: 100%;
+    height: 50px;
+    font-size: 25px;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    animation: entrada-otro forwards 1s;
+}
+@keyframes entrada-otro{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 1;
+    }
+}
 /* RESPONSIVE */
 
 @media (max-width:900px){

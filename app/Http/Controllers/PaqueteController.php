@@ -25,15 +25,18 @@ class PaqueteController extends Controller
         $destino = Alojamiento::find($paquete['destino']) -> direccion;
         $loteAsignado = LoteFormadoPor::where('id_paquete',$id) -> get() ->pluck('id_lote');
         $vehiculo = PaqueteAsignadoPickup::where('id_paquete',$id) -> get() ->pluck('id_pickup');
-        if(isset($vehiculo))
-            $vehiculo = "No asignado";
         return [
             "peso" => $paquete -> peso_en_kg,
             "destino" => $destino,
             "fechaDeCreacion" => $paquete -> created_at,
-            "loteAsignado" => $loteAsignado,
-            "vehiculoAsignado" => $vehiculo
+            "loteAsignado" => $loteAsignado ?? 'No asignado',
+            "vehiculoAsignado" => $vehiculo ?? 'No asignado',
+            "email" => $paquete -> email
         ];
+    }
+    public function EliminarPaquete($id){
+        $paquete = Paquete::find($id);
+        $paquete -> delete();
     }
 }
  

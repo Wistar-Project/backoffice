@@ -39,4 +39,5 @@ Route::delete('/paqueteria/lotes/{id}',[LoteController::class,"EliminarLotes"])-
 Route::get('/paqueteria/lotes/{idLote}/asignar/{idCamion}',[LoteController::class,"Asignar"])->middleware('auth');
 Route::get('/paqueteria/paquetes',[PaqueteController::class,"ListarPaquetes"])-> middleware('auth');
 Route::get('/paqueteria/paquetes/{id}',[PaqueteController::class,"VerInformacionDelPaquete"])->middleware('auth');
+Route::delete('/paqueteria/paquetes/{id}',[PaqueteController::class,"EliminarPaquete"])-> middleware('auth');
 Route::get('/logout', [PersonaController::class, "CerrarSesion"])->middleware('auth');

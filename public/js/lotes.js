@@ -48,8 +48,32 @@ document.querySelectorAll('.boton-lotes').forEach(function(button) {
                     })
                     .then(function(response){
                         if(response.ok){
-                            window.location.reload(true)
-                        }
+                         setTimeout(function(){
+                            window.location.reload()
+                         },1000)   
+                         const divAlerta = document.createElement('div')
+                         divAlerta.className = 'alerta'
+                         divAlerta.textContent = "Lote eliminado con exito"
+                         document.body.appendChild(divAlerta)
+                         divAlerta.style.display =  "flex"
+                         setTimeout(function(){
+                             divAlerta.style.display = "none"
+                             document.body.removeChild(divAlerta)
+                         }, 2000)
+                       
+                        } 
+                    })
+                    .catch(err =>{
+                        const divAlerta = document.createElement('div')
+                        divAlerta.className = 'alerta-error'
+                        divAlerta.textContent = "Fallo al eliminar el lote"
+                        document.body.appendChild(divAlerta)
+                        divAlerta.style.display =  "flex"
+                        setTimeout(function(){
+                            divAlerta.style.display = "none"
+                            document.body.removeChild(divAlerta)
+                        }, 3500)
+                        console.log(err)
                     })
                 })
                 
