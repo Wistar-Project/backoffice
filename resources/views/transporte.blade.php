@@ -26,8 +26,10 @@
         <div id="mostrar-solo-boton">
             <div>
                 <p>Mostrar solo...</p>
-                <img src="/img/caret-abajo.png" alt="">
+                <img id="caret-mostrar-solo" src="/img/caret-abajo.png" alt="">
             </div>
+            <button>Camiones</button>
+            <button>Pickups</button>
         </div>
         <fieldset>
             <legend>Vehículos</legend>

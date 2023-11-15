@@ -226,6 +226,12 @@ main div{
     cursor: pointer;
     position: absolute;
     top: -50px;
+    gap: 10px;
+    transition: all 0.2s;
+}
+
+#mostrar-solo-boton:hover{
+    background-color: #427755;
 }
 
 #mostrar-solo-boton img{
@@ -298,4 +304,25 @@ main div{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+#mostrar-solo-boton button{
+    padding: 5px;
+    width: 80%;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    font-size: 30px;
+    background-color: #49835b;
+    display: none;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+#mostrar-solo-boton button:hover{
+    background-color: #4fb46f;
+    
+}
+
+#mostrar-solo-boton button.mostrar{
+    display: block;
 }
