@@ -74,9 +74,9 @@
         <form action="/usuarios/{{ $persona['id'] }}" id="editar-form" method="POST">
                 @csrf
                 @method('PUT')
-                <label for="" data-text-id="497">Nombre</label><input type="text" value="{{ old('nombre', $persona['nombre'])}}" name="nombre">
-                <label for="" data-text-id="514">Apellido :</label> <input type="text"value="{{ old('apellido', $persona['apellido'])}}" name="apellido">
-                <label for="">Email</label> <input type="email"value="{{ old('email', $persona['email'])}}"  name="email">
+                <label for="" data-text-id="497">Nombre</label><input type="text" value="" name="nombre">
+                <label for="" data-text-id="514">Apellido :</label> <input type="text"value="" name="apellido">
+                <label for="">Email</label> <input type="email" value=""  name="email">
                 <label for="" data-text-id="303">Contraseña :</label> <input type="password" name="contraseña" />
                 <input type="submit" value="Guardar" id="guardar">
         </form>
