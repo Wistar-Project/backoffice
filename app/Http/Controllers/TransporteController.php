@@ -29,7 +29,8 @@ class TransporteController extends Controller
             "tipo" => VehiculoTipo::findOrFail($id) -> tipo,
             "capacidad" => Vehiculo::findOrFail($id) -> capacidad_en_toneladas,
             "conductor" => $this -> conductorAsignado($id),
-            "paquetesOLotesAsignados" => $this -> paquetesOLotesAsignados($id)
+            "paquetesOLotesAsignados" => $this -> paquetesOLotesAsignados($id),
+            "id" => $id
         ]);
     }
 

@@ -74,10 +74,14 @@
                 <p>{{ $item }}</p>
             @endforeach
         </div>
-        <button>
-            <img src="/img/eliminar.png" alt="">
-            <p>Eliminar vehículo</p>
-        </button>
+        <form action="/transporte/{{ $id }}" method="POST">
+            @method("DELETE")
+            @csrf
+            <button type="submit">
+                <img src="/img/eliminar.png" alt="">
+                <p>Eliminar vehículo</p>
+            </button>
+        </form>
     </fieldset>
 </main>
 <x-footer/>
