@@ -32,9 +32,9 @@
         <img src="/img/avatar.png" alt="login" class="avatar-login" id="account-avatar">
     </div>  
     <div id="opciones-usuario">
-        <div id="boton-cerrar-sesion">
+        <a href="/logout" id="boton-cerrar-sesion">
             <img src="/img/cerrar-sesion.png" alt="Salir">
             <p data-text-id="100">Cerrar sesión</p>
-        </div>
+        </a>
     </div>  
 </header>
