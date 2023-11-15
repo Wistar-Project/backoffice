@@ -10,4 +10,5 @@ class Pickup extends Model
     use HasFactory;
     protected $fillable = [ "id_vehiculo" ];
     public $timestamps = false;
+    protected $primaryKey = "id_vehiculo";
 }

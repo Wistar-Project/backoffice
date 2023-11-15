@@ -15,4 +15,5 @@ class Paquete extends Model
         'peso_en_kg',
         'destino'
     ];
+    
 }

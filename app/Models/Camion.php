@@ -12,4 +12,5 @@ class Camion extends Model
     protected $table = "camiones";
     public $timestamps = false;
     protected $fillable = [ "id_vehiculo" ];
+    protected $primaryKey = "id_vehiculo";
 }
