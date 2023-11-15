@@ -202,7 +202,7 @@ fieldset{
 }
 
 #boton-eliminar{
-    width: 100%;
+    min-width: 270px;
     height: 50px;
     font-size: 26px;
     border-radius: 20px;
@@ -216,9 +216,9 @@ fieldset{
     align-items: center;
     justify-content: center;
     gap: 10px;
-    width: 200px;
     border: 1px solid #000;
     transition: all .3s;
+    min-width: 240px;
 }
 #boton-eliminar:hover{
     transform: scale(1.05);
@@ -245,8 +245,9 @@ fieldset{
     grid-column: 1;
     grid-row: 2;
     border: 1px solid #000;
-    width: 200px;
     transition: all .3s;
+    width: 240px;
+
 }
 #editar-boton svg{
     width: 30px;
@@ -382,15 +383,18 @@ fieldset{
     height: 30px;
 }
 
+#botones-buscar-wrapper{
+    position: relative;
+}
+
 #buscar-boton{
     position: absolute;
-    top: 130px;
-    left: calc(50% - 100px);
+    right: 0;
     grid-column: 1;
     border-radius: 20px;
     box-shadow: 0 1px 3px black;
     cursor: pointer;
-    min-width: 100px;
+    min-width: 150px;
     padding: 5px;
     height: 40px;
     background-color: var(--boton-principal);
@@ -399,13 +403,14 @@ fieldset{
     justify-content: center;
     align-items: center;
     border: none;
+    font-weight: lighter;
 }
 #buscar-boton:hover{
     transition: .3s;
     transform: scale(1.03);
 }
 #mostrar-todos-activos{
-    min-width: 100px;
+    min-width: 150px;
     height: 40px;
     padding: 10px;
     background-color: var(--boton-principal);
@@ -418,6 +423,7 @@ fieldset{
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: bolder;
 }
 #mostrar-todos-activos:hover{
     transition: .3s;
@@ -444,4 +450,20 @@ main > form{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+#botonsitos{
+    position: absolute;
+    right: 0;
+}
+
+#form{
+    position: absolute;
+    right: 140px;
+    min-width: 200px;
+    font-size: 25px;
+}
+
+#form-eliminar{
+    width: fit-content;
 }

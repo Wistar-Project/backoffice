@@ -3,25 +3,29 @@
 <link rel="stylesheet" href="/styles/usuarios.css">
 <h2 class="titulo" data-text-id="463">Usuarios</h2>
 <main>
-<button type="button" id="buscar-boton" data-text-id="496">Buscar por</button>
-<form action="/usuarios" method="GET" id="form">
-    <input type="hidden" value="todos" name="todos">
-    <button type="submit" id="mostrar-todos-activos" data-text-id="436">Mostrar todos</button>
-</form>
     @isset($mensaje)
         <x-alerta :color="$mensaje['color']">{{$mensaje['texto']}} </x-alerta>
     @endisset
     <x-boton-volver link="/"/>
     <button type="button" id="boton-crear" data-text-id="416">Crear</button>
-<fieldset id="container-usuarios">
-    <legend data-text-id="463">Usuarios</legend>
-    @foreach ($personas as $persona)
-    <button type="button" class="personas" data-id="{{ $persona['id'] }}">
-         {{ $persona['nombre'] }} 
-         {{ $persona['apellido'] }} 
-    </button> 
-    @endforeach
-</fieldset>
+<div id="botones-buscar-wrapper">
+    <div id="botonsitos">
+        <button type="button" id="buscar-boton" data-text-id="496">Buscar por</button>
+        <form action="/usuarios" method="GET" id="form">
+            <input type="hidden" value="todos" name="todos">
+            <button type="submit" id="mostrar-todos-activos" data-text-id="436">Mostrar todos</button>
+        </form>
+    </div>
+    <fieldset id="container-usuarios">
+        <legend data-text-id="463">Usuarios</legend>
+        @foreach ($personas as $persona)
+        <button type="button" class="personas" data-id="{{ $persona['id'] }}">
+             {{ $persona['nombre'] }} 
+             {{ $persona['apellido'] }} 
+        </button> 
+        @endforeach
+    </fieldset>
+</div>
 <fieldset id="container-inspector">
     <legend data-text-id="499">Información del usuario</legend>
     <div id="datos-info-contenedor">
