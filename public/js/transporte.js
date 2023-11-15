@@ -1,13 +1,3 @@
-document.getElementById('mostrar-solo-boton').addEventListener('click', () => {
-    document.getElementById('mostrar-solo-boton').classList.toggle('abrir-menu-mostrar-solo')
-    document.querySelectorAll('button').forEach(boton => {
-        boton.classList.toggle('mostrar')
-    })
-    const caret = document.getElementById('caret-mostrar-solo')
-    if (caret.src === "http://localhost:8004/img/caret-abajo.png")
-        return caret.src = "/img/caret-arriba.png"
-    caret.src = "/img/caret-abajo.png"
-})
 
 document.getElementById('boton-crear').addEventListener('click', () => {
     activarEscalaDeGrises()
@@ -47,12 +37,6 @@ function desactivarEscalaDeGrises() {
     document.getElementById('mostrar-solo-boton').style.filter = "grayscale(0)"
 }
 
-document.getElementById("paquetes-o-lotes-container").childNodes.forEach(item => {
-    item.addEventListener('click', () => {
-        activarEscalaDeGrises()
-        mostrarMasOpciones(item.textContent)
-    })
-})
 
 function mostrarMasOpciones(id) {
     
@@ -62,7 +46,6 @@ function mostrarMasOpciones(id) {
             <p class="bolder">Opciones</p>
             <img src="/img/cruz.png" alt="" id="cerrar-opciones-form"/>
         </div>
-        <a href="/lotes/${id}">Ver más información</a>
         <input type="submit" value="Desasignar del vehículo">
     `
     document.getElementById('mas-opciones-form').style.display = "flex"
@@ -71,3 +54,10 @@ function mostrarMasOpciones(id) {
         desactivarEscalaDeGrises()
     }) 
 }
+
+document.getElementById("paquetes-o-lotes-container").childNodes.forEach(item => {
+    item.addEventListener('click', () => {
+        activarEscalaDeGrises()
+        mostrarMasOpciones(item.textContent)
+    })
+})

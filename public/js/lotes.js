@@ -21,13 +21,12 @@ document.querySelectorAll('.boton-lotes').forEach(function(button) {
                 </ul>
                 ` 
                 paquetes = data.paquetes
-                paquetesContainer.innerHTML=''
+                paquetesContainer.innerHTML= `
+                    <legend>Paquetes asignados</legend>
+                    `
                 paquetes.forEach(function(paquete){
                     const div = document.createElement('div')
                     div.setAttribute('id','paquete')
-                    paquetesContainer.innerHTML= `
-                    <legend>Paquetes asignados</legend>
-                    `
                     div.innerText = paquete
                     paquetesContainer.appendChild(div)
                 })

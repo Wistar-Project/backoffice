@@ -28,20 +28,22 @@ document.querySelectorAll('.personas').forEach(function(button) {
             .then(function(data) {
                 const info = document.getElementById('informacion')
                info.innerHTML = `
-                <legend>Datos modificables </legend>
-                <p> Nombre completo: ${data.nombre} ${data.apellido} </p>
-                <p> Email : ${data.email} </p>
-                <p> Rol : ${data.rol}</P>
+               <ul>
+                    <li>Nombre completo: ${data.nombre} ${data.apellido}</li>
+                    <li>Email: ${data.email}</li>
+                    <li>Rol: ${data.rol}</li>
+               </ul>
                 ` 
             });
             eliminar.style.display = 'flex'
             document.getElementById('form-eliminar').action = `/usuarios/${userId}`
+            document.getElementById('editar-form').action = `/usuarios/${userId}`
             editar.style.display = 'flex'
             editar.addEventListener('click',function(){
-                ventana.classList.toggle('ver')
+                ventana.classList.add('ver')
             })
             cerrar.addEventListener('click',function(){
-                ventana.classList.toggle('ver')
+                ventana.classList.remove('ver')
             })
     });
 });

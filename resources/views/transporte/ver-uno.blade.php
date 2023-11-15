@@ -1,7 +1,7 @@
 <x-header/>
 <link rel="stylesheet" href="/styles/transporte.css">
 <script src="/js/transporte.js" defer></script>
-
+<script src="/js/transporte-menu-mostrar-solo.js" defer></script>
 <h2 class="titulo" data-text-id="479">Vehículos</h2>
 @isset($mensaje)
     <x-alerta :color="$mensaje['color']">{{ $mensaje['texto'] }}</x-alerta>
@@ -28,7 +28,7 @@
                 <input type="number" name="peso" id="peso" min="1" required>
             </div>
         </div>
-        <input type="submit" value="Crear">
+        <button type="submit" data-text-id="416">Crear</button>
     </form>
     <div>
         <div id="mostrar-solo-boton">
@@ -83,10 +83,10 @@
         <legend data-text-id="484">Información del vehículo</legend>
         <ul>
             <div>
-                <li><p data-text-id="485">Tipo:</p> {{ $tipo }}</li>
-                <li><p data-text-id="487">Capacidad (t):</p>  {{ $capacidad }}</li>
+                <li><span data-text-id="485">Tipo</span>: {{ $tipo }}</li>
+                <li><span data-text-id="487">Capacidad (t)</span>:  {{ $capacidad }}</li>
             </div>
-            <li><p data-text-id="486">Conductor asignado:</p> {{ $conductor }}</li>
+            <li><span data-text-id="486">Conductor asignado</span>: {{ $conductor }}</li>
         </ul>
         <p class="bolder" data-text-id="488">Lotes/Paquetes asignados</p>
         <div id="paquetes-o-lotes-container">

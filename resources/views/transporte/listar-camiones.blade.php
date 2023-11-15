@@ -28,7 +28,7 @@
                 <input type="number" name="peso" id="peso" min="1" required>
             </div>
         </div>
-        <input type="submit" value="Crear">
+        <button type="submit" data-text-id="416">Crear</button>
     </form>
     <div>
         <div id="mostrar-solo-boton">
@@ -55,10 +55,10 @@
         <legend data-text-id="484">Información del vehículo</legend>
         <ul>
             <div>
-                <li data-text-id="485">Tipo:</li>
-                <li data-text-id="487">Capacidad (t):</li>
+                <li><span data-text-id="485">Tipo</span>:</li>
+                <li><span data-text-id="487">Capacidad (t)</span>:</li>
             </div>
-            <li data-text-id="486">Conductor asignado:</li>
+            <li><span data-text-id="486">Conductor asignado</span>:</li>
         </ul>
         <p class="bolder" data-text-id="488">Lotes/Paquetes asignados</p>
         <div id="paquetes-o-lotes-container">

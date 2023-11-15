@@ -16,9 +16,9 @@
         <p data-text-id="420">Peso(kg):</p>
         <p data-text-id="425">Destino:</p>
         <p>Email:</p>
-        <p data-text-id="477">Fecha de creación:</p>
+        <p><span data-text-id="477">Fecha de creación</span>:</p>
         <p data-text-id="421">Vehiculo asignado:</p>
-        <p data-text-id="431">Lote asignado:</p>
+        <p><span data-text-id="431">Lote asignado</span>:</p>
         </div>
         <div id="botones">
             <button type="button" id="eliminar" data-text-id="475">

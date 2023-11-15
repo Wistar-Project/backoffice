@@ -1,7 +1,7 @@
 <x-header/>
 <link rel="stylesheet" href="/styles/transporte.css">
 <script src="/js/transporte.js" defer></script>
-
+<script src="/js/transporte-menu-mostrar-solo.js" defer></script>
 <h2 class="titulo" data-text-id="479">Vehículos</h2>
 @isset($mensaje)
     <x-alerta :color="$mensaje['color']">{{ $mensaje['texto'] }}</x-alerta>
@@ -17,18 +17,18 @@
         </div>
         <div class="inputs">
             <div>
-                <label for="tipo" data-text-id="485">Tipo:</label>
+                <label for="tipo"><span data-text-id="485">Tipo</span>:</label>
                 <select name="tipo" id="tipo">
                     <option value="camion" data-text-id="521">Camión</option>
                     <option value="pickup">Pickup</option>
                 </select>
             </div>
             <div>
-                <label for="peso" data-text-id="522">Peso (t):</label>
+                <label for="peso"><span data-text-id="522">Peso (t)</span>:</label>
                 <input type="number" name="peso" id="peso" min="1" required>
             </div>
         </div>
-        <input type="submit" value="Crear">
+        <button type="submit" data-text-id="416">Crear</button>
     </form>
     <div>
         <div id="mostrar-solo-boton">
@@ -68,10 +68,10 @@
         <legend data-text-id="484">Información del vehículo</legend>
         <ul>
             <div>
-                <li data-text-id="485">Tipo:</li>
-                <li data-text-id="487">Capacidad (t):</li>
+                <li><span data-text-id="485">Tipo</span>:</li>
+                <li><span data-text-id="487">Capacidad (t)</span>:</li>
             </div>
-            <li data-text-id="486">Conductor asignado:</li>
+            <li><span data-text-id="486">Conductor asignado</span>:</li>
         </ul>
         <p class="bolder" data-text-id="488">Lotes/Paquetes asignados</p>
         <div id="paquetes-o-lotes-container">
