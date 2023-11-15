@@ -1,6 +1,7 @@
 @include('components/header')
 <link rel="stylesheet" href="/styles/paqueteria.css">
 <main>
+      <x-boton-volver link="/"/>
 <a href="/paqueteria/lotes" class="container" id="lote-container">
             <h3 data-text-id="411">Lotes</h3>
             <img src="/img/LOTES SIN DETALLE.png" alt="Hubo un error al cargar la imagen.">
