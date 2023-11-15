@@ -36,8 +36,12 @@
                 <p>Mostrar solo...</p>
                 <img id="caret-mostrar-solo" src="/img/caret-abajo.png" alt="">
             </div>
-            <button>Camiones</button>
-            <button>Pickups</button>
+            <button>
+                <a href="/transporteCamiones">Camiones</a>
+            </button>
+            <button>
+                <a href="/transportePickups">Pickups</a>
+            </button>
         </div>
         <fieldset id="vehiculos-fieldset">
             <legend>Vehículos</legend>
