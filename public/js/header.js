@@ -124,3 +124,9 @@ function obtenerTextoTraducido({ traducciones, id, idioma }){
       }
     return new Intl.DateTimeFormat("en-US", options).format(date).toString()
 }
+
+const opcionesUsuario = document.getElementById('opciones-usuario')
+const accountAvatar = document.getElementById('account-avatar')
+accountAvatar.addEventListener('click', () => {
+    opcionesUsuario.classList.toggle('mostrar')
+})
