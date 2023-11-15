@@ -14,6 +14,7 @@ close.addEventListener('click', function(){
 document.querySelectorAll('.personas').forEach(function(button) {
     button.addEventListener('click', function() {
        var userId = this.getAttribute('data-id');
+       
        const editar = document.getElementById('editar-boton')
        const  cerrar = document.getElementById('cerrar-ventana')
        const ventana = document.getElementById('container-editar')
