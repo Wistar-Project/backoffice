@@ -58,19 +58,21 @@ fieldset{
     border: 1px solid black;
     background-color: var(--boton-principal);
     border-radius: 15px;
+    font-size: 30px;
 }
 #paquete{
-    width: 35px;
-    height: 35px;
+    width: 50px;
+    height: 50px;
     background-color: var(--boton-secundario);
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
-    margin: 20px;
-    box-shadow: 5px 4px 3px black;
+    font-size: 35px;
+    margin: 10px;
+    border: 1px solid #000;
     border-radius: 10px;
+    font-weight: bolder;
 }
 #texto{
     width: 90%;
@@ -231,4 +233,12 @@ fieldset{
         width: 100%;
         font-size: 20px;
     }
+}
+
+#informacion legend{
+    font-size: 30px;
+}
+
+#container-lotes legend{
+    font-size: 30px;
 }
