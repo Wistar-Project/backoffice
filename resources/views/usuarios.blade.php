@@ -29,7 +29,13 @@
 <fieldset id="container-inspector">
     <legend data-text-id="499">Información del usuario</legend>
     <div id="datos-info-contenedor">
-        <div id="informacion"></div>
+        <div id="informacion">
+            <ul>
+                <li>Nombre completo:</li>
+                <li>Email:</li>
+                <li>Rol:</li>
+           </ul>
+        </div>
         <div id="botones-contenedor">
             <form action="/usuarios/{{ $persona['id'] }}"id="form-eliminar" method="post">
                 @csrf

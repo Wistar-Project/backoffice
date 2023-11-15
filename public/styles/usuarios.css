@@ -239,7 +239,6 @@ fieldset{
     border-radius: 20px;
     border: none;
     cursor: pointer;
-    display: none;
     width: 70%;
     height: 50px;
     grid-column: 1;
