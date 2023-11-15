@@ -72,7 +72,7 @@
         <div id="paquetes-o-lotes-container">
 
         </div>
-        <button style="background-color: #313131">
+        <button>
             <img src="/img/eliminar.png" alt="">
             <p>Eliminar vehículo</p>
         </button>
