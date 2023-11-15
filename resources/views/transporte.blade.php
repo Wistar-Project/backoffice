@@ -21,11 +21,25 @@
         </div>
         <input type="submit" value="Crear">
     </form>
-    <fieldset>
-        <legend>Vehículos</legend>
-    </fieldset>
-    <fieldset>
+    <div>
+        <button id="mostrar-solo-boton">
+            <p>Mostrar solo...</p>
+            <img src="/img/caret-abajo.png" alt="">
+        </button>
+        <fieldset>
+            <legend>Vehículos</legend>
+        </fieldset>
+    </div>
+    <fieldset id="info-fieldset">
         <legend>Información del vehículo</legend>
+        <ul>
+            <li>Tipo:</li>
+            <li>Conductor asignado:</li>
+            <li>Capacidad (t):</li>
+        </ul>
+        <p>Lotes/Paquetes asignados</p>
+        <div></div>
+        <button>Eliminar vehículo</button>
     </fieldset>
 </main>
 <x-footer/>

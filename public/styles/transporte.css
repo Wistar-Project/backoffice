@@ -59,6 +59,7 @@ fieldset{
     padding-top: 30px;
     gap: 10px;
 }
+
 .sede-container{
     display: flex;
     width: 90%;
@@ -200,3 +201,35 @@ main{
         font-size: 25px;
     }
 }
+
+
+main div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#mostrar-solo-boton{
+    height: 50px;
+    border: 1px solid #000;
+    width: 250px;
+    border-radius: 1000px;
+    background-color: #385743;
+    font-size: 28px;
+    align-self: flex-end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#mostrar-solo-boton img{
+    width: 25px;
+    height: 25px;
+}
+
+#info-fieldset{
+    margin-top: 50px;
+}
+
