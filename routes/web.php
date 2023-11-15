@@ -38,8 +38,8 @@ Route::get('/transporte', [ TransporteController::class, "Listar" ]) -> middlewa
 Route::get('/transporte/{d}', [ TransporteController::class, "VerUno" ]) -> middleware('auth');
 Route::delete('/transporte/{d}', [ TransporteController::class, "Eliminar" ]) -> middleware('auth');
 Route::post('/transporte', [ TransporteController::class, "Crear" ]) -> middleware('auth');
-Route::get('/transporte/camiones', [ TransporteController::class, "ListarCamiones" ]) -> middleware('auth');
-Route::get('/transporte/pickups', [ TransporteController::class, "ListarPickups" ]) -> middleware('auth');
+Route::get('/transporteCamiones', [ TransporteController::class, "ListarCamiones" ]) -> middleware('auth');
+Route::get('/transportePickups', [ TransporteController::class, "ListarPickups" ]) -> middleware('auth');
 /* viejas rutas
 Route::post('/listar', [PersonaController::class, "ListarPersona"])->middleware('auth');
 Route::get('/listar', [PersonaController::class, "ListarPersonas"])->middleware('auth');
