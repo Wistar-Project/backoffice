@@ -14,7 +14,6 @@ close.addEventListener('click', function(){
 document.querySelectorAll('.personas').forEach(function(button) {
     button.addEventListener('click', function() {
        var userId = this.getAttribute('data-id');
-       
        const editar = document.getElementById('editar-boton')
        const  cerrar = document.getElementById('cerrar-ventana')
        const ventana = document.getElementById('container-editar')
@@ -36,6 +35,7 @@ document.querySelectorAll('.personas').forEach(function(button) {
                 ` 
             });
             eliminar.style.display = 'flex'
+            document.getElementById('form-eliminar').action = `/usuarios/${userId}`
             editar.style.display = 'flex'
             editar.addEventListener('click',function(){
                 ventana.classList.toggle('ver')
