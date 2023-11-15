@@ -40,11 +40,10 @@ fieldset{
 #container-inspector{
     width: 100%;
     height: 500px;
-    display: grid;
     margin-top: 50px;
-    grid-template-columns: 50% 40%;
-    grid-template-rows: 70% 35%;
-    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #boton-crear{
     width: 100px;
@@ -155,7 +154,7 @@ fieldset{
 #informacion{
     width: 100%;
     grid-column: span 2;
-    height: 100%;
+    min-height: 300px;
     border: 1px solid black;
     border-radius: 5px;
     margin: 35px;
@@ -216,6 +215,9 @@ fieldset{
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
+    width: 200px;
+    border: 1px solid #000;
 }
 #boton-eliminar:hover{
     transition: all .3s;
@@ -228,7 +230,8 @@ fieldset{
 #editar-boton{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 10px;
     background-color: #5f9484;
     font-size: 23px;
     font-family: var(--font-texto);
@@ -237,11 +240,11 @@ fieldset{
     cursor: pointer;
     display: none;
     width: 70%;
-    margin-top: 65px;
     height: 50px;
     grid-column: 1;
     grid-row: 2;
     border: 1px solid #000;
+    width: 200px;
 }
 #editar-boton svg{
     width: 30px;
@@ -424,4 +427,19 @@ main > form{
     position: absolute;
     top: 135px;
     left: 20px;
+}
+
+#datos-info-contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+}
+
+#botones-contenedor{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
