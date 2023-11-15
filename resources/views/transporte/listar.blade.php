@@ -17,18 +17,18 @@
         </div>
         <div class="inputs">
             <div>
-                <label for="tipo" data-text-id="485">Tipo:</label>
+                <label for="tipo"><span data-text-id="485">Tipo</span>:</label>
                 <select name="tipo" id="tipo">
                     <option value="camion" data-text-id="521">Camión</option>
                     <option value="pickup">Pickup</option>
                 </select>
             </div>
             <div>
-                <label for="peso" data-text-id="522">Peso (t):</label>
+                <label for="peso"><span data-text-id="522">Peso (t)</span>:</label>
                 <input type="number" name="peso" id="peso" min="1" required>
             </div>
         </div>
-        <input type="submit" value="Crear">
+        <button type="submit" data-text-id="416">Crear</button>
     </form>
     <div>
         <div id="mostrar-solo-boton">
