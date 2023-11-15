@@ -1,8 +1,8 @@
 <x-header/>
-<link rel="stylesheet" href="/styles/sedes.css">
+<link rel="stylesheet" href="/styles/transporte.css">
 <script src="/js/sedes.js" defer></script>
 
-<h2 class="titulo">Sedes</h2>
+<h2 class="titulo">Vehículos</h2>
 @isset($mensaje)
     <x-alerta :color="$mensaje['color']">{{ $mensaje['texto'] }}</x-alerta>
 @endisset
@@ -12,7 +12,7 @@
     <form id="creacion-popup" method="POST" action="/sedes">
         @csrf
         <div class="titulo-crear">
-            <p>Crear sede</p>
+            <p>Crear vehículo</p>
             <img src="/img/cruz.png" alt="" width="20px" height="20px" id="cerrar-creacion">
         </div>
         <div class="inputs">
@@ -22,7 +22,10 @@
         <input type="submit" value="Crear">
     </form>
     <fieldset>
-        <legend>Sedes</legend>
+        <legend>Vehículos</legend>
+    </fieldset>
+    <fieldset>
+        <legend>Información del vehículo</legend>
     </fieldset>
 </main>
 <x-footer/>
