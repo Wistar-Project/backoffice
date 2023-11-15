@@ -11,4 +11,5 @@ class Camion extends Model
     use HasFactory;
     protected $table = "camiones";
     public $timestamps = false;
+    protected $fillable = [ "id_vehiculo" ];
 }

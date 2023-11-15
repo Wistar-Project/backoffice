@@ -12,6 +12,7 @@ use App\Models\Vehiculo;
 use App\Models\VehiculoTipo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class TransporteController extends Controller
 {
@@ -90,6 +91,26 @@ class TransporteController extends Controller
     }
 
     public function Crear(Request $request){
+        $validacion = Validator::make($request->all(), [
+            "peso" => "numeric|min:1",
+            "tipo" => "in:camion,pickup"
+        ]);
+        if($validacion -> fails())
+            return $this -> listarConError("Ingrese un peso real por favor");
+        $excepcion = DB::transaction(function() use($request){
+            $id = Vehiculo::create([ 
+                "capacidad_en_toneladas" => $request -> input("peso") 
+            ]) -> id;
+            $this -> asignarTipoVehiculo($id, $request -> input("tipo"));
+        });
+        if(isset($excepcion))
+            return $this -> listarConError("Ha ocurrido un error al intentar crear el vehículo");
+        return $this -> listarConMensaje("Vehículo creado satisfactoriamente");
+    }
 
+    private function asignarTipoVehiculo($idVehiculo, $tipo){
+        if($tipo == "camion")
+            return Camion::create([ "id_vehiculo" => $idVehiculo ]);
+        return Pickup::create([ "id_vehiculo" => $idVehiculo ]);
     }
 }

@@ -9,7 +9,7 @@
 <main>
     <x-boton-volver link="/"/>
     <button type="button" id="boton-crear">Crear</button>
-    <form id="creacion-popup" method="POST" action="/sedes">
+    <form id="creacion-popup" method="POST" action="/transporte">
         @csrf
         <div class="titulo-crear">
             <p>Crear vehículo</p>
@@ -25,7 +25,7 @@
             </div>
             <div>
                 <label for="peso">Peso (t):</label>
-                <input type="text" name="peso" id="peso" required>
+                <input type="number" name="peso" id="peso" min="1" required>
             </div>
         </div>
         <input type="submit" value="Crear">

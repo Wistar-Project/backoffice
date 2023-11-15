@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Pickup extends Model
 {
     use HasFactory;
+    protected $fillable = [ "id_vehiculo" ];
+    public $timestamps = false;
 }

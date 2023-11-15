@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Vehiculo extends Model
 {
     use HasFactory,SoftDeletes;
+    protected $fillable = [ "capacidad_en_toneladas" ];
 }
