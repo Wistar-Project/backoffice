@@ -134,4 +134,10 @@ class TransporteController extends Controller
             "pickups" => Pickup::all()->pluck('id_vehiculo'),
         ]);
     }
+
+    public function Desasignar(Request $request, $id){
+        LoteAsignadoACamion::where('id_lote', $id) -> delete();
+        PaqueteAsignadoAPickup::where('id_paquete', $id) -> delete();
+        return $this -> listarConMensaje("Desasignado del vehículo satisfactoriamente");
+    }
 }

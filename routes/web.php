@@ -40,6 +40,7 @@ Route::delete('/transporte/{d}', [ TransporteController::class, "Eliminar" ]) ->
 Route::post('/transporte', [ TransporteController::class, "Crear" ]) -> middleware('auth');
 Route::get('/transporteCamiones', [ TransporteController::class, "ListarCamiones" ]) -> middleware('auth');
 Route::get('/transportePickups', [ TransporteController::class, "ListarPickups" ]) -> middleware('auth');
+Route::get('/transporte/desasignar/{d}', [ TransporteController::class, "Desasignar" ]) -> middleware('auth');
 /* viejas rutas
 Route::post('/listar', [PersonaController::class, "ListarPersona"])->middleware('auth');
 Route::get('/listar', [PersonaController::class, "ListarPersonas"])->middleware('auth');
