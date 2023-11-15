@@ -17,8 +17,17 @@
             <img src="/img/cruz.png" alt="" width="20px" height="20px" id="cerrar-creacion">
         </div>
         <div class="inputs">
-            <label for="direccion">Dirección:</label>
-            <input type="text" name="direccion" id="direccion" minlength="10" maxlength="100" required>
+            <div>
+                <label for="tipo">Tipo:</label>
+                <select name="tipo" id="tipo">
+                    <option value="camion">Camión</option>
+                    <option value="pickup">Pickup</option>
+                </select>
+            </div>
+            <div>
+                <label for="peso">Peso (t):</label>
+                <input type="text" name="peso" id="peso" required>
+            </div>
         </div>
         <input type="submit" value="Crear">
     </form>
