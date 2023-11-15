@@ -43,12 +43,12 @@ class usuarioTest extends TestCase
 
     public function test_ver_informacion_de_persona_sin_autenticarse(){
         $response = $this -> get('/usuarios/10');
-        $response -> assertStatus(401);
+        $response -> assertStatus(302);
     }
 
     public function test_borrar_usuario_sin_autenticarse(){
         $response = $this -> delete('/usuarios/10');
-        $response -> assertStatus(401);
+        $response -> assertStatus(302);
     }
 
     public function test_borrar_usuario(){
