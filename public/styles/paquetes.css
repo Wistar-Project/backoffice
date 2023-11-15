@@ -55,7 +55,7 @@ main{
     background-color: #587964;
 }
 #botones{
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,10 +139,10 @@ main{
             flex-direction: column;
         }
         #container-paquetes{
-            width: 95%;
+            width: 100%;
         }
         #informacion{
-            width: 95%;
+            width: 100%;
             margin-top: 45px;
         }
     }
@@ -159,5 +159,9 @@ main{
         }
         #container-paquetes , #informacion{
             width: 100%;
+        }
+        #container-paquetes{
+            height: 420px;
+            margin-top: 65px;
         }
     }
