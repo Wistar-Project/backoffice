@@ -40,7 +40,7 @@ class LoteController extends Controller
         ]);
     }
     public function VerInformacionDeLote($id){
-        $lote = Lote::find($id);
+        $lote = Lote::findOrFail($id);
         $paquetes = LoteFormadoPor::where("id_lote",$id )->get()->pluck("id_paquete");
         $pesoLote = 0;
         foreach( $paquetes as $paquete){
