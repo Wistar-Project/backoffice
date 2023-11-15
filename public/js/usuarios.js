@@ -36,12 +36,13 @@ document.querySelectorAll('.personas').forEach(function(button) {
             });
             eliminar.style.display = 'flex'
             document.getElementById('form-eliminar').action = `/usuarios/${userId}`
+            document.getElementById('editar-form').action = `/usuarios/${userId}`
             editar.style.display = 'flex'
             editar.addEventListener('click',function(){
-                ventana.classList.toggle('ver')
+                ventana.classList.add('ver')
             })
             cerrar.addEventListener('click',function(){
-                ventana.classList.toggle('ver')
+                ventana.classList.remove('ver')
             })
     });
 });
