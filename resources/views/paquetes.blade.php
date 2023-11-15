@@ -1,7 +1,7 @@
 <x-header/>
 <link rel="stylesheet" href="/styles/paquetes.css">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<x-boton-volver/>
+<x-boton-volver link="/"/>
 <main>
     <div id="alerta" style="display:none;"></div>
     <fieldset id="container-paquetes">
