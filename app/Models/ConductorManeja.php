@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ConductorManeja extends Model
 {
     use HasFactory;
-    use SoftDeletes;
     protected $table = "conductor_maneja";
     public $timestamps = false;
 }

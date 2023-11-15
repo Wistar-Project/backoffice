@@ -6,17 +6,15 @@
         <img src="img/usuarios.png" alt="Hubo un error al cargar la imagen.">
         <p class="texto-app" data-text-id="402">Registra nuevos usuarios en el sistema, listalos y elimina o edita otros.</p>
     </a>
-    <a class="container" id="transporte-container" href="">
+    <a class="container" id="transporte-container" href="/transporte">
         <h3 data-text-id="403">Transporte</h3>
         <img src="img/camion 2.png" alt="Hubo un error al cargar la imagen.">
         <p class="texto-app" data-text-id="404">Define los vehículos que posees y asigna choferes a cargo de ellos.</p>
     </a>
-    <a href="/paqueteria">
-        <div class="container" id="paqueteria-container">
-            <h3 data-text-id="405">Paquetería</h3>
-            <img src="img/caja-del-paquete.png" alt="Hubo un error al cargar la imagen.">
-            <p class="texto-app" data-text-id="406">Lista paquetes o lotes, edita los que necesites o elimina los que desees.</p>
-        </div>
+    <a class="container" id="paqueteria-container" href="/paqueteria">
+        <h3 data-text-id="405">Paquetería</h3>
+        <img src="img/caja-del-paquete.png" alt="Hubo un error al cargar la imagen.">
+        <p class="texto-app" data-text-id="406">Lista paquetes o lotes, edita los que necesites o elimina los que desees.</p>
     </a>
     <a class="container" id="sedes-container" href="/sedes">
         <h3 data-text-id="407">Sedes</h3>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\SedeController;
 use App\Http\Controllers\ConductorController;
 use App\Http\Controllers\LoteController;
+use App\Http\Controllers\TransporteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\PaqueteController;
@@ -33,6 +34,13 @@ Route::put('/usuarios/{id}',[PersonaController::class,"editar"])->middleware('au
 Route::get('/paqueteria',function(){
     return view("paqueteria");
 })->middleware('auth');
+Route::get('/transporte', [ TransporteController::class, "Listar" ]) -> middleware('auth');
+Route::get('/transporte/{d}', [ TransporteController::class, "VerUno" ]) -> middleware('auth');
+Route::delete('/transporte/{d}', [ TransporteController::class, "Eliminar" ]) -> middleware('auth');
+Route::post('/transporte', [ TransporteController::class, "Crear" ]) -> middleware('auth');
+Route::get('/transporteCamiones', [ TransporteController::class, "ListarCamiones" ]) -> middleware('auth');
+Route::get('/transportePickups', [ TransporteController::class, "ListarPickups" ]) -> middleware('auth');
+Route::get('/transporte/desasignar/{d}', [ TransporteController::class, "Desasignar" ]) -> middleware('auth');
 /* viejas rutas
 Route::post('/listar', [PersonaController::class, "ListarPersona"])->middleware('auth');
 Route::get('/listar', [PersonaController::class, "ListarPersonas"])->middleware('auth');
