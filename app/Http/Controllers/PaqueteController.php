@@ -5,7 +5,7 @@ use App\Models\Paquete;
 use App\Models\Alojamiento;
 use Illuminate\Http\Request;
 use App\Models\LoteFormadoPor;
-use App\Models\PaqueteAsignadoPickup;
+use App\Models\PaqueteAsignadoAPickup;
 
 class PaqueteController extends Controller
 {
@@ -24,7 +24,7 @@ class PaqueteController extends Controller
         $paquete = Paquete::find($id);
         $destino = Alojamiento::find($paquete['destino']) -> direccion;
         $loteAsignado = LoteFormadoPor::where('id_paquete',$id) -> get() ->pluck('id_lote');
-        $vehiculo = PaqueteAsignadoPickup::where('id_paquete',$id) -> get() ->pluck('id_pickup');
+        $vehiculo = PaqueteAsignadoAPickup::where('id_paquete',$id) -> get() ->pluck('id_pickup');
         return [
             "peso" => $paquete -> peso_en_kg,
             "destino" => $destino,

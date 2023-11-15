@@ -1,7 +1,7 @@
 <x-header/>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="stylesheet" href="/styles/lotes.css">
-<x-boton-volver/>
+<x-boton-volver link="/paqueteria" />
 <main>
     @isset($mensaje)
         <x-alerta :color="$mensaje['color']">{{$mensaje['texto']}} </x-alerta>

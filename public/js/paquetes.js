@@ -12,12 +12,12 @@ document.querySelectorAll('.boton-paquete').forEach(function(button) {
                 const info = document.getElementById('texto')
                 const fecha= formatearFecha(data.fechaDeCreacion)
                info.innerHTML = `
-                <p>Peso(kg):${data.peso}</p>
-                <p>Destino:${data.destino}</p>
-                <p>Email:${data.email}</p>
-                <p>Fecha de creacion:${fecha}</p>
-                <p>Vehiculo asignado:${data.vehiculoAsignado}</p>
-                <p>Lote asignado:${data.loteAsignado}</p>
+                <p>Peso(kg): ${data.peso}</p>
+                <p>Destino: ${data.destino}</p>
+                <p>Email: ${data.email}</p>
+                <p>Fecha de creación: ${fecha}</p>
+                <p>Vehiculo asignado: ${data.vehiculoAsignado}</p>
+                <p>Lote asignado: ${data.loteAsignado}</p>
                 ` 
               
                 console.log(eliminar)

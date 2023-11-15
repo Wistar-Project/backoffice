@@ -47,7 +47,6 @@ document.querySelectorAll('.boton-lotes').forEach(function(button) {
                         headers:myHeaders,
                     })
                     .then(function(response){
-                        if(response.ok){
                          setTimeout(function(){
                             window.location.reload()
                          },1000)   
@@ -60,8 +59,6 @@ document.querySelectorAll('.boton-lotes').forEach(function(button) {
                              divAlerta.style.display = "none"
                              document.body.removeChild(divAlerta)
                          }, 2000)
-                       
-                        } 
                     })
                     .catch(err =>{
                         const divAlerta = document.createElement('div')

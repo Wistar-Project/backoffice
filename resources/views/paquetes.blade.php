@@ -1,7 +1,7 @@
 <x-header/>
 <link rel="stylesheet" href="/styles/paquetes.css">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<x-boton-volver/>
+<x-boton-volver link="/paqueteria"/>
 <main>
     <div id="alerta" style="display:none;"></div>
     <fieldset id="container-paquetes">
@@ -16,7 +16,7 @@
         <p>Peso(kg):</p>
         <p>Destino:</p>
         <p>Email:</p>
-        <p>Fecha de creacion:</p>
+        <p>Fecha de creación:</p>
         <p>Vehiculo asignado:</p>
         <p>Lote asignado:</p>
         </div>

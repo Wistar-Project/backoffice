@@ -7,7 +7,7 @@
     <x-alerta :color="$mensaje['color']">{{ $mensaje['texto'] }}</x-alerta>
 @endisset
 <main>
-    <x-boton-volver/>
+    <x-boton-volver link="/"/>
     <button type="button" id="boton-crear">Crear</button>
     <form id="creacion-popup" method="POST" action="/sedes">
         @csrf

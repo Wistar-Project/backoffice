@@ -11,7 +11,7 @@
     @isset($mensaje)
         <x-alerta :color="$mensaje['color']">{{$mensaje['texto']}} </x-alerta>
     @endisset
-    <x-boton-volver/>
+    <x-boton-volver link="/"/>
     <button type="button" id="boton-crear">Crear</button>
 <fieldset id="container-usuarios">
     <legend>Usuarios</legend>
