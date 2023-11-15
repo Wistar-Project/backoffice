@@ -1,6 +1,5 @@
 <x-header/>
 <link rel="stylesheet" href="/styles/transporte.css">
-<script src="/js/sedes.js" defer></script>
 <script src="/js/transporte.js" defer></script>
 
 <h2 class="titulo">Vehículos</h2>
@@ -40,8 +39,62 @@
             <button>Camiones</button>
             <button>Pickups</button>
         </div>
-        <fieldset>
+        <fieldset id="vehiculos-fieldset">
             <legend>Vehículos</legend>
+            <p class="texto-vehiculos">Camiones</p>
+            <div class="vehiculos-container">
+                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>
+            </div>
+            <p class="texto-vehiculos">Pickups</p>
+            <div class="vehiculos-container">                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p><p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p><p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p></div>
         </fieldset>
     </div>
     <fieldset id="info-fieldset">
@@ -54,7 +107,64 @@
             <li>Conductor asignado:</li>
         </ul>
         <p class="bolder">Lotes/Paquetes asignados</p>
-        <div id="paquetes-o-lotes-container"></div>
+        <div id="paquetes-o-lotes-container">
+            <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p><p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p><p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p><p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p><p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p><p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p><p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>                <p>1</p>
+                <p>2</p>
+                <p>3</p>
+        </div>
         <button>
             <img src="/img/eliminar.png" alt="">
             <p>Eliminar vehículo</p>
