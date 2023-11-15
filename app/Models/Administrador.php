@@ -11,4 +11,5 @@ class Administrador extends Model
     use HasFactory;
     use SoftDeletes;
     protected $table = "administradores";
+    protected $fillable = [ "id" ];
 }

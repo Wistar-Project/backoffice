@@ -34,6 +34,15 @@ Route::put('/usuarios/{id}',[PersonaController::class,"editar"])->middleware('au
 Route::get('/paqueteria',function(){
     return view("paqueteria");
 })->middleware('auth');
+
+Route::get('/paqueteria/lotes',[LoteController::class,"ListarLotes"])->middleware('auth');
+Route::get('/paqueteria/lotes/{id}',[LoteController::class,"VerInformacionDeLote"])->middleware('auth');
+Route::delete('/paqueteria/lotes/{id}',[LoteController::class,"EliminarLotes"])->middleware('auth');
+Route::get('/paqueteria/lotes/{idLote}/asignar/{idCamion}',[LoteController::class,"Asignar"])->middleware('auth');
+Route::get('/paqueteria/paquetes',[PaqueteController::class,"ListarPaquetes"])-> middleware('auth');
+Route::get('/paqueteria/paquetes/{id}',[PaqueteController::class,"VerInformacionDelPaquete"])->middleware('auth');
+Route::delete('/paqueteria/paquetes/{id}',[PaqueteController::class,"EliminarPaquete"])-> middleware('auth');
+
 Route::get('/transporte', [ TransporteController::class, "Listar" ]) -> middleware('auth');
 Route::get('/transporte/{d}', [ TransporteController::class, "VerUno" ]) -> middleware('auth');
 Route::delete('/transporte/{d}', [ TransporteController::class, "Eliminar" ]) -> middleware('auth');
@@ -41,44 +50,5 @@ Route::post('/transporte', [ TransporteController::class, "Crear" ]) -> middlewa
 Route::get('/transporteCamiones', [ TransporteController::class, "ListarCamiones" ]) -> middleware('auth');
 Route::get('/transportePickups', [ TransporteController::class, "ListarPickups" ]) -> middleware('auth');
 Route::get('/transporte/desasignar/{d}', [ TransporteController::class, "Desasignar" ]) -> middleware('auth');
-/* viejas rutas
-Route::post('/listar', [PersonaController::class, "ListarPersona"])->middleware('auth');
-Route::get('/listar', [PersonaController::class, "ListarPersonas"])->middleware('auth');
 
-Route::post('/crear', [PersonaController::class, "CrearPersona"])->middleware('auth');
-Route::get('/crear', function () {
-    return view("crearUsuario");
-
-})->middleware('auth');
-Route::post('/editar', [PersonaController::class, "EditarPersona"])->middleware('auth');
-Route::get('/editar', function () {
-    return view("editarUsuario");
-})->middleware('auth');
-
-Route::get('/verLote', [LoteController::class, "VerLote"])->middleware('auth');
-
-Route::get('/editarLote', function () {
-    return view("editarLote");
-})->middleware('auth');
-
-Route::post('/agregarPaqueteALote', [LoteController::class, "AgregarPaqueteALote"])->middleware('auth');
-Route::post('/removerPaqueteALote', [LoteController::class, "RemoverPaqueteALote"])->middleware('auth');
-
-Route::post('/borrarLote', [LoteController::class, "BorrarLote"])->middleware('auth');
-Route::get('/borrarLote', function () {
-    return view('borrarLote');
-})->middleware('auth');
-
-Route::get('/listarPaquetes', [PaqueteController::class, "ListarPaquetes"])->middleware('auth');
-
-Route::post('/borrarPaquete', [PaqueteController::class, "BorrarPaquete"])->middleware('auth');
-Route::get('/borrarPaquete', function () {
-    return view('borrarPaquete');
-})->middleware('auth');
-
-Route::get('/asignarConductor', function () {
-    return view("asignarConductor");
-})->middleware('auth');
-Route::post('/asignarConductor', [ConductorController::class, "AsignarVehiculo"])->middleware('auth');
-*/
 Route::get('/logout', [PersonaController::class, "CerrarSesion"])->middleware('auth');

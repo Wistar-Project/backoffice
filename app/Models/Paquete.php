@@ -13,7 +13,8 @@ class Paquete extends Model
     protected $fillable = [
         'id',
         'peso_en_kg',
-        'destino'
+        'destino',
+        "email"
     ];
     
 }

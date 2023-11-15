@@ -177,14 +177,18 @@ class PersonaController extends Controller
             Funcionario::findOrFail($id)->delete();
         if($rol == 'conductor')
             Conductor::findOrFail($id)->delete();
-        if($rol == 'gerente')
-            return $this-> listarConError("No puedes eliminar un usuario Gerente");
-    
     }
     public function BorrarUsuario($id){
-        $this->borrarRol($id);
-        Persona::findOrFail($id)->delete();
-        User::findOrFail($id)->delete();
+        $rol = PersonaRol::findOrFail($id)->rol;
+        if($rol == 'gerente')
+            return $this-> listarConError("No puedes eliminar un usuario gerente");
+        $excepcion = DB::transaction(function() use($id){ 
+            $this->borrarRol($id);
+            Persona::findOrFail($id)->delete();
+            User::findOrFail($id)->delete();
+        });
+        if(!is_null($excepcion))
+            return $this-> ListarConmensaje("Ha ocurrido un error al intentar borrar el usuario.");
         return $this-> ListarConmensaje("El usuario ha sido eliminado");
     }
 
