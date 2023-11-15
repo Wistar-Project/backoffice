@@ -28,7 +28,7 @@
                 <input type="number" name="peso" id="peso" min="1" required>
             </div>
         </div>
-        <input type="submit" value="Crear">
+        <button type="submit" data-text-id="416">Crear</button>
     </form>
     <div>
         <div id="mostrar-solo-boton">
