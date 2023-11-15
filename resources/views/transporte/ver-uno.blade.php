@@ -1,7 +1,7 @@
 <x-header/>
 <link rel="stylesheet" href="/styles/transporte.css">
 <script src="/js/transporte.js" defer></script>
-
+<script src="/js/transporte-menu-mostrar-solo.js" defer></script>
 <h2 class="titulo" data-text-id="479">Vehículos</h2>
 @isset($mensaje)
     <x-alerta :color="$mensaje['color']">{{ $mensaje['texto'] }}</x-alerta>
