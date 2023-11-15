@@ -33,6 +33,7 @@ Route::put('/usuarios/{id}',[PersonaController::class,"editar"])->middleware('au
 Route::get('/paqueteria',function(){
     return view("paqueteria");
 })->middleware('auth');
+Route::get('/transporte', [ ConductorController::class, "Listar" ]) -> middleware('auth');
 /* viejas rutas
 Route::post('/listar', [PersonaController::class, "ListarPersona"])->middleware('auth');
 Route::get('/listar', [PersonaController::class, "ListarPersonas"])->middleware('auth');
