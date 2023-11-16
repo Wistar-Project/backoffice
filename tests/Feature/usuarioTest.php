@@ -8,6 +8,7 @@ use Tests\TestCase;
 use App\Models\Persona;
 use App\Models\User;
 use App\Models\Administrador;
+use App\Models\Gerente;
 use App\Models\PersonaRol;
 
 class usuarioTest extends TestCase
@@ -54,14 +55,27 @@ class usuarioTest extends TestCase
     public function test_borrar_usuario(){
         $response = $this -> actingAs($this -> crearAdministrador()) -> delete('/usuarios/10');
         $response -> assertStatus(200);
-        $this -> assertDatabaseMissing("personas", [
-            "id" => 10
+        $this -> assertEquals(null, User::find(10));
+        $this -> assertEquals(null, Persona::find(10));
+        $this -> assertEquals(null, Administrador::find(10));
+        $response -> assertViewHas("mensaje", [
+            "texto" => "El usuario ha sido eliminado",
+            "color" => "green"
         ]);
-        $this -> assertDatabaseMissing("users", [
-            "id" => 10
+    }
+
+    public function test_borrar_gerente(){
+        User::create([ "id" => 15, "email" => "gerente@elmail.com", "password" => "1234" ]);
+        Persona::create([ "id" => 15, "nombre" => "Fabri", "apellido" => "Cobucci" ]);
+        Gerente::create(["id" => 15]);
+        $response = $this -> actingAs($this -> crearAdministrador()) -> delete('/usuarios/10');
+        $response -> assertStatus(200);
+        $response -> assertViewHas("mensaje", [
+            "texto" => "No puedes eliminar un usuario gerente",
+            "color" => "rgba(85, 38, 38, 0.959)"
         ]);
-        $this -> assertDatabaseMissing("administradores", [
-            "id" => 10
-        ]);
+        $this -> assertEquals(null, User::find(10));
+        $this -> assertEquals(null, Persona::find(10));
+        $this -> assertEquals(null, Administrador::find(10));
     }
 }
