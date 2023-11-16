@@ -68,14 +68,14 @@ class usuarioTest extends TestCase
         User::create([ "id" => 15, "email" => "gerente@elmail.com", "password" => "1234" ]);
         Persona::create([ "id" => 15, "nombre" => "Fabri", "apellido" => "Cobucci" ]);
         Gerente::create(["id" => 15]);
-        $response = $this -> actingAs($this -> crearAdministrador()) -> delete('/usuarios/10');
+        $response = $this -> actingAs($this -> crearAdministrador()) -> delete('/usuarios/15');
         $response -> assertStatus(200);
         $response -> assertViewHas("mensaje", [
             "texto" => "No puedes eliminar un usuario gerente",
             "color" => "rgba(85, 38, 38, 0.959)"
         ]);
-        $this -> assertEquals(null, User::find(10));
-        $this -> assertEquals(null, Persona::find(10));
-        $this -> assertEquals(null, Administrador::find(10));
+        $this -> assertEquals(null, User::find(15));
+        $this -> assertEquals(null, Persona::find(15));
+        $this -> assertEquals(null, Administrador::find(15));
     }
 }
