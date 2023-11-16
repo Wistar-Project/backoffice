@@ -194,8 +194,8 @@ class PersonaController extends Controller
             return $this-> listarConError("No puedes eliminar un usuario gerente");
         $excepcion = DB::transaction(function() use($id){ 
             $this->borrarRol($id);
-            Persona::find($id)->delete();
-            User::findOrFail($id)->delete();
+            Persona::findOrFail($id)->delete();
+            User::find($id)->delete();
         });
         if(!is_null($excepcion))
             return $this-> ListarConmensaje("Ha ocurrido un error al intentar borrar el usuario.");
