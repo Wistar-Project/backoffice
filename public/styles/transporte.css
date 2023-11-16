@@ -38,7 +38,8 @@ fieldset{
     font-size: 20px;
     position: fixed;
     right: 30px;
-    top: 80px;
+    z-index: 999;
+    top: 85px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -99,6 +100,7 @@ fieldset{
 
 main{
     position: relative;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -181,29 +183,6 @@ main{
     }
 }
 
-/* RESPONSIVE */
-
-@media (max-width:580px){
-    fieldset{
-            width: 100%;
-    }
-    #boton-crear{
-        margin-top: 45px;
-    }
-    #volver{
-        margin-top: 40px;
-    }
-    #creacion-popup.mostrar{
-        width: 100%;
-    }
-}
-
-@media (max-width:350px){
-    p{
-        font-size: 25px;
-    }
-}
-
 
 main div{
     display: flex;
@@ -251,19 +230,12 @@ main div{
 #info-fieldset ul{
     font-size: 30px;
     list-style:inside;
-    gap: 30px;
     flex-wrap: wrap;
     flex-direction: column;
     width: 90%;
+    text-align: center;
 }
 
-#info-fieldset ul div{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    
-}
 
 .bolder{
     font-weight: bolder;
@@ -273,7 +245,7 @@ main div{
     background-color: #2e5257;
     border-radius: 20px;
     border: 1px solid #000;
-    height: 450px;
+    height: 340px;
     width: 95%;
 }
 
@@ -285,6 +257,7 @@ main div{
     border-radius: 1000px;
     cursor: pointer;
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center; 
     transition: all 0.2s;  
@@ -476,4 +449,34 @@ main div{
     width: 20px;
     height: 20px;
     cursor: pointer;
+}
+
+/* RESPONSIVE */
+
+@media (max-width:730px){
+    main > div{
+        width: 100%;
+        margin-top: 100px;
+    }
+    fieldset{
+        width: 100%;
+    }
+}
+@media (max-width:380px){
+    #creacion-popup{
+        width: 90%;
+    }
+    #info-fieldset button{
+        width: 100%;
+    }
+    *{
+        font-size: 23px;
+    }
+    .volver{
+        margin-top: 65px;
+    }
+    #boton-crear{
+        margin-top: 65px;
+    }
+
 }

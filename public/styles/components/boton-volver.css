@@ -12,6 +12,7 @@
     color: white;
     position: fixed;
     left: 20px;
+    z-index: 999;
     font-family: var(--font-texto);
     top: 85px;
     user-select: none;
