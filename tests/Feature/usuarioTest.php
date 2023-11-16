@@ -74,8 +74,11 @@ class usuarioTest extends TestCase
             "texto" => "No puedes eliminar un usuario gerente",
             "color" => "rgba(85, 38, 38, 0.959)"
         ]);
-        $this -> assertEquals([], User::find(15));
-        $this -> assertEquals([], Persona::find(15));
-        $this -> assertEquals([], Administrador::find(15));
+        $modeloUser = count(User::find(15));
+        $this -> assertEquals(0, $modeloUser);
+        $modeloPersona = count(Persona::find(15));
+        $this -> assertEquals(0, $modeloPersona);
+        $modeloAdministrador = count(Administrador::find(15));
+        $this -> assertEquals(0, $modeloAdministrador);
     }
 }
