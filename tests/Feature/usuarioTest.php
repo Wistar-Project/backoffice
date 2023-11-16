@@ -74,8 +74,8 @@ class usuarioTest extends TestCase
             "texto" => "No puedes eliminar un usuario gerente",
             "color" => "rgba(85, 38, 38, 0.959)"
         ]);
-        $this -> assertNull(User::find(15));
-        $this -> assertNull(Persona::find(15));
-        $this -> assertNull(Administrador::find(15));
+        $this -> assertNotNull(User::find(15));
+        $this -> assertNotNull(Persona::find(15));
+        $this -> assertNotNull(Administrador::find(15));
     }
 }
