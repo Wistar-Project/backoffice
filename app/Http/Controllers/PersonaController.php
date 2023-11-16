@@ -189,12 +189,12 @@ class PersonaController extends Controller
             Conductor::findOrFail($id)->delete();
     }
     public function BorrarUsuario($id){
-        $rol = PersonaRol::find($id)->rol;
+        $rol = PersonaRol::findOrFail($id)->rol;
         if($rol == 'gerente')
             return $this-> listarConError("No puedes eliminar un usuario gerente");
         $excepcion = DB::transaction(function() use($id){ 
             $this->borrarRol($id);
-            Persona::findOrFail($id)->delete();
+            Persona::find($id)->delete();
             User::findOrFail($id)->delete();
         });
         if(!is_null($excepcion))
