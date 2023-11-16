@@ -54,10 +54,9 @@
     <fieldset id="info-fieldset">
         <legend data-text-id="484">Información del vehículo</legend>
         <ul>
-            <div>
+        
                 <li data-text-id="485">Tipo:</li>
                 <li data-text-id="487">Capacidad (t):</li>
-            </div>
             <li data-text-id="486">Conductor asignado:</li>
         </ul>
         <p class="bolder" data-text-id="488">Lotes/Paquetes asignados</p>
